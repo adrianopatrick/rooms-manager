@@ -5,10 +5,6 @@
             <dependent-object/>
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="SOSEJB.jar" deploy-path="/" handle="module:/resource/SOSEJB/SOSEJB">
-            <dependent-object/>
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
         <dependent-module archiveName="SOSEJBClient.jar" deploy-path="/" handle="module:/resource/SOSEJBClient/SOSEJBClient">
             <dependency-type>uses</dependency-type>
         </dependent-module>
