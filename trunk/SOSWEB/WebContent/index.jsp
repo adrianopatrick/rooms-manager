@@ -1,1 +1,0 @@
-<jsp:forward page="/paginas/homeProfessor.xhtml"></jsp:forward>
