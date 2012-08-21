@@ -11,10 +11,12 @@ import javax.ejb.Stateless;
 public class TesteBean {
 
     /**
-     * Default constructor. 
+     * 
      */
     public TesteBean() {
         // TODO Auto-generated constructor stub
     }
 
 }
+
+  //Teste: Codificação através da interface WEB.
