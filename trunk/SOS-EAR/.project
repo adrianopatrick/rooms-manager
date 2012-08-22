@@ -6,6 +6,7 @@
 		<project>SOSWEB</project>
 		<project>SOSEJB</project>
 		<project>SOSEJBClient</project>
+		<project>SOS-WEB</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

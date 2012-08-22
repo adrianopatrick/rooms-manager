@@ -1,0 +1,1 @@
+<jsp:forward page="/paginas/login.xhtml"></jsp:forward>
