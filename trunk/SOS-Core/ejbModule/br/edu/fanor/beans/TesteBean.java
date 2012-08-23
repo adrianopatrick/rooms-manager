@@ -14,9 +14,9 @@ public class TesteBean {
      * 
      */
     public TesteBean() {
-        // TODO Auto-generated constructor stub
+        
     }
 
 }
 
-  //Teste: Codificação através da interface WEB.
+  
