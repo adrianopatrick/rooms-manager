@@ -14,6 +14,6 @@ public class Professor extends Pessoa{
 	@JoinTable ( name ="professor_solicitacao",
 	joinColumns = @JoinColumn ( name ="id_professor"),
 	inverseJoinColumns = @JoinColumn ( name ="id_solicitacao"))
-	private List<Solicitacao> solicitacoes;
+	private List<Solicitacao> solicitacoes; 
 
 }
