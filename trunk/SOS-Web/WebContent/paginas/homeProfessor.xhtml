@@ -7,26 +7,27 @@
 	xmlns:p="http://primefaces.org/ui" xml:lang="pt" lang="pt-br">
 
 <h:head>
-	<title><ui:insert name = "titulo" >Professor</ui:insert> </title>
+	<title> <ui:insert name = "titulo" >Professor</ui:insert> </title>
+	<h:outputStylesheet name="css/default.css" />
 </h:head>
 
-<h:body>
-	<h:outputText value="Diz Doido?!?" /> <br/> 
-<p:layout style="min-width:400px;min-height:200px;" id="layout">
+<h:body style="color: black;">
+<p:layout style="min-width:400px;min-height:200px;" id="layout" fullPage="true">
 
-   	<p:layoutUnit position="north" >  
-        norte
+   	<p:layoutUnit position="north"  size="100" header="Bem Vindo" resizable="true" collapsible="true" effect="drop">  
+        <h:outputText>Fanor - Faculdades Nordeste</h:outputText>
+        Vivendo Experiencias...
     </p:layoutUnit>
     
-    <p:layoutUnit position="south" >  
-        sul
+    <p:layoutUnit position="south" size="100" header="sei lá" resizable="true" collapsible="true" effect="drop">  
+        Javatar
     </p:layoutUnit>
     
-    <p:layoutUnit position="west" resizable="true" size="100" minSize="40" maxSize="200">  
+    <p:layoutUnit position="west" size="250" header="Lista de alguma coisa" resizable="true" collapsible="true" effect="drop">  
         esquerda
     </p:layoutUnit>  
   
-    <p:layoutUnit position="east" >  
+    <p:layoutUnit position="east" size="250" header="Lista de alguma coisa 2" resizable="true" collapsible="true" effect="drop">  
         direita
     </p:layoutUnit>
       
