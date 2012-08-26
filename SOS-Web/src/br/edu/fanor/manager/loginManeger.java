@@ -11,7 +11,7 @@ import org.primefaces.context.RequestContext;
 
 @ManagedBean
 public class loginManeger {
-
+ 
 	private String email;
 
 	private String senha;
