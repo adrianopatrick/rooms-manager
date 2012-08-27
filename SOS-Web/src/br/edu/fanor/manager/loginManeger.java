@@ -24,10 +24,10 @@ public class loginManeger {
 		if (email != null && email.equals("admin") && senha != null && senha.equals("admin")) {
 			loggedIn = true;
 			msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Welcome muito maxo!!", email);
-			FacesContext.getCurrentInstance().getExternalContext().redirect("homeProfessor.xhtml");  
+			FacesContext.getCurrentInstance().getExternalContext().redirect("paginas/homeProfessor.xhtml");  
 		} else {
 			loggedIn = false;
-			msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Errou doido", "Invalido mermao");
+			msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Errou doido", "");
 		}
 
 		FacesContext.getCurrentInstance().addMessage(null, msg);
