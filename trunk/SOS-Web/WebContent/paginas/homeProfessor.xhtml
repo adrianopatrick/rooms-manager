@@ -11,28 +11,93 @@
 	<h:outputStylesheet name="css/default.css" />
 </h:head>
 
-<h:body style="color: black;">
+<h:body style="background-color: #B0E2FF;" >
 <p:layout style="min-width:400px;min-height:200px;" id="layout" fullPage="true">
 
-   	<p:layoutUnit position="north"  size="100" header="Bem Vindo" resizable="true" collapsible="true" effect="drop">  
-        <h:outputText>Fanor - Faculdades Nordeste</h:outputText>
-        Vivendo Experiencias...
+   	<p:layoutUnit position="north"  size="135" header="Bem Vindo" resizable="true" collapsible="true" effect="drop">  
+		<p:graphicImage url="../resources/img/logo_fanor.png" width="350px" height="100px" title="Vivendo experiências nada boas...." />
     </p:layoutUnit>
     
-    <p:layoutUnit position="south" size="100" header="sei lá" resizable="true" collapsible="true" effect="drop">  
-        Javatar
+    <p:layoutUnit position="south" size="100" resizable="true" collapsible="true" effect="drop">  
+        Javatar 2012
     </p:layoutUnit>
     
     <p:layoutUnit position="west" size="250" header="Lista de alguma coisa" resizable="true" collapsible="true" effect="drop">  
-        esquerda
+        
+		<h:form id="form">  
+		    <p:growl id="growl" showDetail="true"/>  
+		  
+		    <p:dataTable id="cars" var="car" value="#{tableBean.mediumCarsModel}" paginator="true" rows="10"  
+		                 selection="#{tableBean.selectedCar}" selectionMode="single">  
+		  
+		        <p:ajax event="rowSelect" listener="#{tableBean.onRowSelect}"   
+		                    update=":form:display :form:growl" oncomplete="carDialog.show()" />  
+		        <p:ajax event="rowUnselect" listener="#{tableBean.onRowUnselect}" update=":form:growl"/>  
+		        <p:ajax event="rowDblselect" listener="#{tableBean.onRowDblselect}" />  
+		  
+		        <f:facet name="header">  
+		            Selecione uma Coisa ai 
+		        </f:facet>  
+		  
+		        <p:column headerText="Nome">  
+		            #{#}
+		        </p:column>
+
+		        <p:column headerText="Tipo">
+		            #{#}
+		        </p:column>  
+
+		    </p:dataTable>  
+		  
+		    <p:dialog id="dialog" header="Car Detail" widgetVar="carDialog" resizable="false"  
+		                showEffect="explode" hideEffect="explode">  
+		  
+		        <h:panelGrid id="display" columns="2" cellpadding="4">  
+		  
+		            <h:outputText value="Model:" />  
+		            <h:outputText value="#{tableBean.selectedCar.model}" />  
+		  
+		            <h:outputText value="Year:" />  
+		            <h:outputText value="#{tableBean.selectedCar.year}" />  
+		  
+		            <h:outputText value="Manufacturer:" />  
+		            <h:outputText value="#{tableBean.selectedCar.manufacturer}" />  
+		  
+		            <h:outputText value="Color:" />  
+		            <h:outputText value="#{tableBean.selectedCar.color}" />  
+		        </h:panelGrid>  
+		    </p:dialog>  
+		  
+		</h:form> 
     </p:layoutUnit>  
   
     <p:layoutUnit position="east" size="250" header="Lista de alguma coisa 2" resizable="true" collapsible="true" effect="drop">  
         direita
     </p:layoutUnit>
       
-    <p:layoutUnit position="center" >  
-        Center  
+    <p:layoutUnit position="center" >
+    
+        <h2>Formulário de soliciatação de reserva</h2>
+        <h:panelGrid columns="2" >
+        	
+        	<h:outputText value="Solicitante:" />
+        	<h:inputText value="" />
+        	
+        	<h:outputText value="Curso:" />
+        	<h:inputText value="" />
+        	
+        	<h:outputText value="Cadeira:" />
+        	<h:inputText value="" />
+        	
+        	<h:outputText value="seilá...:" />
+        	<h:inputText value="" />
+        	
+        	<h:outputText value="Data para reserva:" />
+        	<p:calendar id="dataInicio" />
+        	
+        	<p:commandButton id="arroxa" value="Arroxa!" action="#" title="Enviar solicitação?" />
+        	
+        </h:panelGrid>
     </p:layoutUnit>  
     
 </p:layout>  
