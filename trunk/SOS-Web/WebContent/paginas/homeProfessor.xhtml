@@ -22,49 +22,46 @@
         Javatar 2012
     </p:layoutUnit>
     
-    <p:layoutUnit position="west" size="250" header="Lista de alguma coisa" resizable="true" collapsible="true" effect="drop">  
+    <p:layoutUnit position="west" size="300" header="Solicitações pendentes" resizable="true" collapsible="true" effect="drop">  
         
 		<h:form id="form">  
 		    <p:growl id="growl" showDetail="true"/>  
 		  
-		    <p:dataTable id="cars" var="car" value="#{tableBean.mediumCarsModel}" paginator="true" rows="10"  
-		                 selection="#{tableBean.selectedCar}" selectionMode="single">  
+			<p:dataTable id="listaSolicitacaos" var="solicitacao" paginator="true" rows="10" value="#{listaSolicitacaoManager.listaSolicitacaos}">  
 		  
-		        <p:ajax event="rowSelect" listener="#{tableBean.onRowSelect}"   
-		                    update=":form:display :form:growl" oncomplete="carDialog.show()" />  
-		        <p:ajax event="rowUnselect" listener="#{tableBean.onRowUnselect}" update=":form:growl"/>  
-		        <p:ajax event="rowDblselect" listener="#{tableBean.onRowDblselect}" />  
+		        <p:column headerText="Nome" style="width:24%">  
+		            <h:outputText value="#{solicitacao.professor.nome}" />  
+		        </p:column>  
 		  
-		        <f:facet name="header">  
-		            Selecione uma Coisa ai 
-		        </f:facet>  
-		  
-		        <p:column headerText="Nome">  
-		            #{#}
-		        </p:column>
-
-		        <p:column headerText="Tipo">
-		            #{#}
+		        <p:column headerText="Obs." style="width:24%">  
+		            <h:outputText value="#{solicitacao.observacao}" />  
 		        </p:column>  
 
+		        <p:column style="width:4%">  
+		                <p:commandButton id="selectButton" update=":form:display" oncomplete="solicDialog.show()" icon="ui-icon-search" title="Visializar">  
+		                <f:setPropertyActionListener value="#{solicitacao}" target="#{listaSolicitacaoManager.solicitacao}" />  
+		            </p:commandButton>  
+		        </p:column>  
+		  
 		    </p:dataTable>  
+  
+		  <p:dialog header="Solicitação" widgetVar="solicDialog" resizable="false" id="solicDlg"  
+                showEffect="fade" hideEffect="explode" modal="true">  
+                
+		        <h:panelGrid id="display" columns="2" cellpadding="4" style="margin:0 auto;">  
+
+		            <h:outputText value="Solicitante:" />  
+<!-- 		            <h:outputText value="#{listaSolicitacaoManager.solicitacao.professor.nome}" />   -->
+		  		            
+<!-- 		            <h:outputText value="Numero de alunos:" /> -->
+<!-- 		            <h:outputText value="#{listaSolicitacaoManager.solicitacao.nrAlunos}" />     -->
 		  
-		    <p:dialog id="dialog" header="Car Detail" widgetVar="carDialog" resizable="false"  
-		                showEffect="explode" hideEffect="explode">  
+<!-- 		            <h:outputText value="Data:" />   -->
+<!-- 		            <h:outputText value="#{listaSolicitacaoManager.solicitacao.data}" />   -->
 		  
-		        <h:panelGrid id="display" columns="2" cellpadding="4">  
-		  
-		            <h:outputText value="Model:" />  
-		            <h:outputText value="#{tableBean.selectedCar.model}" />  
-		  
-		            <h:outputText value="Year:" />  
-		            <h:outputText value="#{tableBean.selectedCar.year}" />  
-		  
-		            <h:outputText value="Manufacturer:" />  
-		            <h:outputText value="#{tableBean.selectedCar.manufacturer}" />  
-		  
-		            <h:outputText value="Color:" />  
-		            <h:outputText value="#{tableBean.selectedCar.color}" />  
+<!-- 		            <h:outputText value="Obs.:" />   -->
+<!-- 		            <h:outputText value="#{listaSolicitacaoManager.solicitacao.observacao}" /> -->
+		            
 		        </h:panelGrid>  
 		    </p:dialog>  
 		  
