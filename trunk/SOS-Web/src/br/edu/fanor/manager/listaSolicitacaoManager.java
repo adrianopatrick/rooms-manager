@@ -34,8 +34,8 @@ public class listaSolicitacaoManager {
 		Professor professor = new Professor();
 		professor.setNome("Chuck Noia");
 		professor.setEmail("@.com");
-		
-		Solicitacao solicitacao = new Solicitacao();
+					
+		solicitacao = new Solicitacao();
 		solicitacao.setData(Calendar.getInstance());
 		solicitacao.setId(1L);
 		solicitacao.setNrAlunos(20);
