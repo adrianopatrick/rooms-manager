@@ -38,7 +38,7 @@
 		        </p:column>  
 
 		        <p:column style="width:4%">  
-		                <p:commandButton id="selectButton" update=":form:display" oncomplete="solicDialog.show()" icon="ui-icon-search" title="Visializar">  
+		                <p:commandButton id="selectButton" oncomplete="solicDialog.show()" icon="ui-icon-search" title="Visializar">  
 		                <f:setPropertyActionListener value="#{solicitacao}" target="#{listaSolicitacaoManager.solicitacao}" />  
 		            </p:commandButton>  
 		        </p:column>  
@@ -97,7 +97,25 @@
         </h:panelGrid>
     </p:layoutUnit>  
     
-</p:layout>  
-</h:body>
+</p:layout>
+<p:dialog header="Solicitações" widgetVar="solicDialog"  resizable="false" modal="true" showEffect="slide" width="500">
+	<h:form prependId="false">
+		<h:panelGrid columns="2">
+			<h:outputText value="Solicitante:" />  
+			
+			<h:outputText id="nome" value="#{listaSolicitacaoManager.solicitacao.professor.nome}" />
+			            
+			<h:outputText value="Numero de alunos:" />
+	        <h:outputText id="nrAlunos" value="#{listaSolicitacaoManager.solicitacao.nrAlunos}" />
+	
+			<h:outputText value="Data:" />
+	        <h:outputText id="data" value="#{listaSolicitacaoManager.solicitacao.data}" />
+	
+			<h:outputText value="Obs.:" />
+			<h:outputText id="observacao" value="#{listaSolicitacaoManager.solicitacao.observacao}" />
+		</h:panelGrid>
+	</h:form>
+</p:dialog>
 
+</h:body>
 </html>
