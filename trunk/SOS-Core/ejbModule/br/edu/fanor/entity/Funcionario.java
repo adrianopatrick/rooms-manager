@@ -17,9 +17,6 @@ import br.edu.fanor.enums.TipoFuncionario;
 public class Funcionario extends Pessoa{
 	
 	@OneToMany(mappedBy="funcionario")
-	@JoinTable ( name ="funcionario_reserva",
-	joinColumns = @JoinColumn ( name ="id_funcionario"),
-	inverseJoinColumns = @JoinColumn ( name ="id_reserva"))
 	private List<Reserva> reservas;
 	
 	@NotNull
