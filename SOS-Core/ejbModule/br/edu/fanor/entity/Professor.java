@@ -11,9 +11,6 @@ import javax.persistence.OneToMany;
 public class Professor extends Pessoa{
 	
 	@OneToMany(mappedBy="professor")
-	@JoinTable ( name ="professor_solicitacao",
-	joinColumns = @JoinColumn ( name ="id_professor"),
-	inverseJoinColumns = @JoinColumn ( name ="id_solicitacao"))
 	private List<Solicitacao> solicitacoes; 
 
 }

@@ -10,6 +10,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
@@ -43,6 +45,9 @@ public class Solicitacao {
 	private Calendar data;
 	
 	@ManyToOne(optional=false)
+	@JoinTable ( name ="professor_solicitacao",
+	inverseJoinColumns = @JoinColumn ( name ="id_professor"),
+	joinColumns = @JoinColumn ( name ="id_solicitacao"))
 	private Professor professor;
 	
 	@ManyToMany(mappedBy="solicitacoes")
