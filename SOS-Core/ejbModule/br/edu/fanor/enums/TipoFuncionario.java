@@ -3,7 +3,7 @@ package br.edu.fanor.enums;
 public enum TipoFuncionario {
 
 	ADMINISTRADOR,
-	FUNCIONARIO
-	
+	FUNCIONARIO,
+	PROFESSOR
 	
 }
