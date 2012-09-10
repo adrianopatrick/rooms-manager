@@ -7,7 +7,9 @@
 	xmlns:p="http://primefaces.org/ui" xml:lang="pt" lang="pt-br">
 
 <h:head>
-
+	
+	<link rel="stylesheet" type="text/css" href="../resources/css/estilo.css" />
+	
 <script type="text/javascript">  
     function handleLoginRequest(xhr, status, args) {  
         if(args.validationFailed || !args.loggedIn) {  
@@ -23,17 +25,12 @@
 </h:head>
 
 <h:body>
-	<h:outputText value="Bem vindo ao sistema SOS! onde vc não é salvo aki xD... " /> <br/> 
-	<h:outputLink id="loginLink" value="javascript:void(0)" onclick="dlg.show()" title="login">
-		<p:commandButton value="Acessar" />
-	</h:outputLink>  
   
 <p:growl id="growl" life="3000" title ="oi"/>  
-  
 <h:message for="formLogin:email"></h:message>
 <h:message for="formLogin:senha"></h:message>
-  
-<p:dialog id="dialog" header="Login" widgetVar="dlg">  
+<img id="logo" src="../resources/img/logo_fanor.png" />
+<p:dialog id="dialog" header="Login" widgetVar="dlg" visible="true" draggable="false" resizable="false" closable="false">  
     <h:form id="formLogin">  
   
         <h:panelGrid columns="2" cellpadding="5">
