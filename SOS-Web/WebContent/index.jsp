@@ -1,1 +1,3 @@
-<jsp:forward page="/paginas/login.xhtml"></jsp:forward> 
+<script type="text/javascript">
+	location.href="http://localhost:8080/SOS-Web/paginas/login.jsf";
+</script>
