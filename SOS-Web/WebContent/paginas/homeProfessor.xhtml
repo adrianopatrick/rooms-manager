@@ -6,99 +6,77 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui" xml:lang="pt" lang="pt-br">
 
-<h:head>
-	<title> <ui:insert name = "titulo" >Professor</ui:insert> </title>
-	<h:outputStylesheet name="css/default.css" />
-</h:head>
+<f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta http-equiv="X-UA-Compatible" content="EmulateIE8" />
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>Reservas</title>
+            </f:facet>
 
-<h:body style="background-color: #B0E2FF;" >
-<p:layout style="min-width:400px;min-height:200px;" id="layout" fullPage="true">
+            <h:outputStylesheet name="css/default.css" />
 
-   	<p:layoutUnit position="north"  size="135" header="Bem Vindo" resizable="true" collapsible="true" effect="drop">  
-		<p:graphicImage url="../resources/img/logo_fanor.png" width="350px" height="100px" title="Vivendo experiências nada boas...." />
-    </p:layoutUnit>
-    
-    <p:layoutUnit position="south" size="100" resizable="true" collapsible="true" effect="drop">  
-        Javatar 2012
-    </p:layoutUnit>
-    
-    <p:layoutUnit position="west" size="300" header="Solicitações pendentes" resizable="true" collapsible="true" effect="drop">  
-        
-		<h:form id="form">  
-		    <p:growl id="growl" showDetail="true"/>  
-		  
-			<p:dataTable id="listaSolicitacaos" var="solicitacao" paginator="true" rows="10" value="#{listaSolicitacaoManager.listaSolicitacaos}">  
-		  
-		        <p:column headerText="Nome" style="width:24%">  
-		            <h:outputText value="#{solicitacao.professor.nome}" />  
-		        </p:column>  
-		  
-		        <p:column headerText="Obs." style="width:24%">  
-		            <h:outputText value="#{solicitacao.observacao}" />  
-		        </p:column>  
+            <style type="text/css">
+                .ui-layout-north {
+                    z-index:20 !important;
+                    overflow:visible !important;;
+                }
 
-		        <p:column style="width:4%">  
-		                <p:commandButton id="selectButton" oncomplete="fsolicDialog.show()" icon="ui-icon-search" title="Visializar" />
-		        </p:column>  
-		  
-		    </p:dataTable>  
-  
-		   
-		  
-		</h:form> 
-    </p:layoutUnit>  
-  
-    <p:layoutUnit position="east" size="250" header="Lista de alguma coisa 2" resizable="true" collapsible="true" effect="drop">  
-        direita
-    </p:layoutUnit>
-      
-    <p:layoutUnit position="center" >
-    
-        <h2>Formulário de soliciatação de reserva</h2>
-        <h:panelGrid columns="2" >
-        	
-        	<h:outputText value="Solicitante:" />
-        	<h:inputText value="" />
-        	
-        	<h:outputText value="Curso:" />
-        	<h:inputText value="" />
-        	
-        	<h:outputText value="Cadeira:" />
-        	<h:inputText value="" />
-        	
-        	<h:outputText value="seilá...:" />
-        	<h:inputText value="" />
-        	
-        	<h:outputText value="Data para reserva:" />
-        	<p:calendar id="dataInicio" />
-        	
-        	<p:commandButton id="arroxa" value="Arroxa!" action="#" title="Enviar solicitação?" />
-        	
-        </h:panelGrid>
-    </p:layoutUnit>  
-    
-</p:layout>
+                .ui-layout-north .ui-layout-unit-content {
+                    overflow:visible !important;
+                }
+            </style>
+        </h:head>
 
-	<p:dialog header="Solicitação" widgetVar="fsolicDialog" resizable="false" id="solicDlg"  
-                showEffect="fade" hideEffect="explode" modal="true">  
-               <h:form> 
-		        <h:panelGrid id="display" columns="2" cellpadding="4" style="margin:0 auto;">  
 
-		            <h:outputText value="Solicitante:" />
-					<h:outputText value="#{listaSolicitacaoManager.solicitacao.professor.nome}" />
-		  		            
-					<h:outputText value="Numero de alunos:" />
-		            <h:outputText value="#{listaSolicitacaoManager.solicitacao.nrAlunos}" /> 
-		  
-		            <h:outputText value="Data:" />
-		            <h:outputText value="#{listaSolicitacaoManager.solicitacao.data}" /> 
-		  
-	            	<h:outputText value="Obs.:" />
-		            <h:outputText value="#{listaSolicitacaoManager.solicitacao.observacao}" /> 
-		            
-		        </h:panelGrid>
-		        </h:form>  
-		    </p:dialog> 
+        <h:body>
 
-</h:body>
+            <p:layout fullPage="true" >
+
+                <p:layoutUnit id="top" position="north" size="50">
+
+                    <p:menubar autoSubmenuDisplay="true">
+                        <p:submenu label="File" icon="ui-icon-document">
+                            <p:submenu label="New" icon="ui-icon-contact">
+                                <p:menuitem value="Project" url="#" helpText="CTRL+N" />
+                                <p:menuitem value="Other" url="#" helpText="CTRL+O"/>
+                            </p:submenu>
+                            <p:menuitem value="Open" url="#" />
+                            <p:menuitem value="Quit" url="#" />
+                        </p:submenu>
+
+                        <p:menuitem value="Sair" url="#" helpText="CTRL+p"/>
+                    </p:menubar>
+                </p:layoutUnit>
+
+                <p:layoutUnit id="bottom" position="south" size="60">
+                     Como fica o rodapé?
+                </p:layoutUnit>
+                <p:layoutUnit id="center" position="center">
+                    <h:form>
+
+						<h:panelGrid columns="2">
+							
+							<h:outputText value="Capacidade " />
+							<p:inputText value="" size="5"/>
+							
+							<h:outputText value="Tipo de sala: " />  
+					        <p:selectOneMenu value="" effect="fade">  
+					            <f:selectItem itemLabel="selecione" itemValue="" />  
+					        </p:selectOneMenu>
+							
+							<h:outputText value="Observações: " />
+							<p:inputTextarea rows="6" cols="33" /> 
+							
+							<h:commandButton value="Reservar" />
+						</h:panelGrid>
+
+
+                    </h:form>
+                </p:layoutUnit>
+
+            </p:layout>
+        </h:body>
+
+    </f:view>
 </html>
