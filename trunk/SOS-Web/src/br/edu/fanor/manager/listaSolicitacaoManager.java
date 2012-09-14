@@ -1,67 +1,42 @@
 package br.edu.fanor.manager;
 
+import br.edu.fanor.manager.Teste;
+
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 
-import br.edu.fanor.entity.Professor;
-import br.edu.fanor.entity.Solicitacao;
-
-@ManagedBean
+@RequestScoped
+@ManagedBean(name="listaTeste")
 public class listaSolicitacaoManager {
 	
-	private List<Solicitacao> listaSolicitacaos = solicitacaos();
+	private List<Teste> lista = new ArrayList<Teste>();
 	
-	private Solicitacao solicitacao;
-	
-	public List<Solicitacao> getListaSolicitacaos() {
-		return listaSolicitacaos;
+	public List<Teste> getLista() {
+		
+		Teste t1 = new Teste("Curso Java", "Lab 1", 40, "Laboratorio", "Lixeira");
+		Teste t2 = new Teste("Curso Ingles", "Lab 2", 40, "Sala", "Apagador");
+		Teste t3 = new Teste("Curso Java", "Lab 1", 40, "Laboratorio", "Lixeira");
+		Teste t4 = new Teste("Curso Java", "Lab 1", 40, "Laboratorio", "Lixeira");
+		Teste t5 = new Teste("Curso Java", "Lab 1", 40, "Laboratorio", "Lixeira");
+		Teste t6 = new Teste("Curso Java", "Lab 1", 40, "Laboratorio", "Lixeira");
+		Teste t7 = new Teste("Curso Java", "Lab 1", 40, "Laboratorio", "Lixeira");
+		Teste t8 = new Teste("Curso Java", "Lab 1", 40, "Laboratorio", "Lixeira");
+		Teste t9 = new Teste("Curso Java", "Lab 1", 40, "Laboratorio", "Lixeira");
+		
+		lista.add(t1);
+		lista.add(t2);
+		lista.add(t3);
+		lista.add(t4);
+		lista.add(t5);
+		lista.add(t6);
+		lista.add(t7);
+		lista.add(t8);
+		lista.add(t9);
+		
+		return lista;
 	}
-
-	public Solicitacao getSolicitacao() {
-		return solicitacao;
-	}
-
-	public void setSolicitacao(Solicitacao solicitacao) {
-		this.solicitacao = solicitacao;
-	}
-	
-	public List<Solicitacao> solicitacaos(){
-		List<Solicitacao> list = new ArrayList<Solicitacao>();
-
-		Professor professor = new Professor();
-		professor.setNome("Chuck Noia");
-		professor.setEmail("@.com");
-					
-		solicitacao = new Solicitacao();
-		solicitacao.setData(Calendar.getInstance());
-		solicitacao.setId(1L);
-		solicitacao.setNrAlunos(20);
-		solicitacao.setObservacao("olhando pra ver se funciona");
-		solicitacao.setProfessor(professor);
-		
-		Solicitacao solicitacao2 = new Solicitacao();
-		solicitacao2.setData(Calendar.getInstance());
-		solicitacao2.setId(2L);
-		solicitacao2.setNrAlunos(22);
-		solicitacao2.setObservacao("sei ... se funcionar");
-		solicitacao2.setProfessor(professor);
-		
-		Solicitacao solicitacao3 = new Solicitacao();
-		solicitacao3.setData(Calendar.getInstance());
-		solicitacao3.setId(3L);
-		solicitacao3.setNrAlunos(22);
-		solicitacao3.setObservacao("sei ... ");
-		solicitacao3.setProfessor(professor);
-		
-		list.add(solicitacao);
-		list.add(solicitacao2);
-		list.add(solicitacao3);
-		
-		return list;
-		
-	}
-
 }

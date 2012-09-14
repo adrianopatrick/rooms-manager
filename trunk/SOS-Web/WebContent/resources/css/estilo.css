@@ -21,8 +21,7 @@ BODY {
 
 .ui-panel {
 	width: 500px;
-	position: absolute;
-	left: 25%;
+	margin: 0 auto;
 	margin-top: 5px;	
 }
 
@@ -30,4 +29,8 @@ BODY {
 	width: 800px;
 	margin: 0 auto;
 	margin-top: 5px;
+}
+
+#paneldata.ui-panel{
+		width: 900px !important;
 }
