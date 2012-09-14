@@ -29,16 +29,16 @@
 					</div>
 					<div id="corpo">
 							<h:form>  
-								<p:dataTable var="sala" paginator="true" rows="4" value="#{listaTeste.lista}">  
+								<p:dataTable var="sala" paginator="true" rows="4" value="#{listaTeste.lista}" >  
 							        <f:facet name="header">
-							        	Lista de reservas solicitada
+							        	Lista de reservas pendente
 							        </f:facet>
 							        
-							        <p:column headerText="Nome do evento: ">  
+							        <p:column headerText="Nome do evento ">  
 							            <h:outputText value="#{sala.nomeEvento}" />  
 							        </p:column>
 							        
-							        <p:column headerText="Nome">  
+							        <p:column headerText="Sala">  
 							            <h:outputText value="#{sala.nome}" />  
 							        </p:column>  
 							  

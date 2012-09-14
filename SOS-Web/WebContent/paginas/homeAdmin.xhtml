@@ -27,72 +27,35 @@
 					<div id="menu" >
 						<ui:include src="menu.xhtml" />						
 					</div>
-					<div id="formpesq">
-	                    <h:form >
-							<h:panelGrid columns="9">
-								<h:outputText value="Numero sala: " />
-								<p:inputText value="" size="5"/>
-								
-								<h:outputText value="Capacidade: " />
-								<p:inputText value="" size="5"/>
-								
-								<h:outputText value="Tipo de sala: " />  
-						        <p:selectOneMenu value="" effect="fade">  
-						            <f:selectItem itemLabel="selecione" itemValue="" />
-						            <f:selectItem itemLabel="Sala" itemValue="1" /> 
-						            <f:selectItem itemLabel="Laboratorio" itemValue="2" />
-						            <f:selectItem itemLabel="Auditorio" itemValue="3" />
-						        </p:selectOneMenu>
-						        
-						        <h:outputText value="Estado: " />  
-						        <p:selectOneMenu value="">  
-						            <f:selectItem itemLabel="Selecione" itemValue="" />  
-						            <f:selectItem itemLabel="Disponivel" itemValue="1" />
-						            <f:selectItem itemLabel="Reservado" itemValue="2" />  
-						        </p:selectOneMenu>
-								
-								<p:commandButton value="Pesquisar" style="height: 25px"/>
-							</h:panelGrid>
-	                    </h:form>
-					</div>
 					<div id="corpo">
 							<h:form>  
-								<p:dataTable var="solicitacao" paginator="true" rows="4" value="#{listaSolicitacaoManager.listaSolicitacaos}">  
-							        
+								<p:dataTable var="sala" paginator="true" rows="4" value="#{listaTeste.lista}">  
 							        <f:facet name="header">
-							        	Lista de salas reservada
+							        	Lista de reservas solicitada
 							        </f:facet>
 							        
-							        <p:column headerText="Nome">  
-							            <h:outputText value="#{solicitacao.professor.nome}" />  
+							        <p:column headerText="Nome do evento ">  
+							            <h:outputText value="#{sala.nomeEvento}" />  
+							        </p:column>
+							        
+							        <p:column headerText="Sala">  
+							            <h:outputText value="#{sala.nome}" />  
 							        </p:column>  
 							  
 							        <p:column headerText="Capacidade" >  
-							            <h:outputText value="#{solicitacao.observacao}" />  
+							            <h:outputText value="#{sala.capacidade}" />  
 							        </p:column>
 							        
 							        <p:column headerText="Tipo de sala">  
-							            <h:outputText value="#{solicitacao.observacao}" />  
+							            <h:outputText value="#{sala.tpSala}" />  
 							        </p:column>
 							        
 							        <p:column headerText="Acessorio(s)">  
-							            <h:outputText value="#{solicitacao.observacao}" />  
+							            <h:outputText value="#{sala.acessorio}" />  
 							        </p:column>
-							        
-							        <p:column headerText="Capacidade">  
-							            <h:outputText value="#{solicitacao.observacao}" />  
-							        </p:column>  
 									
 									<p:column style="width:4%">  
-							                <p:commandButton  oncomplete="fsolicDialog.show()" icon="ui-icon-search" title="Visializar" />
-							        </p:column>
-							        
-							        <p:column style="width:4%">  
-							                <p:commandButton oncomplete="fsolicDialog.show()" icon="ui-icon-pencil" title="Editar" />
-							        </p:column>
-							        
-							        <p:column style="width:4%">  
-							                <p:commandButton oncomplete="fsolicDialog.show()" icon="ui-icon-trash" title="Delete" />
+							                <p:commandButton  oncomplete="fsolicDialog.show()" icon="ui-icon-search" title="Buscar Sala" />
 							        </p:column>
 							    </p:dataTable>
 							</h:form>
