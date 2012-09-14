@@ -17,10 +17,10 @@ public class listaSolicitacaoManager {
 	
 	public List<Teste> getLista() {
 		
-		Teste t1 = new Teste("Curso Java", "Lab 1", 40, "Laboratorio", "Lixeira");
-		Teste t2 = new Teste("Curso Ingles", "Lab 2", 40, "Sala", "Apagador");
-		Teste t3 = new Teste("Curso Java", "Lab 1", 40, "Laboratorio", "Lixeira");
-		Teste t4 = new Teste("Curso Java", "Lab 1", 40, "Laboratorio", "Lixeira");
+		Teste t1 = new Teste("Lab. 1", "Lab 1", 40, "Laboratorio", "Lixeira");
+		Teste t2 = new Teste("Lab. 2", "Lab 2", 40, "Sala", "Apagador");
+		Teste t3 = new Teste("Revisao", "Lab 1", 40, "Laboratorio", "Lixeira");
+		Teste t4 = new Teste("Aula extra Mat.", "Lab 1", 40, "Laboratorio", "Lixeira");
 		Teste t5 = new Teste("Curso Java", "Lab 1", 40, "Laboratorio", "Lixeira");
 		Teste t6 = new Teste("Curso Java", "Lab 1", 40, "Laboratorio", "Lixeira");
 		Teste t7 = new Teste("Curso Java", "Lab 1", 40, "Laboratorio", "Lixeira");
