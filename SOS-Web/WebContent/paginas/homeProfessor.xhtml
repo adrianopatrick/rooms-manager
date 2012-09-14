@@ -11,35 +11,20 @@
             <f:facet name="first">
                 <meta http-equiv="X-UA-Compatible" content="EmulateIE8" />
                 <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
-                <title>Reservas</title>
+                <title>SOS</title>
             </f:facet>
 
             <h:outputStylesheet name="css/default.css" />
-
-            <style type="text/css">
-                .ui-layout-north {
-                    z-index:20 !important;
-                    overflow:visible !important;;
-                }
-
-                .ui-layout-north .ui-layout-unit-content {
-                    overflow:visible !important;
-                }
-            </style>
+            <h:outputStylesheet name="css/estilo.css" />
         </h:head>
-
-
         <h:body>
-
             <p:layout fullPage="true" >
-
                 <p:layoutUnit id="top" position="north" size="50">
-
                     <p:menubar autoSubmenuDisplay="true">
                         <p:submenu label="File" icon="ui-icon-document">
                             <p:submenu label="New" icon="ui-icon-contact">
-                                <p:menuitem value="Project" url="#" helpText="CTRL+N" />
-                                <p:menuitem value="Other" url="#" helpText="CTRL+O"/>
+                                <p:menuitem value="Project" url="#" />
+                                <p:menuitem value="Other" url="#"/>
                             </p:submenu>
                             <p:menuitem value="Open" url="#" />
                             <p:menuitem value="Quit" url="#" />
@@ -48,29 +33,27 @@
                         <p:menuitem value="Sair" url="#" helpText="CTRL+p"/>
                     </p:menubar>
                 </p:layoutUnit>
-
                 <p:layoutUnit id="bottom" position="south" size="60">
-                     Como fica o rodapé?
+                     <ui:include src="rodape.xhtml" />
                 </p:layoutUnit>
                 <p:layoutUnit id="center" position="center">
                     <h:form>
-
-						<h:panelGrid columns="2">
-							
-							<h:outputText value="Capacidade " />
-							<p:inputText value="" size="5"/>
-							
-							<h:outputText value="Tipo de sala: " />  
-					        <p:selectOneMenu value="" effect="fade">  
-					            <f:selectItem itemLabel="selecione" itemValue="" />  
-					        </p:selectOneMenu>
-							
-							<h:outputText value="Observações: " />
-							<p:inputTextarea rows="6" cols="33" /> 
-							
-							<h:commandButton value="Reservar" />
-						</h:panelGrid>
-
+						<p:panel header="Reserva de Sala">
+							<h:panelGrid columns="2">
+								
+								<h:outputText value="Capacidade " />
+								<p:inputText value="" size="5"/>
+								
+								<h:outputText value="Tipo de sala: " />  
+						        <p:selectOneMenu value="" effect="fade">  
+						            <f:selectItem itemLabel="selecione" itemValue="" />  
+						        </p:selectOneMenu>
+								
+								<h:outputText value="Observações: " />
+								<p:inputTextarea rows="6" cols="33" /> 
+								<h:commandButton value="Reservar" />
+							</h:panelGrid>
+						</p:panel>
 
                     </h:form>
                 </p:layoutUnit>
