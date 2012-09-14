@@ -15,48 +15,35 @@
             </f:facet>
             <h:outputStylesheet name="css/default.css" />
             <h:outputStylesheet name="css/estilo.css" />
+            <h:outputScript name="locale-primefaces.js" library="js" />
         </h:head>
         <h:body>
-			<div id="global">
+
             <p:layout fullPage="true" >
                 <p:layoutUnit id="bottom" position="south" size="30" >
                      <ui:include src="rodape.xhtml" />
                 </p:layoutUnit>
                 <p:layoutUnit id="center" position="center">
+					
 					<div id="menu" >
 						<ui:include src="menu.xhtml" />						
 					</div>
 					<div id="corpo">
-	                    
-	                    <h:form >
-							<p:panel header="Cadastro de funcionarios" id="panelcorpo">
-								<h:panelGrid >
-									<h:outputText value="nome: " />
-									<p:inputText value=""/>
-									
-									<h:outputText value="E-mail: " />
-									<p:inputText value=""/>
-									
-									<h:outputText value="Senha: " />
-									<p:password value="84934"/>
-									
-									<h:outputText value="Cargo: " />  
-							        <p:selectOneMenu value="" effect="fade">  
-							            <f:selectItem itemLabel="selecione" itemValue="" />
-							            <f:selectItem itemLabel="Professor" itemValue="1" /> 
-							            <f:selectItem itemLabel="Atendente" itemValue="2" />
-							            <f:selectItem itemLabel="Administrador" itemValue="3" />
-							        </p:selectOneMenu>
-							        
-									<p:commandButton value="Adicionar"/>
-								</h:panelGrid>
-							</p:panel>
-		                 </h:form>
+							<h:form id="form">  
+									<p:dataGrid var="sala" value="#{listaTeste.lista}" columns="2" rows="12" paginator="true" style="width: 90%; margin-top: 20px;">
+									    <p:panel >
+									    	<f:facet name="header">
+									    		<p:commandButton  oncomplete="fsolicDialog.show()" icon="ui-icon-search" title="Abrir" />
+									    		<h:outputText value=" #{sala.nomeEvento}" />
+									    	</f:facet> 
+									                <p:schedule locale="pt" style=""/>
+								        </p:panel>
+        							
+        							</p:dataGrid>
+							</h:form>
 					</div>
                 </p:layoutUnit>
             </p:layout>
-            </div>
         </h:body>
-        
     </f:view>
 </html>
