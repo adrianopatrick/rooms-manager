@@ -8,7 +8,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 
 @Entity(name="professores")
-public class Professor extends Pessoa{
+public class Professor extends Usuario{
 	
 	@OneToMany(mappedBy="professor")
 	private List<Solicitacao> solicitacoes; 
