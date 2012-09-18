@@ -1,5 +1,6 @@
 package br.edu.fanor.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,8 +12,8 @@ import javax.validation.constraints.NotNull;
 
 
 @Entity(name="pessoas")
-@Inheritance (strategy=InheritanceType.JOINED)
-public class Pessoa {
+@Inheritance (strategy=InheritanceType.SINGLE_TABLE)
+public class Usuario {
 
 	@Id
 	@SequenceGenerator(sequenceName="public.seq_pessoas",name="seq_pessoas",allocationSize=1)
@@ -27,6 +28,9 @@ public class Pessoa {
 	
 	@NotNull
 	private String senha;
+
+//	@NotNull
+//	private PerfilUsuario perfilUsuario;
 	
 	public Long getId() {
 		return id;
