@@ -10,7 +10,7 @@ import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.NotNull;
 
 
-@Entity(name="pessoas")
+@Entity(name="usuarios")
 @Inheritance (strategy=InheritanceType.SINGLE_TABLE)
 public class Usuario {
 
