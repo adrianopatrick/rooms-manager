@@ -1,6 +1,6 @@
 package br.edu.fanor.entity;
 
-import java.util.Calendar;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,6 +14,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import br.edu.fanor.enums.EstadoReserva;
 
@@ -31,10 +33,12 @@ public class Reserva {
 	private String observacao;
 
 	@Column(name = "data_inicial")
-	private Calendar dataIncial;
+	@Temporal(TemporalType.TIME)
+	private Date dataIncial;
 
 	@Column(name = "data_final")
-	private Calendar dataFinal;
+	@Temporal(TemporalType.TIME)
+	private Date dataFinal;
 
 	@OneToOne
 	private Solicitacao solicitacao;
@@ -53,19 +57,19 @@ public class Reserva {
 		this.id = id;
 	}
 
-	public Calendar getDataIncial() {
+	public Date getDataIncial() {
 		return dataIncial;
 	}
 
-	public void setDataIncial(Calendar dataIncial) {
+	public void setDataIncial(Date dataIncial) {
 		this.dataIncial = dataIncial;
 	}
 
-	public Calendar getDataFinal() {
+	public Date getDataFinal() {
 		return dataFinal;
 	}
 
-	public void setDataFinal(Calendar dataFinal) {
+	public void setDataFinal(Date dataFinal) {
 		this.dataFinal = dataFinal;
 	}
 
