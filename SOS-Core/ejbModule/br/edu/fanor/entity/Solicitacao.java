@@ -1,6 +1,6 @@
 package br.edu.fanor.entity;
 
-import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -42,7 +42,7 @@ public class Solicitacao {
 	
 	@NotNull
 	@Column(name="data_reserva")
-	private Calendar data;
+	private Date data;
 	
 	@ManyToOne(optional=false)
 	@JoinTable ( name ="professor_solicitacao",
@@ -77,11 +77,11 @@ public class Solicitacao {
 		this.observacao = observacao;
 	}
 
-	public Calendar getData() {
+	public Date getData() {
 		return data;
 	}
 
-	public void setData(Calendar data) {
+	public void setData(Date data) {
 		this.data = data;
 	}
 

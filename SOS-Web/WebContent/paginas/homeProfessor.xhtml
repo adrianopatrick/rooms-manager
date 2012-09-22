@@ -29,29 +29,40 @@
                         <p:menuitem value="Sair" url="#" helpText="CTRL+p"/>
                     </p:menubar>
                     <div id="corpo">
-	                    <h:form>
+	                    <h:form id="formSolicitacao">
 							<p:panel header="Reserva de Sala">
-								<h:panelGrid columns="2">
+								<h:panelGrid columns="3">
 									<h:outputText value="Capacidade: " />
-									<p:inputText value="" size="5"/>
+									<p:inputText id="nrAluno" value="#{homeProfessorManager.solicitacao.nrAlunos}" size="5" maxlength="3" required="true" requiredMessage="Campo obrigatório"/>
+									<h:message for="nrAluno" showDetail="true"/> 
 									
 									<h:outputText value="Data: " />
-									<p:inputMask value="" mask="99/99/9999" size="8"/>
+									<p:calendar id="dataSolicitacao" value="#{homeProfessorManager.solicitacao.data}" mask="99/99/9999" size="8" required="true" requiredMessage="Campo obrigatório" />
+									<h:message for="dataSolicitacao" showDetail="false"/>
 									
 									<h:outputText value="Horario inicial: " />
-									<p:inputMask value="" mask="99:99" size="5"/>
+									<p:inputMask id="horaInicial" value="#{homeProfessorManager.reserva.dataIncial}" mask="99:99" validatorMessage="Campo Obrigatório" size="5" required="true" requiredMessage="Campo obrigatório" >
+									<f:convertDateTime timeZone="GMT-3" pattern="HH:mm" /> </p:inputMask>
+									<h:message for="horaInicial" showDetail="false"/>
 									
 									<h:outputText value="Horario Final: " />
-									<p:inputMask value="" mask="99:99" size="5"/>
+									<p:inputMask id="horaFinal" value="#{homeProfessorManager.reserva.dataFinal}" mask="99:99" size="5" required="true" requiredMessage="Campo obrigatório" >
+									<f:convertDateTime timeZone="GMT-3" pattern="HH:mm" /> </p:inputMask>
+									<h:message for="horaFinal" showDetail="false"/>
 									
 									<h:outputText value="Tipo de sala: " />  
-							        <p:selectOneMenu value="" effect="fade">  
-							            <f:selectItem itemLabel="selecione" itemValue="" />  
+							        <p:selectOneMenu id="tipo" value="#{homeProfessorManager.solicitacao.observacao}" effect="fade">  
+							            <f:selectItem itemLabel="Sala" itemValue="Sala" />
+							            <f:selectItem itemLabel="Laboratório" itemValue="Laboratorio" />
+							            <f:selectItem itemLabel="Auditório" itemValue="Auditorio" />
+							            <f:selectItem itemLabel="Ateliê" itemValue="Atelie" />
 							        </p:selectOneMenu>
+							        <h:message for="tipo" showDetail="false"/>
 									
 									<h:outputText value="Observações: " />
-									<p:inputTextarea rows="6" cols="33" /> 
-									<p:commandButton value="Reservar" />
+									<p:inputTextarea id="obs" value="#{homeProfessorManager.solicitacao.observacao}" rows="6" cols="33" />
+									<h:message for="obs" showDetail="false"/> 
+									<p:commandButton id="btSalvar" value="Reservar" action="#{homeProfessorManager.salvar()}" update="formSolicitacao"/>
 								</h:panelGrid>
 							</p:panel>
 	
