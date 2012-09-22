@@ -23,11 +23,11 @@ public class loginManeger {
 
 		if (email != null && email.equals("admin") && senha != null && senha.equals("admin")) {
 			loggedIn = true;
-			msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Welcome muito maxo!!", email);
+			msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Bem Vindo!!", email);
 			FacesContext.getCurrentInstance().getExternalContext().redirect("homeProfessor.jsf");  
 		} else {
 			loggedIn = false;
-			msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Errou doido", "");
+			msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Login ou senha Incorretos", "");
 		}
 
 		FacesContext.getCurrentInstance().addMessage(null, msg);
