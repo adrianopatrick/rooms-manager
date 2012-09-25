@@ -38,12 +38,12 @@
             <h:outputLabel for="email" value="Email:" />  
             <h:inputText value="#{loginManeger.email}" id="email" required="true" requiredMessage="Campo Email Obrigatório." label="email" />  
               
-            <h:outputLabel for="password" value="Senha:" />
+            <h:outputLabel for="senha" value="Senha:" />
             <h:inputSecret value="#{loginManeger.senha}" id="senha" required="true" requiredMessage="Campo Senha Obrigatório." label="senha" />  
               
             <f:facet name="footer">  
-                <p:commandButton id="loginButton" value="Login" update=":growl"   
-                    actionListener="#{loginManeger.login}" oncomplete="handleLoginRequest(xhr, status, args)"/>  
+                <p:commandButton id="loginButton" value="Entrar" update=":growl"   
+                    action="#{loginManeger.login}" oncomplete="handleLoginRequest(xhr, status, args)"/>  
             </f:facet>
             
         </h:panelGrid>
