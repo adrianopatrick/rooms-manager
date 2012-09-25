@@ -9,21 +9,30 @@ import javax.faces.event.ActionEvent;
 
 import org.primefaces.context.RequestContext;
 
+import br.edu.fanor.entity.Usuario;
+import br.edu.fanor.service.LoginService;
+
 @ManagedBean
 public class loginManeger {
  
 	private String email;
 
 	private String senha;
+	
+	private LoginService loginService;
+	
+	private Usuario usuario;
 
 	public void login(ActionEvent actionEvent) throws IOException {
 		RequestContext context = RequestContext.getCurrentInstance();
 		FacesMessage msg = null;
 		boolean loggedIn = false;
+		
+		usuario = loginService.validaLogin(email, senha);
 
-		if (email != null && email.equals("admin") && senha != null && senha.equals("admin")) {
+		if (email != null && email.equals(usuario.getEmail()) && senha != null && senha.equals(usuario.getSenha())) {
 			loggedIn = true;
-			msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Bem Vindo!!", email);
+//			msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Bem Vindo!!", email);
 			FacesContext.getCurrentInstance().getExternalContext().redirect("homeProfessor.jsf");  
 		} else {
 			loggedIn = false;
