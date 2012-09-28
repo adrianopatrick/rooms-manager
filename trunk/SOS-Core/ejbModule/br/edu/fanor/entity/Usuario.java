@@ -6,6 +6,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.NotNull;
 
@@ -28,8 +31,12 @@ public class Usuario {
 	@NotNull
 	private String senha;
 
-//	@NotNull
-//	private PerfilUsuario perfilUsuario;
+	@NotNull
+	@OneToOne
+	@JoinTable(name = "perfilUsuario_usuario",
+	inverseJoinColumns = @JoinColumn (name = "id_perfilUsuario"),
+	joinColumns = @JoinColumn (name = "id_usuario"))
+	private PerfilUsuario perfilUsuario;
 	
 	public Long getId() {
 		return id;
