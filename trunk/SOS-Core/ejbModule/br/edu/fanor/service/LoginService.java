@@ -12,7 +12,7 @@ import br.edu.fanor.exceptions.IncorrectPasswordException;
 public class LoginService {
 
 	@EJB
-	private LoginDAO dao;
+	private LoginDAO dao; 
 
 	public Usuario validaLogin(String email, String senha) throws EmailNotFoundException, IncorrectPasswordException{
 		Usuario usuario = dao.buscaUsuario(email);
