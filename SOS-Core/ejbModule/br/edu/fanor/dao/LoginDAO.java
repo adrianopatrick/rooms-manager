@@ -15,7 +15,7 @@ public class LoginDAO extends GenericDAO<Usuario>{
 	public Usuario buscaUsuario(String email){
 		Criteria criteria = getCriteria(Usuario.class);
 		criteria.add(Restrictions.eq("email", email));
-		return (Usuario)criteria.uniqueResult();
+		return (Usuario)criteria.uniqueResult(); 
 	}
 
 }
