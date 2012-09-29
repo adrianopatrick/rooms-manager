@@ -12,9 +12,9 @@ import br.edu.fanor.exceptions.IncorrectPasswordException;
 public class LoginService {
 
 	@EJB
-	private LoginDAO dao; 
+	private LoginDAO dao;
 
-	public Usuario validaLogin(String email, String senha) throws EmailNotFoundException, IncorrectPasswordException{
+	public Usuario validaLogin(String email, String senha)	throws EmailNotFoundException, IncorrectPasswordException {
 		Usuario usuario = dao.buscaUsuario(email);
 		if (usuario != null) {
 			if (usuario.getSenha().equals(senha)) {
@@ -23,7 +23,7 @@ public class LoginService {
 				throw new IncorrectPasswordException("Senha incorreta");
 			}
 		} else {
-			throw new EmailNotFoundException("Email n„o cadastrado em nosso database");
+			throw new EmailNotFoundException("Email n√£o cadastrado em nosso database");
 		}
 
 	}

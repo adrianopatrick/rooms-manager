@@ -17,11 +17,24 @@ public class PerfilUsuario {
 	
 	private String nome;
 	
+
 	@OneToOne(mappedBy="perfilUsuario")
 	private Usuario usuario;
 	
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 	
-	
-	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 	
 }

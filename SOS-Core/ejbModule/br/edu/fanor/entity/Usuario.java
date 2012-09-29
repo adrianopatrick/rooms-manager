@@ -37,7 +37,7 @@ public class Usuario {
 	inverseJoinColumns = @JoinColumn (name = "id_perfilUsuario"),
 	joinColumns = @JoinColumn (name = "id_usuario"))
 	private PerfilUsuario perfilUsuario;
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -58,6 +58,10 @@ public class Usuario {
 		return email;
 	}
 
+	public PerfilUsuario getPerfilUsuario() {
+		return perfilUsuario;
+	}
+	
 	public void setEmail(String email) {
 		this.email = email;
 	}
@@ -68,6 +72,10 @@ public class Usuario {
 
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+
+	public void setPerfilUsuario(PerfilUsuario perfilUsuario) {
+		this.perfilUsuario = perfilUsuario;
 	}
 	
 }

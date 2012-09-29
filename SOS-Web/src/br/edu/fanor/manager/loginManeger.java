@@ -35,7 +35,15 @@ public class loginManeger {
                         usuario = loginService.validaLogin(email, senha);
                         loggedIn = true;
                         FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", usuario);
-                        FacesContext.getCurrentInstance().getExternalContext().redirect("homeProfessor.jsf");
+                        
+                        if (usuario.getPerfilUsuario().getNome().equals("funcionarios")) {
+                        	FacesContext.getCurrentInstance().getExternalContext().redirect("homeFuncionario.jsf");
+						} else if (usuario.getPerfilUsuario().getNome().equals("professores")) {
+							FacesContext.getCurrentInstance().getExternalContext().redirect("homeProfessor.jsf");
+						} else {
+							FacesContext.getCurrentInstance().getExternalContext().redirect("homeAdmin.jsf");
+						}
+						
                 } catch (DefaultException e) {
                         msg = new FacesMessage(FacesMessage.SEVERITY_WARN, e.getMsg(), "");
                         FacesContext.getCurrentInstance().addMessage(null, msg);
