@@ -3,10 +3,8 @@ package br.edu.fanor.manager;
 import java.io.Serializable;
 
 import javax.ejb.EJB;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
 
 import br.edu.fanor.dao.ReservaDAO;
 import br.edu.fanor.dao.SolicitacaoDAO;
@@ -29,12 +27,9 @@ public class homeProfessorManager implements Serializable{
 	private Solicitacao solicitacao = new Solicitacao();
 	
 	public String salvar(){
-		
-//		FacesContext context = FacesContext.getCurrentInstance();
-		
 		solicitacaoDAO.insert(solicitacao);
+		reserva.setSolicitacao(solicitacao);
 		reservaDAO.insert(reserva);
-//		context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Registro Salvo com sucesso.",""));
 		return "homeProfessor";
 	}
 	
