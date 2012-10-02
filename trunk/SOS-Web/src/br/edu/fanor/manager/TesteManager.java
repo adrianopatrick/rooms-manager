@@ -23,8 +23,11 @@ public class TesteManager {
 	
 	public String novoProfessor(){
 		PerfilUsuario perfilUsuario = new PerfilUsuario();
-		perfilUsuario = perfilUsuarioDAO.CarregaPerfil(1L);
-
+//		perfilUsuario = perfilUsuarioDAO.CarregaPerfil(1L);
+		perfilUsuario =  new PerfilUsuario();
+		perfilUsuario.setNome("perfil de professor");// acho q os perfis so serao necessários para os usuarios adm e funcionarios nao para os professores
+		
+		
 		Professor prof = new Professor();
 		prof.setNome("Gustavo");
 		prof.setEmail("gmelo@fanor.edu.br");

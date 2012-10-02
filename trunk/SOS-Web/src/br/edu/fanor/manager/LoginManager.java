@@ -10,6 +10,8 @@ import javax.faces.event.ActionEvent;
 
 import org.primefaces.context.RequestContext;
 
+import br.edu.fanor.entity.Funcionario;
+import br.edu.fanor.entity.Professor;
 import br.edu.fanor.entity.Usuario;
 import br.edu.fanor.exceptions.DefaultException;
 import br.edu.fanor.service.LoginService;
@@ -36,13 +38,27 @@ public class LoginManager {
                         loggedIn = true;
                         FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", usuario);
                         
-                        if (usuario.getPerfilUsuario().getNome().equals("funcionarios")) {
-                        	FacesContext.getCurrentInstance().getExternalContext().redirect("homeFuncionario.jsf");
-						} else if (usuario.getPerfilUsuario().getNome().equals("professores")) {
-							FacesContext.getCurrentInstance().getExternalContext().redirect("homeProfessor.jsf");
-						} else {
-							FacesContext.getCurrentInstance().getExternalContext().redirect("homeAdmin.jsf");
+                        if (usuario instanceof Professor) {
+							System.out.println("Professor");
+						}else if (usuario instanceof Funcionario) {
+							System.out.println("Funcionario");
 						}
+                        
+                        
+                        /**
+                         * @author Joe
+                         * 
+                         * funcionario e administrador vao redirecionar para a mesma pagina, 
+                         * porem a pagina dará as permissoes de acordo com o perfil
+                         * 
+                         */
+//                        if (usuario.getPerfilUsuario().getNome().equals("funcionarios")) {
+//                        	FacesContext.getCurrentInstance().getExternalContext().redirect("homeFuncionario.jsf");
+//						} else if (usuario.getPerfilUsuario().getNome().equals("professores")) {
+//							FacesContext.getCurrentInstance().getExternalContext().redirect("homeProfessor.jsf");
+//						} else {
+//							FacesContext.getCurrentInstance().getExternalContext().redirect("homeAdmin.jsf");
+//						}
 						
                 } catch (DefaultException e) {
                         msg = new FacesMessage(FacesMessage.SEVERITY_WARN, e.getMsg(), "");
