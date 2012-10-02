@@ -32,24 +32,25 @@
 							<p:panel header="Cadastro de funcionarios" id="panelcorpo">
 								<h:panelGrid >
 									<h:outputText value="nome: " />
-									<p:inputText value=""/>
+									<p:inputText value="" required="true" requiredMessage="Campo Obrigatório."/>
 									
 									<h:outputText value="E-mail: " />
-									<p:inputText value=""/>
+									<p:inputText value="" required="true" requiredMessage="Campo Obrigatório."/>
 									
 									<h:outputText value="Senha: " />
-									<p:password value="84934"/>
+									<p:password value="" required="true" requiredMessage="Campo Obrigatório."/>
 									
 									<h:outputText value="Cargo: " />  
-							        <p:selectOneMenu value="" effect="fade">  
-							            <f:selectItem itemLabel="selecione" itemValue="" />
+							        <p:selectOneMenu value="" effect="fade" required="true" requiredMessage="Campo Obrigatório.">  
+							            <f:selectItem itemLabel="selecione" />
 							            <f:selectItem itemLabel="Professor" itemValue="1" /> 
 							            <f:selectItem itemLabel="Atendente" itemValue="2" />
 							            <f:selectItem itemLabel="Administrador" itemValue="3" />
 							        </p:selectOneMenu>
 							        
-									<p:commandButton value="Adicionar"/>
+									<p:commandButton value="Adicionar" action="#"/>
 								</h:panelGrid>
+								<h:message for="panelcorpo"></h:message>
 							</p:panel>
 		                 </h:form>
 					</div>
