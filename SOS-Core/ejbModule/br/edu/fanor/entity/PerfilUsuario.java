@@ -11,8 +11,8 @@ import javax.persistence.SequenceGenerator;
 public class PerfilUsuario {
 
 	@Id
-	@SequenceGenerator(sequenceName="public.perfis_usuario",name="perfis_usuario",allocationSize=1)
-	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="perfis_usuario")
+	@SequenceGenerator(sequenceName="public.seq_perfis_usuarios",name="seq_perfis_usuarios",allocationSize=1)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="seq_perfis_usuarios")
 	private Long id;
 	
 	private String nome;
@@ -20,6 +20,14 @@ public class PerfilUsuario {
 
 	@OneToOne(mappedBy="perfilUsuario")
 	private Usuario usuario;
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+	
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
 	
 	public String getNome() {
 		return nome;
