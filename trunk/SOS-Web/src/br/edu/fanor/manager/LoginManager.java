@@ -51,11 +51,11 @@ public class LoginManager {
 			userMB.setUsuario(loginService.validaLogin(email, senha));
 			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", userMB.getUsuario());
 			loggedIn = true;
+		
+			//TODO: melhorar redirecionamento
+			getRequest().getRequestDispatcher("public/redirect.jsf");
+//			FacesContext.getCurrentInstance().getExternalContext().dispatch("public/redirect.jsf");
 			
-			//falta redirecionar para a pagina root
-	
-//			System.out.println(FacesContext.getCurrentInstance().getViewRoot().getViewId());
-//			System.out.println(FacesContext.getCurrentInstance().getExternalContext().getRequest);
 			
 		} catch (DefaultException e) {
 			msg = new FacesMessage(FacesMessage.SEVERITY_WARN, e.getMsg(), "");
