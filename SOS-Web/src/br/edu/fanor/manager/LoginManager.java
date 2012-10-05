@@ -5,84 +5,92 @@ import java.io.IOException;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+import javax.servlet.http.HttpServletRequest;
 
 import org.primefaces.context.RequestContext;
 
-import br.edu.fanor.entity.Funcionario;
-import br.edu.fanor.entity.Professor;
-import br.edu.fanor.entity.Usuario;
 import br.edu.fanor.exceptions.DefaultException;
 import br.edu.fanor.service.LoginService;
 
+@RequestScoped
 @ManagedBean
 public class LoginManager {
- 
-        private String email;
 
-        private String senha;
-        
-        @EJB
-        private LoginService loginService;
-        
-        private Usuario usuario;
-        
-        public void login(ActionEvent actionEvent) throws IOException {
-                RequestContext context = RequestContext.getCurrentInstance();
-                FacesMessage msg = null;
-                boolean loggedIn = false;
-                
-                try {
-                        usuario = loginService.validaLogin(email, senha);
-                        loggedIn = true;
-                        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", usuario);
-                        
-                        if (usuario instanceof Professor) {
-							System.out.println("Professor");
-						}else if (usuario instanceof Funcionario) {
-							System.out.println("Funcionario");
-						}
-                        
-                        
-                        /**
-                         * @author Joe
-                         * 
-                         * funcionario e administrador vao redirecionar para a mesma pagina, 
-                         * porem a pagina dará as permissoes de acordo com o perfil
-                         * 
-                         */
-//                        if (usuario.getPerfilUsuario().getNome().equals("funcionarios")) {
-//                        	FacesContext.getCurrentInstance().getExternalContext().redirect("homeFuncionario.jsf");
-//						} else if (usuario.getPerfilUsuario().getNome().equals("professores")) {
-//							FacesContext.getCurrentInstance().getExternalContext().redirect("homeProfessor.jsf");
-//						} else {
-//							FacesContext.getCurrentInstance().getExternalContext().redirect("homeAdmin.jsf");
-//						}
-						
-                } catch (DefaultException e) {
-                        msg = new FacesMessage(FacesMessage.SEVERITY_WARN, e.getMsg(), "");
-                        FacesContext.getCurrentInstance().addMessage(null, msg);
-                }
-                
-                context.addCallbackParam("loggedIn", loggedIn);
-                
-        }
+	private String email;
 
-        public String getEmail() {
-                return email;
-        }
+	private String senha;
 
-        public void setEmail(String email) {
-                this.email = email;
-        }
+	@EJB
+	private LoginService loginService;
 
-        public String getSenha() {
-                return senha;
-        }
+	@ManagedProperty(value = UsuarioManager.INJECTION_NAME)
+	private UsuarioManager userMB;
 
-        public void setSenha(String senha) {
-                this.senha = senha;
-        }
+	public UsuarioManager getUserMB() {
+		return userMB;
+	}
+
+	public void setUserMB(UsuarioManager userMB) {
+		this.userMB = userMB;
+	}
+
+	boolean loggedIn = false;
+
+	public void login(ActionEvent actionEvent) throws IOException {
+		RequestContext context = RequestContext.getCurrentInstance();
+		FacesMessage msg = null;
+		System.out.println(getRequest().getRequestURI());
+		
+		try {
+			
+			loggedIn = false;
+			userMB.setUsuario(loginService.validaLogin(email, senha));
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", userMB.getUsuario());
+			loggedIn = true;
+			
+			//falta redirecionar para a pagina root
+	
+//			System.out.println(FacesContext.getCurrentInstance().getViewRoot().getViewId());
+//			System.out.println(FacesContext.getCurrentInstance().getExternalContext().getRequest);
+			
+		} catch (DefaultException e) {
+			msg = new FacesMessage(FacesMessage.SEVERITY_WARN, e.getMsg(), "");
+			FacesContext.getCurrentInstance().addMessage(null, msg);
+		}	
+
+		
+		context.addCallbackParam("loggedIn", loggedIn);
+
+	}
+
+	public String logOut() {
+		getRequest().getSession().invalidate();
+		return "logout";
+	}
+
+	private HttpServletRequest getRequest() {
+		return (HttpServletRequest) FacesContext.getCurrentInstance()
+				.getExternalContext().getRequest();
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
 
 }

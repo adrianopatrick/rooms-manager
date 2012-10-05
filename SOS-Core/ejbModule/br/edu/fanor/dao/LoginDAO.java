@@ -7,6 +7,14 @@ import org.hibernate.criterion.Restrictions;
 
 import br.edu.fanor.entity.Usuario;
 
+/**
+ * 
+ * @author Joe
+ *
+ *	LoginDAO ???????????      
+ *	os daos nao sao das respectivas tabelas???????
+ *
+ */
 @Stateless
 public class LoginDAO extends GenericDAO<Usuario>{
 
