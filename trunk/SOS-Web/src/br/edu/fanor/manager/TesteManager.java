@@ -7,7 +7,6 @@ import javax.faces.bean.ViewScoped;
 import br.edu.fanor.dao.PerfilUsuarioDAO;
 import br.edu.fanor.dao.UsuarioDAO;
 import br.edu.fanor.entity.Administrador;
-import br.edu.fanor.entity.Funcionario;
 import br.edu.fanor.entity.PerfilUsuario;
 import br.edu.fanor.entity.Professor;
 
@@ -59,14 +58,14 @@ public class TesteManager {
 		PerfilUsuario perfilUsuario = new PerfilUsuario();
 		perfilUsuario = perfilUsuarioDAO.CarregaPerfil(3L);
 
-		Funcionario func = new Funcionario();
-		func.setNome("Diego");
-		func.setEmail("diego@");
-		func.setSenha("123");
-		func.setPerfilUsuario(perfilUsuario);
+//		Funcionario func = new Funcionario();
+//		func.setNome("Diego");
+//		func.setEmail("diego@");
+//		func.setSenha("123");
+//		func.setPerfilUsuario(perfilUsuario);
 		
 		
-		usuarioDAO.insert(func);
+//		usuarioDAO.insert(func);
 		return "login";
 		
 	}

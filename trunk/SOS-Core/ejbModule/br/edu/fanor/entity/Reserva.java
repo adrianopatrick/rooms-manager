@@ -44,10 +44,10 @@ public class Reserva {
 	private Solicitacao solicitacao;
 
 	@ManyToOne
-	@JoinTable(name = "funcionario_reserva", 
-		inverseJoinColumns = @JoinColumn(name = "id_funcionario"), 
+	@JoinTable(name = "administrador_reserva", 
+		inverseJoinColumns = @JoinColumn(name = "id_administrador"), 
 		joinColumns = @JoinColumn(name = "id_reserva"))
-	private Funcionario funcionario;
+	private Administrador administrador;
 
 	public Long getId() {
 		return id;
@@ -55,6 +55,14 @@ public class Reserva {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public Administrador getAdministrador() {
+		return administrador;
+	}
+
+	public void setAdministrador(Administrador administrador) {
+		this.administrador = administrador;
 	}
 
 	public Date getDataIncial() {
@@ -71,14 +79,6 @@ public class Reserva {
 
 	public void setDataFinal(Date dataFinal) {
 		this.dataFinal = dataFinal;
-	}
-
-	public Funcionario getFuncionario() {
-		return funcionario;
-	}
-
-	public void setFuncionario(Funcionario funcionario) {
-		this.funcionario = funcionario;
 	}
 
 	public EstadoReserva getEstadoReserva() {

@@ -9,8 +9,10 @@ import br.edu.fanor.exceptions.EmailNotFoundException;
 import br.edu.fanor.exceptions.IncorrectPasswordException;
 
 @Stateless
-public class LoginService {
+public class LoginService extends GenericService<Usuario>{
 
+	private static final long serialVersionUID = 3890246074843025125L;
+	
 	@EJB
 	private LoginDAO dao;
 
