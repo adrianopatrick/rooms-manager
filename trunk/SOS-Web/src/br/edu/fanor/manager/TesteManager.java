@@ -4,10 +4,10 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-import br.edu.fanor.dao.PerfilUsuarioDAO;
+import br.edu.fanor.dao.PerfilAdminDAO;
 import br.edu.fanor.dao.UsuarioDAO;
 import br.edu.fanor.entity.Administrador;
-import br.edu.fanor.entity.PerfilUsuario;
+import br.edu.fanor.entity.PerfilAdmin;
 import br.edu.fanor.entity.Professor;
 
 @ViewScoped
@@ -18,36 +18,28 @@ public class TesteManager {
 	UsuarioDAO usuarioDAO;
 	
 	@EJB
-	PerfilUsuarioDAO perfilUsuarioDAO;
+	PerfilAdminDAO perfilAdminDAO;
 	
-	public String novoProfessor(){
-		PerfilUsuario perfilUsuario = new PerfilUsuario();
-//		perfilUsuario = perfilUsuarioDAO.CarregaPerfil(1L);
-		perfilUsuario =  new PerfilUsuario();
-		perfilUsuario.setNome("perfil de professor");// acho q os perfis so serao necessários para os usuarios adm e funcionarios nao para os professores
-		
-		
+	public String novoProfessor(){	
 		Professor prof = new Professor();
 		prof.setNome("Gustavo");
 		prof.setEmail("gmelo@fanor.edu.br");
 		prof.setSenha("senha");
-		prof.setPerfilUsuario(perfilUsuario);
 		
-		perfilUsuarioDAO.insert(perfilUsuario);
 		usuarioDAO.insert(prof);
 		return "login";
 		
 	}
 	
 	public String novoAdmin(){
-		PerfilUsuario perfilUsuario = new PerfilUsuario();
-		perfilUsuario = perfilUsuarioDAO.CarregaPerfil(2L);
+		PerfilAdmin perfilAdmin = new PerfilAdmin();
+		perfilAdmin = perfilAdminDAO.CarregaPerfil(2L);
 
 		Administrador admin = new Administrador();
 		admin.setNome("Herbeth");
 		admin.setEmail("h2milhome");
 		admin.setSenha("123");
-		admin.setPerfilUsuario(perfilUsuario);
+		admin.setPerfil(perfilAdmin);
 		
 		usuarioDAO.insert(admin);
 		return "login";
@@ -55,17 +47,16 @@ public class TesteManager {
 	}
 	
 	public String novoFuncionario(){
-		PerfilUsuario perfilUsuario = new PerfilUsuario();
-		perfilUsuario = perfilUsuarioDAO.CarregaPerfil(3L);
+		PerfilAdmin perfilAdmin = new PerfilAdmin();
+		perfilAdmin = perfilAdminDAO.CarregaPerfil(3L);
 
-//		Funcionario func = new Funcionario();
-//		func.setNome("Diego");
-//		func.setEmail("diego@");
-//		func.setSenha("123");
-//		func.setPerfilUsuario(perfilUsuario);
+		Administrador admin = new Administrador();
+		admin.setNome("Erom");
+		admin.setEmail("eromweb");
+		admin.setSenha("123");
+		admin.setPerfil(perfilAdmin);
 		
-		
-//		usuarioDAO.insert(func);
+		usuarioDAO.insert(admin);
 		return "login";
 		
 	}

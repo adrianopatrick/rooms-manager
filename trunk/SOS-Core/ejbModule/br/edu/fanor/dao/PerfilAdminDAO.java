@@ -5,17 +5,17 @@ import javax.ejb.Stateless;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 
-import br.edu.fanor.entity.PerfilUsuario;
+import br.edu.fanor.entity.PerfilAdmin;
 
 @Stateless
-public class PerfilUsuarioDAO extends GenericDAO<PerfilUsuario>{
+public class PerfilAdminDAO extends GenericDAO<PerfilAdmin>{
 
 	private static final long serialVersionUID = -4914783351314703069L;
 	
-	public PerfilUsuario CarregaPerfil(Long id){
-		Criteria criteria = getCriteria(PerfilUsuario.class);
+	public PerfilAdmin CarregaPerfil(Long id){
+		Criteria criteria = getCriteria(PerfilAdmin.class);
 		criteria.add(Restrictions.eq("id", id));
-		return (PerfilUsuario)criteria.uniqueResult(); 
+		return (PerfilAdmin)criteria.uniqueResult(); 
 	}
 	
 }
