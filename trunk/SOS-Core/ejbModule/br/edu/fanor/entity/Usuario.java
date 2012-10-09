@@ -13,6 +13,7 @@ import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.NotNull;
 
 
+@SuppressWarnings("unused")
 @Entity(name="usuarios")
 @Inheritance (strategy=InheritanceType.SINGLE_TABLE)
 public class Usuario {

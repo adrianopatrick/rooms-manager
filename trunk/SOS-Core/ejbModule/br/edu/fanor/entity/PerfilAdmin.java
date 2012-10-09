@@ -11,6 +11,7 @@ import javax.persistence.SequenceGenerator;
 
 import com.sun.xml.xsom.impl.scd.Iterators.Map;
 
+@SuppressWarnings("unused")
 @Entity(name="perfis_admins")
 public class PerfilAdmin {
 

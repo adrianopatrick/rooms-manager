@@ -26,7 +26,7 @@ public class GenericDAO<T> implements Serializable{
 	@PersistenceContext
 	public EntityManager em;
 	
-	protected EntityManager getEntityManager() {
+	protected EntityManager getEntityManager() {//get ???
 		if (em == null) {
 			throw new IllegalStateException("entityManger é Nulo ou Inválido");
 		}
@@ -188,8 +188,9 @@ public class GenericDAO<T> implements Serializable{
 	}
 
 	public T insertOrUpdate(T objeto){
-		em.merge(objeto);
+		em.merge(objeto);//Se existir no banco, ele atualiza, se não existir, ele insere;
 		return objeto;
+		
 	}
 	
 	public T update(T t, Boolean updateDependecies) {

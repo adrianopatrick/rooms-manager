@@ -9,6 +9,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
 
+@SuppressWarnings("unused")
 @RequestScoped
 @ManagedBean(name="listaTeste")
 public class listaSolicitacaoManager {

@@ -13,7 +13,8 @@ import br.edu.fanor.entity.Usuario;
  *
  *	LoginDAO ???????????      
  *	os daos nao sao das respectivas tabelas???????
- *
+ *	
+ *	Qual o sentido dessa classe?
  */
 @Stateless
 public class LoginDAO extends GenericDAO<Usuario>{
