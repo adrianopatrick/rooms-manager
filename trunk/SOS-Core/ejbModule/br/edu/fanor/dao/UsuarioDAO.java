@@ -8,7 +8,7 @@ import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 
 import br.edu.fanor.entity.Usuario;
-import br.edu.fanor.util.SessionUtil;
+
 
 @SuppressWarnings("unused")
 @Stateless
