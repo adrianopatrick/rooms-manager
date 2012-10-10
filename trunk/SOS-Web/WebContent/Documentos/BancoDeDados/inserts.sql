@@ -1,9 +1,8 @@
 INSERT INTO perfis_admins VALUES (1, 'administradores');
 INSERT INTO perfis_admins VALUES (2, 'professores');
 
-INSERT INTO usuarios VALUES ('administradores', 1, 'admin', 'Administrador', 'admin');
-INSERT INTO usuarios VALUES ('professores', 2, 'prof', 'Professor', 'prof');
-INSERT INTO usuarios VALUES ('funcionarios', 3, 'func', 'Funcionario', 'func');
+INSERT INTO usuarios VALUES ('administradores', 1, 'admin', 'Administrador', 'admin', 1);
+INSERT INTO usuarios VALUES ('professores', 2, 'prof', 'Professor', 'prof', 2);
 
 INSERT INTO permissoes VALUES (1, 'salvar', true);
 INSERT INTO permissoes VALUES (2, 'editar', true);
