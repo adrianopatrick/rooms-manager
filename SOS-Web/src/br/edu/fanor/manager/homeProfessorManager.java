@@ -6,10 +6,9 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-import br.edu.fanor.dao.ReservaDAO;
-import br.edu.fanor.dao.SolicitacaoDAO;
 import br.edu.fanor.entity.Reserva;
 import br.edu.fanor.entity.Solicitacao;
+import br.edu.fanor.service.EstadoReservaService;
 
 @SessionScoped
 @ManagedBean
@@ -18,18 +17,13 @@ public class homeProfessorManager implements Serializable{
 	private static final long serialVersionUID = -7652074045374161311L;
 
 	@EJB
-	ReservaDAO reservaDAO;
-	
-	@EJB
-	SolicitacaoDAO solicitacaoDAO;
+	EstadoReservaService reservaService;
 	
 	private Reserva reserva = new Reserva();
 	private Solicitacao solicitacao = new Solicitacao();
 	
 	public String salvar(){
-		solicitacaoDAO.insert(solicitacao);
-		reserva.setSolicitacao(solicitacao);
-		reservaDAO.insert(reserva);
+		reservaService.salvaReserva(reserva, solicitacao);
 		return "homeProfessor";
 	}
 	

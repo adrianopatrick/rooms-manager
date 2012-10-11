@@ -35,7 +35,7 @@ public class Solicitacao {
 	private String observacao;
 	
 	@Enumerated(EnumType.STRING)
-	private EstadoSolicitacao estado;
+	private EstadoSolicitacao estado = EstadoSolicitacao.PENDENTE;
 	
 	@OneToOne(mappedBy="solicitacao")
 	private Reserva reserva;
