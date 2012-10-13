@@ -78,9 +78,9 @@ public class LoginManager {
 		this.url = url;
 	}
 	
-	public void logOut(ActionEvent actionEvent) {
+	public String logOut() {
 		getRequest().getSession().invalidate();
-//		return "logout";
+		return "/SOS-Web/paginas/login/login.jsf";
 	}
 
 	private HttpServletRequest getRequest() {
