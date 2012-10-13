@@ -31,27 +31,8 @@
 	                    <h:form >
 	                    	<p:panel header="Cadastro de salas">
 								<h:panelGrid>
-									<h:outputText value="Numero sala: " />
-									<p:inputText value="" size="5"/>
 									
-									<h:outputText value="Capacidade: " />
-									<p:inputText value="" size="5"/>
-									
-									<h:outputText value="Tipo de sala: " />  
-							        <p:selectOneMenu value="" effect="fade">  
-							            <f:selectItem itemLabel="selecione" itemValue="" />
-							            <f:selectItem itemLabel="Sala" itemValue="1" /> 
-							            <f:selectItem itemLabel="Laboratorio" itemValue="2" />
-							            <f:selectItem itemLabel="Auditorio" itemValue="3" />
-							        </p:selectOneMenu>
-							        
-							        <h:outputText value="Acessorio: " />
-							       	<h:panelGrid columns="3" >
-							       		
-							      	  	<p:inputText value="" /> 
-							       	 	<p:commandButton value="+" />
-							       	</h:panelGrid>
-									<p:commandButton value="Adicionar"/>
+									<p:commandButton value="Adicionar" action="#{salaManager.saveSala()}" ajax="false"/>
 								</h:panelGrid>
 							</p:panel>
 	                    </h:form>

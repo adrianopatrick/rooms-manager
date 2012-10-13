@@ -26,7 +26,30 @@ public class Sala {
 	
 	@ManyToMany(mappedBy="salas")
 	private List<Acessorio> acessorios;
-	
+
 //	private List<Reserva> reservas;
 	
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public Integer getCapacidade() {
+		return capacidade;
+	}
+
+	public void setCapacidade(Integer capacidade) {
+		this.capacidade = capacidade;
+	}
+
+	public List<Acessorio> getAcessorios() {
+		return acessorios;
+	}
+
+	public void setAcessorios(List<Acessorio> acessorios) {
+		this.acessorios = acessorios;
+	}	
 }
