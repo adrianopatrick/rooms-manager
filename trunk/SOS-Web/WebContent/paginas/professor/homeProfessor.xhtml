@@ -71,7 +71,44 @@
                     </div>
                 </p:layoutUnit>
 
-            </p:layout>
+			<p:layoutUnit position="east" size="300" header="Right" >
+					<h:form prependId="false">  
+	  
+				    	<p:dataTable id="dataTable" var="sol" value="#"  
+				                 paginator="true" rows="10"  
+				                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+				                 rowsPerPageTemplate="5,10,15">  
+				        <f:facet name="header">  
+				           Solicitações
+				        </f:facet>  
+				  
+				        <p:column>  
+				            <f:facet name="header">  
+				                <h:outputText value="Sala" />  
+				            </f:facet>  
+				            <h:outputText value="#" />
+				        </p:column>  
+				  
+				        <p:column>  
+				            <f:facet name="header">  
+				                <h:outputText value="Data" />  
+				            </f:facet>  
+				            <h:outputText value="#" />  
+				        </p:column>  
+				  
+				        <p:column>  
+				            <f:facet name="header">  
+				                <h:outputText value="Status" />  
+				            </f:facet>  
+				            <h:outputText value="#" />  
+				        </p:column>  
+				  
+				    </p:dataTable>  
+				  
+				</h:form>  
+			</p:layoutUnit>
+
+		</p:layout>
         </h:body>
 
     </f:view>
