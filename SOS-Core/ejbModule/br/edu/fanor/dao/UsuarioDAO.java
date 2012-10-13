@@ -1,8 +1,6 @@
 package br.edu.fanor.dao;
 
 import javax.ejb.Stateless;
-import javax.persistence.Entity;
-import javax.persistence.EntityManager;
 
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
@@ -10,7 +8,7 @@ import org.hibernate.criterion.Restrictions;
 import br.edu.fanor.entity.Usuario;
 
 
-@SuppressWarnings("unused")
+
 @Stateless
 public class UsuarioDAO extends GenericDAO<Usuario>{
 
