@@ -1,6 +1,5 @@
 package br.edu.fanor.manager;
 
-//import java.util.List;
 import java.io.Serializable;
 
 import javax.ejb.EJB;
@@ -18,9 +17,7 @@ import br.edu.fanor.entity.Usuario;
 public class UsuarioManager implements Serializable{
 
 	private static final long serialVersionUID = 8300564796942826471L;
-	
-	public static final String INJECTION_NAME = "#{usuarioManager}";
-	
+
 	@EJB
 	private Usuario usuario;
 	
@@ -36,11 +33,10 @@ public class UsuarioManager implements Serializable{
 		return serialVersionUID;
 	}
 
-	public static String getInjectionName() {
-		return INJECTION_NAME;
-	}
-
 	public Usuario getUsuario() {
+		if (usuario == null) {
+			usuario = new Usuario();
+		}
 		return usuario;
 	}
 	
