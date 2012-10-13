@@ -1,7 +1,11 @@
 package br.edu.fanor.entity;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,9 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
-import com.sun.xml.xsom.impl.scd.Iterators.Map;
+import br.edu.fanor.enums.TipoPermissoes;
 
-@SuppressWarnings("unused")
 @Entity(name="perfis_admins")
 public class PerfilAdmin {
 
@@ -20,21 +23,58 @@ public class PerfilAdmin {
 	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="seq_perfis_admins")
 	private Long id;
 	
+	@Column(unique=true, nullable=false)
 	private String nome;
 
 	@OneToMany(mappedBy="perfil")
 	private List<Administrador> administradores;
 	
-	@OneToMany
-	private List<Permissoes> permissoes;
-	
-	public Boolean checkPermission(String nome){
-		for (Permissoes permissao : permissoes) {
-			if (permissao.getName().equals(nome)) {
+	@OneToMany(cascade=CascadeType.ALL)
+	private Set<Permissao> permissoes =  new HashSet<Permissao>();
+
+	public Boolean checkPermission(TipoPermissoes tipoPermissao){
+		for (Permissao permissao : permissoes) {
+			if (permissao.getTipo().equals(tipoPermissao)) {
 				return permissao.getValue();
 			}
 		}
-		return false;
+		return null;
+	}
+	
+	public void addPermission(Permissao permissao){
+		permissoes.add(permissao);
+	}
+	
+	public void addPermission(String nome, Boolean value){
+		
+	}
+	
+	public void addPermission(TipoPermissoes tipoPermissoes, Boolean value){
+		addPermission(new Permissao());
+	}
+	
+	public void setPermission(String nome, Boolean value){
+		setPermission(TipoPermissoes.getTipoPermissoes(nome), value);
+	}
+	
+	public void setPermission(TipoPermissoes tipoPermissoes, Boolean value){
+		for (Permissao permissao : permissoes) {
+			if (permissao.getTipo().equals(tipoPermissoes)) {
+				permissao.setValue(value);
+			}
+		}
+	}
+	
+	public Boolean checkPermission(String name){
+		return checkPermission(TipoPermissoes.getTipoPermissoes(name));
+	}
+	
+	public Set<Permissao> getPermissoes() {
+		return permissoes;
+	}
+
+	public void setPermissoes(Set<Permissao> permissoes) {
+		this.permissoes = permissoes;
 	}
 	
 	public List<Administrador> getAdministradores() {
