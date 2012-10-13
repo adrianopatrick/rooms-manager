@@ -7,6 +7,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import antlr.collections.List;
+import br.edu.fanor.entity.Administrador;
+import br.edu.fanor.entity.Professor;
 import br.edu.fanor.entity.Usuario;
 import br.edu.fanor.exceptions.ValidacaoException;
 import br.edu.fanor.service.UsuarioService;
@@ -17,8 +19,9 @@ public class UsuarioManager implements Serializable{
 
 	private static final long serialVersionUID = 8300564796942826471L;
 
-	@EJB
-	private Usuario usuario;
+	private Integer tipo;
+	
+	private Usuario usuario = new Usuario();
 	
 	@EJB
 	private UsuarioService usuarioService;
@@ -31,7 +34,13 @@ public class UsuarioManager implements Serializable{
 
 	public Usuario getUsuario() {
 		if (usuario == null) {
-			usuario = new Usuario();
+			if(tipo == 1){
+			usuario = new Professor();
+			}
+			else
+			{
+				usuario = new Administrador();
+			}
 		}
 		return usuario;
 	}
@@ -40,8 +49,9 @@ public class UsuarioManager implements Serializable{
 		this.usuario = usuario;
 	}
 	
-	public void salvar(){
-		usuarioService.salvar(usuario);				
+	public void salvar() throws ValidacaoException{
+		
+		usuarioService.save(usuario);				
 	}
 	
 	//TODO Implementar TryCatch
@@ -61,10 +71,10 @@ public class UsuarioManager implements Serializable{
 		return usuarioService.getUsuariosList();
 	}
 
-
-	/*public void setUsuariosList(Class<Usuario> usuariosList) {
+	//Só para o eclipse não reclamar.
+	public void setUsuariosList(List usuariosList) {
 		this.usuariosList = usuariosList;
-	}*/
+	}
 	
 
 }
