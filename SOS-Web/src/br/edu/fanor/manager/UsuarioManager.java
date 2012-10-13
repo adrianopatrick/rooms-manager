@@ -92,7 +92,7 @@ public class UsuarioManager implements Serializable{
 		return "";
 	}
 	
-	 public Usuario findByEmail(){
+	 public Usuario findByEmail(Usuario usuario){
 		 usuarioDAO = new UsuarioDAO();
 		 usuarioDAO.findByEmail(usuario.getEmail());
 		 
