@@ -5,18 +5,24 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui" xml:lang="pt" lang="pt-br">
+<h:form>
 	<p:menubar autoSubmenuDisplay="true">
-    <p:submenu label="Cadastro" icon="ui-icon-document">
-            <p:menuitem value="Sala" url="#"  />
-            <p:menuitem value="Funcionario" url="cadastroFuncionario.jsf" />
-    </p:submenu>
-    <p:submenu label="Pesquisar" icon="ui-icon-search">
-            <p:menuitem value="Sala" url="#" />
-            <p:menuitem value="Funcionario" url="#" />
-            <p:menuitem value="Professor" url="#" />
-    </p:submenu>
-    
-    <p:menuitem value="Sair" url="login.jsf" helpText="CTRL+p" />
-    
-</p:menubar>
+
+		<p:submenu label="Cadastro" icon="ui-icon-document">
+			<p:menuitem value="Sala" url="#" />
+			<p:menuitem value="Funcionario" url="cadastroFuncionario.jsf" />
+		</p:submenu>
+		<p:submenu label="Pesquisar" icon="ui-icon-search">
+			<p:menuitem value="Sala" url="#" />
+			<p:menuitem value="Funcionario" url="#" />
+			<p:menuitem value="Professor" url="#" />
+		</p:submenu>
+
+		<p:menuitem value="Sair" actionListener="#{loginManager.logOut}"
+			helpText="CTRL+p" />
+
+
+
+	</p:menubar>
+</h:form>
 </html>
