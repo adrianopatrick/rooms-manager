@@ -75,6 +75,14 @@ public class UsuarioManager implements Serializable{
 	public void setUsuariosList(List usuariosList) {
 		this.usuariosList = usuariosList;
 	}
+
+	public Integer getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(Integer tipo) {
+		this.tipo = tipo;
+	}
 	
 
 }
