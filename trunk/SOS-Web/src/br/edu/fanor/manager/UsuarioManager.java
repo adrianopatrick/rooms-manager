@@ -25,9 +25,6 @@ public class UsuarioManager implements Serializable{
 	
 	private List usuariosList;
 	
-		
-
-	
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
@@ -47,7 +44,7 @@ public class UsuarioManager implements Serializable{
 		usuarioService.salvar(usuario);				
 	}
 	
-	//TODO Implementar Try Cath
+	//TODO Implementar TryCatch
 	public void deletar() throws ValidacaoException{
 		usuarioService.delete(usuario);		
 	}
