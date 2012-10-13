@@ -39,6 +39,9 @@ public class Reserva {
 	@Column(name = "data_final")
 	@Temporal(TemporalType.TIME)
 	private Date dataFinal;
+	
+	@ManyToOne
+	private Sala sala;
 
 	@OneToOne
 	private Solicitacao solicitacao;
