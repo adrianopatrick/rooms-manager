@@ -39,6 +39,7 @@ public class UsuarioService extends GenericService<Usuario>{
 	}
 		
 	 //TODO terminar metodos e criar paginação
+	//TODO Criar paginação
 	public List getUsuariosList() {
 		return usuariosList;
 	}
