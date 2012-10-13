@@ -23,7 +23,7 @@ public class UsuarioManager implements Serializable{
 	@EJB
 	private UsuarioService usuarioService;
 	
-	private Class<Usuario> usuariosList;
+	private List usuariosList;
 	
 		
 
@@ -64,15 +64,10 @@ public class UsuarioManager implements Serializable{
 		return usuarioService.getUsuariosList();
 	}
 
+
 	/*public void setUsuariosList(Class<Usuario> usuariosList) {
 		this.usuariosList = usuariosList;
 	}*/
 	
-//		TODO criar uma classe para paginação
-//		 public List<Usuario> findAll(){
-//		 UsuarioDAO usuarioDAO = new UsuarioDAO();
-//		 return usuarioDAO.findAll(usuarios, true);
-//	 }
-	
-	
+
 }
