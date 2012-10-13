@@ -53,7 +53,7 @@ public class LoginManager {
 				if (usuario instanceof Administrador) {
 					FacesContext.getCurrentInstance().getExternalContext().redirect("/SOS-Web/paginas/admin/homeAdmin.jsf");
 				}else {
-					FacesContext.getCurrentInstance().getExternalContext().redirect("prof/homeProf.jsf");
+					FacesContext.getCurrentInstance().getExternalContext().redirect("/SOS-Web/paginas/professor/homrProfessor.jsf");
 				}
 			}else {
 				FacesContext.getCurrentInstance().getExternalContext().redirect(url);
