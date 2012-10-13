@@ -1,10 +1,9 @@
 package br.edu.fanor.dao;
 
+import java.util.ArrayList;
 import java.util.List;
-
 import javax.ejb.Stateless;
-
-import org.hibernate.Criteria;
+import javax.persistence.Query;
 
 import br.edu.fanor.entity.Solicitacao;
 
@@ -15,8 +14,10 @@ public class SolicitacaoDAO extends GenericDAO<Solicitacao>{
 
 	@SuppressWarnings("unchecked")
 	public List<Solicitacao> findAll() {
-		Criteria criteria = getCriteria(Solicitacao.class);
-		return criteria.list();
+		List<Solicitacao> list = new ArrayList<Solicitacao>();
+		Query query = getEntityManager().createQuery("from solicitacoes");
+		list = query.getResultList();
+		return list;
 	}
 
 }

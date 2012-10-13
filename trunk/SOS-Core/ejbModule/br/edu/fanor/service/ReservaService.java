@@ -21,16 +21,16 @@ public class ReservaService extends GenericService<Usuario>{
 	@EJB
 	SolicitacaoService solicitacaoService;
 	
+	Administrador administrador = new Administrador();
 	
 	public void salvaReserva(Reserva reserva, Solicitacao solicitacao) {
-		Administrador usuario = (Administrador) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
-
 		int a = reserva.getDataFinal().compareTo(reserva.getDataIncial());
+//		administrador = (Administrador) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
 		
 		if (a == 1){
 			solicitacaoService.salvaSolicitacao(solicitacao);
 			reserva.setSolicitacao(solicitacao);
-			reserva.setAdministrador(usuario);
+//			reserva.setAdministrador(administrador);
 			reservaDAO.insert(reserva);
 		} else {
 			System.out.println("COLOCAR MENSAGEM");
