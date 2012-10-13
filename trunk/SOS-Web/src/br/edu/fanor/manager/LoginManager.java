@@ -1,6 +1,7 @@
 package br.edu.fanor.manager;
 
 import java.io.IOException;
+import java.net.URI;
 
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
@@ -8,10 +9,13 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.primefaces.context.RequestContext;
 
+import br.edu.fanor.entity.Administrador;
 import br.edu.fanor.entity.Usuario;
 import br.edu.fanor.exceptions.DefaultException;
 import br.edu.fanor.service.LoginService;
@@ -45,16 +49,16 @@ public class LoginManager {
 			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", usuario);
 			loggedIn = true;
 			
-			System.out.println("batata:"+ url);
-			if (url == null || url.equals("SOS-Web/paginas/login/login.jsf")) {
-				//TODO: ir para pagina default do usuario 
+			if (url == null || url.contains("SOS-Web/paginas/login/login.jsf")) {
+				if (usuario instanceof Administrador) {
+					FacesContext.getCurrentInstance().getExternalContext().redirect("/SOS-Web/paginas/admin/homeAdmin.jsf");
+				}else {
+					FacesContext.getCurrentInstance().getExternalContext().redirect("prof/homeProf.jsf");
+				}
 			}else {
-				//TODO: ir para a url
+				FacesContext.getCurrentInstance().getExternalContext().redirect(url);
 			}	
-			
-//			getRequest().getRequestDispatcher("public/redirect.jsf");
-//			FacesContext.getCurrentInstance().getExternalContext().dispatch("public/redirect.jsf");
-			
+					
 			
 		} catch (DefaultException e) {
 			msg = new FacesMessage(FacesMessage.SEVERITY_WARN, e.getMsg(), "");
@@ -82,6 +86,11 @@ public class LoginManager {
 	private HttpServletRequest getRequest() {
 		return (HttpServletRequest) FacesContext.getCurrentInstance()
 				.getExternalContext().getRequest();
+	}
+	
+	private HttpServletResponse getResponse() {
+		return (HttpServletResponse) FacesContext.getCurrentInstance()
+				.getExternalContext().getResponse();
 	}
 
 	public String getEmail() {
