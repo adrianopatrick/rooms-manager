@@ -28,10 +28,25 @@
 						<ui:include src="menu.xhtml" />						
 					</div>
 					<div id="corpo">
-	                    <h:form >
-	                    	<p:panel header="Cadastro de salas">
-								<h:panelGrid>
-									
+	                    <h:form>
+	                    	<p:panel header="Cadastro de salas" >
+	                    		<h:panelGrid columns="1">
+	                    		<h:outputText value="Sala: " /> 
+	                    		<p:inputText value="#{salaManager.sala.nome}"/>
+	                    		
+	                    		<h:outputText value="Capacidade: " />
+	                    		<p:inputText value="#{salaManager.sala.capacidade}" />
+	                    		
+	                    		<h:outputText vakue="Tipo de Sala"/>
+	                    		<p:selectOneMenu value="#{salaManager.sala.tipoSala}">
+	                    			<f:selectItem itemValue="" itemLabel="Selecione" />
+	                    			<f:selectItem itemValue="1" itemLabel="Sala" />
+	                    			<f:selectItem itemValue="2" itemLabel="Laboratório" />
+	                    			<f:selectItem itemValue="3" itemLabel="Auditório" />
+	                    		</p:selectOneMenu>
+								
+								<h:outputText value="Observação: "/>
+								<p:inputTextarea value="#{salaManager.sala.observacao}"/>
 									<p:commandButton value="Adicionar" action="#{salaManager.saveSala()}" ajax="false"/>
 								</h:panelGrid>
 							</p:panel>

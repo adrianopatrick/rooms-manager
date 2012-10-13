@@ -15,16 +15,16 @@ public class SalaManager {
 	@EJB
 	SalaService salaService;
 	
-	private Sala sala;
+	private Sala sala = new Sala();
 
 	public void saveSala(){
 
-		Sala s = new Sala();
-		s.setNome("sala teste");
-		s.setCapacidade(50);
+//		Sala s = new Sala();
+//		s.setNome("sala teste");
+//		s.setCapacidade(50);
 
 		try {
-			salaService.save(s);
+			salaService.save(sala);
 		} catch (ValidacaoException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
