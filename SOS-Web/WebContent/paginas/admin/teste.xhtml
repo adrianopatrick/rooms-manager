@@ -18,8 +18,7 @@
 <h:body>
 <ui:insert>"User ADMIN bem vindo!"</ui:insert>
 
-<p:commandButton id="logoutButton" value="Sair" update=":growl"
-						actionListener="#{loginManager.logout}" />
+<p:commandButton id="logoutButton" value="Sair"	action="#{loginManager.logOut}" />
   
 </h:body>
 
