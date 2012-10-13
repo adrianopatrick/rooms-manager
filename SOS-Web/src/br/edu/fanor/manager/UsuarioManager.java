@@ -3,12 +3,14 @@ package br.edu.fanor.manager;
 //import java.util.List;
 import java.io.Serializable;
 
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 
 import br.edu.fanor.dao.UsuarioDAO;
+import br.edu.fanor.entity.Administrador;
 import br.edu.fanor.entity.Usuario;
 
 @SessionScoped
@@ -19,15 +21,26 @@ public class UsuarioManager implements Serializable{
 	
 	public static final String INJECTION_NAME = "#{usuarioManager}";
 	
+	@EJB
 	private Usuario usuario;
+	
+	@EJB
+	private UsuarioDAO usuarioDAO;
 	
 //	private Class<Usuario> usuarios;
 	
 		
-	//TODO realmente não é necessáiro um construtor?
+
 	
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	public static String getInjectionName() {
+		return INJECTION_NAME;
+	}
+
 	public Usuario getUsuario() {
-		//TODO verificar necessidade de checagem
 		return usuario;
 	}
 	
@@ -44,9 +57,13 @@ public class UsuarioManager implements Serializable{
 		return (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
 	}
 	
-	public String salvar(Usuario usuario){
+	public String salvar(String nome, String email, String senha){
 		
-		UsuarioDAO usuarioDAO = new UsuarioDAO();
+		usuario = new Usuario();
+		usuario.setNome(nome);
+		usuario.setEmail(email);
+		usuario.setSenha(senha);
+
 		
 		usuarioDAO.insert(usuario);
 		
@@ -55,16 +72,20 @@ public class UsuarioManager implements Serializable{
 	}
 	
 	public String deletar(Usuario usuario){
-		UsuarioDAO usuarioDAO = new UsuarioDAO();
+		usuarioDAO = new UsuarioDAO();
 		usuarioDAO.delete(usuario);
 		
 		//TODO para qual página redirecionar?
 		return "";
 	}
 	
-	public String atualizar(Usuario usuario){
-		UsuarioDAO usuarioDAO = new UsuarioDAO();
+	public String atualizar(Usuario usuario, String nome, String email, String senha){
 		
+		usuario.setNome(nome);
+		usuario.setEmail(email);
+		usuario.setSenha(senha);
+		
+		usuarioDAO = new UsuarioDAO();
 		usuarioDAO.insertOrUpdate(usuario);
 		
 		//TODO para qual página redirecionar?
@@ -72,7 +93,7 @@ public class UsuarioManager implements Serializable{
 	}
 	
 	 public Usuario findByEmail(){
-		 UsuarioDAO usuarioDAO = new UsuarioDAO();
+		 usuarioDAO = new UsuarioDAO();
 		 usuarioDAO.findByEmail(usuario.getEmail());
 		 
 		 return usuario;
