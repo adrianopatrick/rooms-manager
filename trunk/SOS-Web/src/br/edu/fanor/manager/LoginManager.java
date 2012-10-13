@@ -78,9 +78,13 @@ public class LoginManager {
 		this.url = url;
 	}
 	
-	public String logOut() {
+	public void logOut(ActionEvent actionEvent) {
 		getRequest().getSession().invalidate();
-		return "/SOS-Web/paginas/login/login.jsf";
+		try {
+			FacesContext.getCurrentInstance().getExternalContext().redirect("/SOS-Web/paginas/login/login.jsf");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	private HttpServletRequest getRequest() {
