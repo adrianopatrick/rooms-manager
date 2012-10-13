@@ -31,7 +31,7 @@ public class PrincipalManager {
 	@EJB
 	private PerfilAdminService perfilAdminService;
 
-	@PostConstruct
+//	@PostConstruct
 	public void init() {
 		createDefaultProf();
 		createDefaultAdmin();
@@ -52,7 +52,7 @@ public class PrincipalManager {
 			try {
 				usuarioService.saveOrUpdate(admin);
 			} catch (ValidacaoException e) {
-				System.out.println("admin basic não inserido");
+				System.out.println("admin basic nï¿½o inserido");
 				e.printStackTrace();
 			}
 		}
@@ -73,7 +73,7 @@ public class PrincipalManager {
 			try {
 				usuarioService.saveOrUpdate(admin);
 			} catch (ValidacaoException e) {
-				System.out.println("admin master não inserido");
+				System.out.println("admin master nï¿½o inserido");
 				e.printStackTrace();
 			}
 		}
@@ -93,7 +93,7 @@ public class PrincipalManager {
 			try {
 				usuarioService.save(admin);
 			} catch (ValidacaoException e) {
-				System.out.println("admin padrao não inserido");
+				System.out.println("admin padrao nï¿½o inserido");
 				e.printStackTrace();
 			}
 		}
@@ -154,7 +154,7 @@ public class PrincipalManager {
 			try {
 				usuarioService.save(prof);
 			} catch (ValidacaoException e) {
-				System.out.println("professor padrao não inserido");
+				System.out.println("professor padrao nï¿½o inserido");
 				e.printStackTrace();
 			}
 		}

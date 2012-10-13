@@ -92,5 +92,13 @@ public class Solicitacao {
 	public void setProfessor(Professor professor) {
 		this.professor = professor;
 	}
+	
+	public EstadoSolicitacao getEstado() {
+		return estado;
+	}
+
+	public void setEstado(EstadoSolicitacao estado) {
+		this.estado = estado;
+	}
 
 }

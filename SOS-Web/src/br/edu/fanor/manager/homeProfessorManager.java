@@ -1,6 +1,7 @@
 package br.edu.fanor.manager;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -26,15 +27,11 @@ public class homeProfessorManager implements Serializable{
 	
 	private Reserva reserva = new Reserva();
 	private Solicitacao solicitacao = new Solicitacao();
+	private List<Solicitacao> listaSolicitacao = new ArrayList<Solicitacao>();
 	
 	public String salvar(){
 		reservaService.salvaReserva(reserva, solicitacao);
 		return "homeProfessor";
-	}
-	
-	public List<Solicitacao> listaSolicitacao(){
-		List<Solicitacao> lista = solicitacaoService.listSolicitacao();
-		return lista;
 	}
 	
 	public Solicitacao getSolicitacao() {
@@ -51,6 +48,17 @@ public class homeProfessorManager implements Serializable{
 
 	public void setReserva(Reserva reserva) {
 		this.reserva = reserva;
+	}
+
+	public List<Solicitacao> getListaSolicitacao() {
+		if (listaSolicitacao.size() == 0) {
+			listaSolicitacao = solicitacaoService.listSolicitacao();
+			System.out.println(listaSolicitacao.toString());
+			return listaSolicitacao;
+		}else {
+			System.out.println(listaSolicitacao.toString());
+			return listaSolicitacao;
+		}
 	}
 
 }

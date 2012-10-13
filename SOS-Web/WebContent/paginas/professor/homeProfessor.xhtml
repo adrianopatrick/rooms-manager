@@ -71,13 +71,14 @@
                     </div>
                 </p:layoutUnit>
 
-			<p:layoutUnit position="east" size="300" header="Right" >
+			<p:layoutUnit position="east" size="500px" >
 					<h:form prependId="false">  
 	  
-				    	<p:dataTable id="dataTable" var="sol" value="#"  
-				                 paginator="true" rows="10"  
-				                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
-				                 rowsPerPageTemplate="5,10,15">  
+				    	<p:dataTable id="dataTable" var="lista" value="#{homeProfessorManager.listaSolicitacao}" 
+				    		style="max-width: 500px; min-width:500px" 
+				            paginator="true" rows="10"  
+				            paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+				            rowsPerPageTemplate="5,10,15">  
 				        <f:facet name="header">  
 				           Solicitações
 				        </f:facet>  
@@ -93,14 +94,14 @@
 				            <f:facet name="header">  
 				                <h:outputText value="Data" />  
 				            </f:facet>  
-				            <h:outputText value="#" />  
+				            <h:outputText value="#{lista.data}" />  
 				        </p:column>  
 				  
 				        <p:column>  
 				            <f:facet name="header">  
 				                <h:outputText value="Status" />  
 				            </f:facet>  
-				            <h:outputText value="#" />  
+				            <h:outputText value="#{lista.estado}" />  
 				        </p:column>  
 				  
 				    </p:dataTable>  
