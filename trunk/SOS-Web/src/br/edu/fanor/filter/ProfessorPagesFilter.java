@@ -29,7 +29,7 @@ public class ProfessorPagesFilter extends AbstractFilter implements Filter {
 			accessDenied(request, response, req);
 			return;
 		}
-
+		
 		chain.doFilter(request, response);
 	}
 

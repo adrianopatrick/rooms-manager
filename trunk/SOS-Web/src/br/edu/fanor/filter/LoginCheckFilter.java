@@ -64,7 +64,6 @@ public class LoginCheckFilter extends AbstractFilter implements Filter {
 		Usuario user = (Usuario) session.getAttribute("usuario");
 
 		if (user == null && !allowedURIs.contains(req.getRequestURI())) {
-			System.out.println(req.getRequestURI());
 			doLogin(request, response, req);
 			return;
 		}

@@ -1,58 +1,77 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-        xmlns:ui="http://java.sun.com/jsf/facelets"
-        xmlns:h="http://java.sun.com/jsf/html"
-        xmlns:f="http://java.sun.com/jsf/core"
-        xmlns:p="http://primefaces.org/ui" xml:lang="pt" lang="pt-br">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xml:lang="pt" lang="pt-br">
 
 <h:head>
-        
-        <link rel="stylesheet" type="text/css" href="../../resources/css/estilo.css" />
-        
-<script type="text/javascript">  
-    function handleLoginRequest(xhr, status, args) {  
-        if(args.validationFailed || !args.loggedIn) {  
-            jQuery('#dialog').effect("shake", { times:3 }, 100);  
-        } else {  
-            dlg.hide();  
-            jQuery('#loginLink').fadeOut();  
-            location.href=document.URL;
-        }  
-    }  
-</script>  
 
-        <title><ui:insert name = "titulo" >Login</ui:insert> </title>
+	<link rel="stylesheet" type="text/css"
+		href="../../resources/css/estilo.css" />
+
+	<script type="text/javascript">
+		$(function() {
+			$("#url").val(document.URL);
+		})
+
+		function handleLoginRequest(xhr, status, args) {
+			if (args.validationFailed || !args.loggedIn) {
+				jQuery('#dialog').effect("shake", {
+					times : 3
+				}, 100);
+			} else {
+				dlg.hide();
+				jQuery('#loginLink').fadeOut();
+			}
+		}
+	</script>
+
+	<title><ui:insert name="titulo">Login</ui:insert></title>
 </h:head>
 
 <h:body>
-  
-<p:growl id="growl" life="3000" title ="oi"/>  
-<h:message for="formLogin:email"></h:message>
-<h:message for="formLogin:senha"></h:message>
-<img id="logo" src="../../resources/img/logo_fanor.png" />
-<p:dialog id="dialog" header="Login" widgetVar="dlg" visible="true" draggable="false" resizable="false" closable="false">  
-    <h:form id="formLogin" >  
-    
-        <h:panelGrid columns="2" cellpadding="5">
 
-            <h:outputLabel for="email" value="Email:" />  
-            <h:inputText value="#{loginManager.email}" id="email" required="true" requiredMessage="Campo Email Obrigatório." label="email" />  
-              
-            <h:outputLabel for="senha" value="Senha:" />
-            <h:inputSecret value="#{loginManager.senha}" id="senha" required="true" requiredMessage="Campo Senha Obrigatório." label="senha" />  
-              
-   	         <f:facet name="footer">  
-                <p:commandButton id="loginButton" value="Entrar" update=":growl" 
-                    actionListener="#{loginManager.login}" oncomplete="handleLoginRequest(xhr, status, args)"/>  
-            </f:facet>
-            
-            
-        </h:panelGrid>
+	<p:growl id="growl" life="3000" title="oi" />
+	<h:message for="formLogin:email"></h:message>
+	<h:message for="formLogin:senha"></h:message>
+	<img id="logo" src="../../resources/img/logo_fanor.png" />
+	<p:dialog id="dialog" header="Login" widgetVar="dlg" visible="true"
+		draggable="false" resizable="false" closable="false">
+		<h:form id="formLogin">
 
-    </h:form>  
-</p:dialog>  
-  
+			<h:panelGrid columns="2" cellpadding="5">
+
+				<h:outputLabel for="email" value="Email:" />
+				<h:inputText value="#{loginManager.email}" id="email"
+					required="true" requiredMessage="Campo Email Obrigatório."
+					label="email" />
+
+				<h:outputLabel for="senha" value="Senha:" />
+				<h:inputSecret value="#{loginManager.senha}" id="senha"
+					required="true" requiredMessage="Campo Senha Obrigatório."
+					label="senha" />
+
+				<h:inputHidden id="url" value="#{loginManager.url}" />
+				<script type="text/javascript">
+					$(function() {
+						document.getElementById("formLogin:url").value = document.URL
+					});
+				</script>
+
+				<f:facet name="footer">
+					<p:commandButton id="loginButton" value="Entrar" update=":growl"
+						actionListener="#{loginManager.login}"
+						oncomplete="handleLoginRequest(xhr, status, args)" />
+				</f:facet>
+
+
+			</h:panelGrid>
+
+		</h:form>
+	</p:dialog>
+
 </h:body>
 
 </html>

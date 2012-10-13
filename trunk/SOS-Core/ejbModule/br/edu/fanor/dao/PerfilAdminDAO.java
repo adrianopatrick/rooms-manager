@@ -18,4 +18,10 @@ public class PerfilAdminDAO extends GenericDAO<PerfilAdmin>{
 		return (PerfilAdmin)criteria.uniqueResult(); 
 	}
 	
+	public PerfilAdmin findByName(String name){
+		Criteria criteria = getCriteria(PerfilAdmin.class);
+		criteria.add(Restrictions.eq("nome", name));
+		return (PerfilAdmin)criteria.uniqueResult(); 
+	}
+	
 }
