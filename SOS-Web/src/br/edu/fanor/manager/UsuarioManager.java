@@ -5,12 +5,11 @@ import java.io.Serializable;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpServletRequest;
 
-import br.edu.fanor.dao.UsuarioDAO;
-import br.edu.fanor.entity.Administrador;
+import antlr.collections.List;
 import br.edu.fanor.entity.Usuario;
+import br.edu.fanor.exceptions.ValidacaoException;
+import br.edu.fanor.service.UsuarioService;
 
 @SessionScoped
 @ManagedBean(name="usuarioManager")
@@ -22,9 +21,9 @@ public class UsuarioManager implements Serializable{
 	private Usuario usuario;
 	
 	@EJB
-	private UsuarioDAO usuarioDAO;
+	private UsuarioService usuarioService;
 	
-//	private Class<Usuario> usuarios;
+	private Class<Usuario> usuariosList;
 	
 		
 
@@ -44,59 +43,33 @@ public class UsuarioManager implements Serializable{
 		this.usuario = usuario;
 	}
 	
-	public String logOut() {
-		getRequest().getSession().invalidate();
-		return "/paginas/login/login.jsf";
-	}
-
-	private HttpServletRequest getRequest() {
-		return (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
+	public void salvar(){
+		usuarioService.salvar(usuario);				
 	}
 	
-	public String salvar(String nome, String email, String senha){
-		
-		usuario = new Usuario();
-		usuario.setNome(nome);
-		usuario.setEmail(email);
-		usuario.setSenha(senha);
-
-		
-		usuarioDAO.insert(usuario);
-		
-		//TODO para qual página redirecionar?
-		return "";
+	//TODO Implementar Try Cath
+	public void deletar() throws ValidacaoException{
+		usuarioService.delete(usuario);		
 	}
 	
-	public String deletar(Usuario usuario){
-		usuarioDAO = new UsuarioDAO();
-		usuarioDAO.delete(usuario);
-		
-		//TODO para qual página redirecionar?
-		return "";
+	public void atualizar(){
+		usuarioService.atualizar(usuario);
 	}
 	
-	public String atualizar(Usuario usuario, String nome, String email, String senha){
-		
-		usuario.setNome(nome);
-		usuario.setEmail(email);
-		usuario.setSenha(senha);
-		
-		usuarioDAO = new UsuarioDAO();
-		usuarioDAO.insertOrUpdate(usuario);
-		
-		//TODO para qual página redirecionar?
-		return "";
-	}
-	
-	 public Usuario findByEmail(Usuario usuario){
-		 usuarioDAO = new UsuarioDAO();
-		 usuarioDAO.findByEmail(usuario.getEmail());
-		 
-		 return usuario;
+	 public Usuario findByEmail(){
+		return usuarioService.findByEmail(usuario.getEmail());
 	 }
+	 
+	public List getUsuariosList() {
+		return usuarioService.getUsuariosList();
+	}
+
+	/*public void setUsuariosList(Class<Usuario> usuariosList) {
+		this.usuariosList = usuariosList;
+	}*/
 	
-	 //TODO criar uma classe para paginação
-//	 public List<Usuario> findAll(){
+//		TODO criar uma classe para paginação
+//		 public List<Usuario> findAll(){
 //		 UsuarioDAO usuarioDAO = new UsuarioDAO();
 //		 return usuarioDAO.findAll(usuarios, true);
 //	 }
