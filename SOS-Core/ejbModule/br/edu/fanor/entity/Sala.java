@@ -24,9 +24,15 @@ public class Sala {
 	@NotNull
 	private Integer capacidade;
 	
+	@NotNull
+	private Integer tipoSala;
+	
 	@ManyToMany(mappedBy="salas")
 	private List<Acessorio> acessorios;
-
+	
+	@NotNull
+	private String observacao;
+	
 //	private List<Reserva> reservas;
 	
 	public String getNome() {
@@ -45,11 +51,27 @@ public class Sala {
 		this.capacidade = capacidade;
 	}
 
+	public Integer getTipoSala() {
+		return tipoSala;
+	}
+
+	public void setTipoSala(Integer tipoSala) {
+		this.tipoSala = tipoSala;
+	}
+
 	public List<Acessorio> getAcessorios() {
 		return acessorios;
 	}
 
 	public void setAcessorios(List<Acessorio> acessorios) {
 		this.acessorios = acessorios;
-	}	
+	}
+
+	public String getObservacao() {
+		return observacao;
+	}
+
+	public void setObservacao(String observacao) {
+		this.observacao = observacao;
+	}
 }
