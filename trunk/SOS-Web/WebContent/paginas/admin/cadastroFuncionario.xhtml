@@ -37,17 +37,17 @@
 									<h:outputText value="E-mail: " />
 									<p:inputText value="#{usuarioManager.usuario.email}" required="true" requiredMessage="Campo Obrigatório."/>
 									
-									<h:outputText value="Senha: " />
-									<p:password value="#{usuarioManager.usuario.senha}" required="true" requiredMessage="Campo Obrigatório."/>
-									
 									<h:outputText value="Cargo: " />  
-							        <p:selectOneMenu value="#{usuarioManager.tipo}" effect="fade" required="true" requiredMessage="Campo Obrigatório.">  
+							        <h:selectOneMenu  onchange="submit()" effect="fade" required="true" requiredMessage="Campo Obrigatório." valueChangeListener="#{usuarioManager.changeTipoUsuario}" >  
 							            <f:selectItem itemLabel="selecione" />
-							            <f:selectItem itemLabel="Professor" itemValue="1" /> 
+							            <f:selectItem itemLabel="Professor" itemValue="1"  /> 
 							            <f:selectItem itemLabel="Atendente" itemValue="2" />
 							            <f:selectItem itemLabel="Administrador" itemValue="3" />
-							        </p:selectOneMenu>
+							        </h:selectOneMenu>
 							        
+							        <h:outputText value="Senha: " />
+									<p:password value="#{usuarioManager.usuario.senha}" required="true" requiredMessage="Campo Obrigatório."/>
+									
 									<p:commandButton value="Adicionar" action="#{usuarioManager.salvar()}" ajax="false"/>
 								</h:panelGrid>
 								<h:message for="panelcorpo"></h:message>
