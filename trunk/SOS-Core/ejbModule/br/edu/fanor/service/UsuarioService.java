@@ -25,19 +25,7 @@ public class UsuarioService extends GenericService<Usuario>{
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-
-	public void salvar(Usuario usuario){
-		usuarioDAO.insert(usuario);
-	}
 	
-	public void deletar(Usuario usuario){
-		usuarioDAO.delete(usuario);	
-	}
-	
-	public void atualizar(Usuario usuario){
-			usuarioDAO.insertOrUpdate(usuario);	
-	}
-		
 	//TODO terminar metodos e criar paginação
 	//TODO Criar paginação
 	public List getUsuariosList() {
