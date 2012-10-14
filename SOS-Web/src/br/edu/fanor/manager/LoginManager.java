@@ -1,7 +1,6 @@
 package br.edu.fanor.manager;
 
 import java.io.IOException;
-import java.net.URI;
 
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
@@ -9,7 +8,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -53,7 +51,7 @@ public class LoginManager {
 				if (usuario instanceof Administrador) {
 					FacesContext.getCurrentInstance().getExternalContext().redirect("/SOS-Web/paginas/admin/homeAdmin.jsf");
 				}else {
-					FacesContext.getCurrentInstance().getExternalContext().redirect("/SOS-Web/paginas/professor/homrProfessor.jsf");
+					FacesContext.getCurrentInstance().getExternalContext().redirect("/SOS-Web/paginas/professor/homeProfessor.jsf");
 				}
 			}else {
 				FacesContext.getCurrentInstance().getExternalContext().redirect(url);

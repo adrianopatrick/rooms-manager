@@ -5,6 +5,8 @@ import java.io.Serializable;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+import javax.faces.event.ValueChangeEvent;
 
 import antlr.collections.List;
 import br.edu.fanor.entity.Administrador;
@@ -18,8 +20,6 @@ import br.edu.fanor.service.UsuarioService;
 public class UsuarioManager implements Serializable{
 
 	private static final long serialVersionUID = 8300564796942826471L;
-
-	private Integer tipo;
 	
 	private Usuario usuario = new Usuario();
 	
@@ -34,13 +34,7 @@ public class UsuarioManager implements Serializable{
 
 	public Usuario getUsuario() {
 		if (usuario == null) {
-			if(tipo == 1){
-			usuario = new Professor();
-			}
-			else
-			{
-				usuario = new Administrador();
-			}
+			usuario = new Usuario();
 		}
 		return usuario;
 	}
@@ -50,7 +44,6 @@ public class UsuarioManager implements Serializable{
 	}
 	
 	public void salvar() throws ValidacaoException{
-		
 		usuarioService.save(usuario);				
 	}
 	
@@ -76,12 +69,13 @@ public class UsuarioManager implements Serializable{
 		this.usuariosList = usuariosList;
 	}
 
-	public Integer getTipo() {
-		return tipo;
-	}
-
-	public void setTipo(Integer tipo) {
-		this.tipo = tipo;
+	public void changeTipoUsuario(ValueChangeEvent e){
+		Integer tipo = Integer.parseInt((String) e.getNewValue());
+		if (tipo == 1) {
+			usuario = new Professor();
+		}else {
+			usuario = new Administrador();
+		}
 	}
 	
 

@@ -18,8 +18,9 @@
 <h:body>
 <ui:insert>"User ADMIN bem vindo!"</ui:insert>
 
-<p:commandButton id="logoutButton" value="Sair"	action="#{loginManager.logOut}" />
-  
+<h:form>
+<h:commandButton id="logoutButton" value="Sair"  actionListener="#{loginManager.logOut}" />
+</h:form>
 </h:body>
 
 </html>
