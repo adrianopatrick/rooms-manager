@@ -21,8 +21,13 @@ public class SolicitacaoService extends GenericService<Usuario>{
 		solicitacaoDAO.insert(solicitacao);
 	}
 	
-	public List<Solicitacao> listSolicitacao(){
-		List<Solicitacao> list = solicitacaoDAO.findAll();
+	public List<Solicitacao> listSolicitacaoProf(){
+		List<Solicitacao> list = solicitacaoDAO.findAllProf();
+		return list;
+	}
+	
+	public List<Solicitacao> listSolicitacaoPendente(){
+		List<Solicitacao> list = solicitacaoDAO.findAllPendente();
 		return list;
 	}
 

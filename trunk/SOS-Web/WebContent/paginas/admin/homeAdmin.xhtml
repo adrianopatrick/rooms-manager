@@ -29,29 +29,25 @@
 					</div>
 					<div id="corpo">
 							<h:form>  
-								<p:dataTable var="sala" paginator="true" rows="4" value="#{listaTeste.lista}">  
+								<p:dataTable var="lista" paginator="true" rows="10" value="#{listaSolicitacaoManager.listaSolicitacaoPendente}">  
 							        <f:facet name="header">
 							        	Lista de reservas solicitada
 							        </f:facet>
 							        
-							        <p:column headerText="Nome do evento ">  
-							            <h:outputText value="#{sala.nomeEvento}" />  
-							        </p:column>
-							        
 							        <p:column headerText="Sala">  
-							            <h:outputText value="#{sala.nome}" />  
+							            <h:outputText value="#" />  
 							        </p:column>  
 							  
-							        <p:column headerText="Capacidade" >  
-							            <h:outputText value="#{sala.capacidade}" />  
+							        <p:column headerText="Capacidade para" >  
+							            <h:outputText value="#{lista.nrAlunos} alunos" />  
 							        </p:column>
 							        
 							        <p:column headerText="Tipo de sala">  
-							            <h:outputText value="#{sala.tpSala}" />  
+							            <h:outputText value="#" />  
 							        </p:column>
 							        
 							        <p:column headerText="Acessorio(s)">  
-							            <h:outputText value="#{sala.acessorio}" />  
+							            <h:outputText value="#{lista.data}" > <f:convertDateTime pattern="dd/MM/yyyy" /> </h:outputText>  
 							        </p:column>
 									
 									<p:column style="width:4%">  
@@ -60,6 +56,7 @@
 							    </p:dataTable>
 							</h:form>
 					</div>
+                <p:messages id="mensagem" showDetail="true" autoUpdate="true" closable="true" />
                 </p:layoutUnit>
             </p:layout>
         </h:body>

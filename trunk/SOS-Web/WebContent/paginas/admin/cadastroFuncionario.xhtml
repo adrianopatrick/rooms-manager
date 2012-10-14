@@ -27,7 +27,7 @@
 						<ui:include src="../menu.xhtml" />						
 					</div>
 					<div id="corpo">
-	                    
+	                    <p:growl id="growl" showDetail="true" sticky="true" />
 	                    <h:form >
 							<p:panel header="Cadastro de funcionarios" id="panelcorpo">
 								<h:panelGrid >
@@ -48,12 +48,13 @@
 							        <h:outputText value="Senha: " />
 									<p:password value="#{usuarioManager.usuario.senha}" required="true" requiredMessage="Campo Obrigatório."/>
 									
-									<p:commandButton value="Adicionar" action="#{usuarioManager.salvar()}" ajax="false"/>
+									<p:commandButton value="Adicionar" action="#{usuarioManager.salvar()}" actionListener="#{usuarioManager.infoOk}" ajax="false" update="growl"/>
 								</h:panelGrid>
 								<h:message for="panelcorpo"></h:message>
 							</p:panel>
 		                 </h:form>
 					</div>
+                
                 </p:layoutUnit>
             </p:layout>
             </div>
