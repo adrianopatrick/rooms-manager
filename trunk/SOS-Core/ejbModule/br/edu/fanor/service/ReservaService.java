@@ -5,7 +5,7 @@ import javax.ejb.Stateless;
 import javax.faces.context.FacesContext;
 
 import br.edu.fanor.dao.ReservaDAO;
-import br.edu.fanor.entity.Administrador;
+import br.edu.fanor.entity.Professor;
 import br.edu.fanor.entity.Reserva;
 import br.edu.fanor.entity.Solicitacao;
 import br.edu.fanor.entity.Usuario;
@@ -21,20 +21,14 @@ public class ReservaService extends GenericService<Usuario>{
 	@EJB
 	SolicitacaoService solicitacaoService;
 	
-	Administrador administrador = new Administrador();
-	
 	public void salvaReserva(Reserva reserva, Solicitacao solicitacao) {
-		int a = reserva.getDataFinal().compareTo(reserva.getDataIncial());
-//		administrador = (Administrador) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
+		Professor professor = new Professor();
+		professor = (Professor) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
 		
-		if (a == 1){
+			solicitacao.setProfessor(professor);
 			solicitacaoService.salvaSolicitacao(solicitacao);
 			reserva.setSolicitacao(solicitacao);
-//			reserva.setAdministrador(administrador);
 			reservaDAO.insert(reserva);
-		} else {
-			System.out.println("COLOCAR MENSAGEM");
-		}
 
 	}
 
