@@ -10,6 +10,7 @@
 	
 <f:view contentType="text/html">
         <h:head>
+        
             <f:facet name="first">
                 <meta http-equiv="X-UA-Compatible" content="EmulateIE8" />
                 <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
@@ -20,6 +21,7 @@
             <h:outputStylesheet name="css/estilo.css" />
         </h:head>
         <h:body>
+
             <p:layout fullPage="true" >
                 <p:layoutUnit id="bottom" position="south" size="60">
                      <ui:include src="../rodape.xhtml" />
@@ -32,25 +34,22 @@
                     </p:menubar>
                     <div id="corpo">
 	                    <h:form id="formSolicitacao">
-							<p:panel header="Reserva de Sala">
-								<h:panelGrid columns="3">
+							<p:panel header="Solicitação de Reserva de Sala">
+								<h:panelGrid columns="2">
 									<h:outputText value="Capacidade: " />
 									<p:inputText id="nrAluno" value="#{homeProfessorManager.solicitacao.nrAlunos}" size="5" maxlength="3" required="true" requiredMessage="Campo obrigatório"/>
-									<h:message for="nrAluno" showDetail="true"/> 
+									 
 									
 									<h:outputText value="Data: " />
 									<p:calendar id="dataSolicitacao" value="#{homeProfessorManager.solicitacao.data}" mask="99/99/9999" size="8" required="true" requiredMessage="Campo obrigatório" />
-									<h:message for="dataSolicitacao" showDetail="false"/>
 									
 									<h:outputText value="Horario inicial: " />
 									<p:inputMask id="horaInicial" value="#{homeProfessorManager.reserva.dataIncial}" mask="99:99" validatorMessage="Campo Obrigatório" size="5" required="true" requiredMessage="Campo obrigatório" >
 									<f:convertDateTime timeZone="GMT-3" pattern="HH:mm" /> </p:inputMask>
-									<h:message for="horaInicial" showDetail="false"/>
 									
 									<h:outputText value="Horario Final: " />
 									<p:inputMask id="horaFinal" value="#{homeProfessorManager.reserva.dataFinal}" mask="99:99" size="5" required="true" requiredMessage="Campo obrigatório" >
 									<f:convertDateTime timeZone="GMT-3" pattern="HH:mm" /> </p:inputMask>
-									<h:message for="horaFinal" showDetail="false"/>
 									
 									<h:outputText value="Tipo de sala: " />  
 							        <p:selectOneMenu id="tipo" value="#{homeProfessorManager.solicitacao.observacao}" effect="fade">  
@@ -59,22 +58,22 @@
 							            <f:selectItem itemLabel="Auditório" itemValue="Auditorio" />
 							            <f:selectItem itemLabel="Ateliê" itemValue="Atelie" />
 							        </p:selectOneMenu>
-							        <h:message for="tipo" showDetail="false"/>
 									
 									<h:outputText value="Observações: " />
 									<p:inputTextarea id="obs" value="#{homeProfessorManager.solicitacao.observacao}" rows="6" cols="33" />
-									<h:message for="obs" showDetail="false"/> 
-									<p:commandButton id="btSalvar" value="Reservar" actionListener="#{homeProfessorManager.salvar()}" action="#{homeProfessorManager.listaSolicitacao}" update="formSolicitacao"/>
+									<p:commandButton id="btSalvar" value="Reservar" action="#{homeProfessorManager.salvar()}" update="formSolicitacao" >
+										<f:ajax execute="@form" render="@form :tabelaSolicitacao" />  
+									</p:commandButton>
+			 						<p:messages id="mensagem" showDetail="true" autoUpdate="true" closable="true" />  
 								</h:panelGrid>
 							</p:panel>
-	
-	                      
+	 						
 	                    </h:form>
                     </div>
                 </p:layoutUnit>
 
 			<p:layoutUnit position="east" size="500px" >
-					<h:form prependId="false" >  
+					<h:form id="tabelaSolicitacao" >  
 	  
 				    	<p:dataTable id="dataTable" var="lista" value="#{homeProfessorManager.listaSolicitacao}" 
 				    		style="max-width: 500px; min-width:500px" 
