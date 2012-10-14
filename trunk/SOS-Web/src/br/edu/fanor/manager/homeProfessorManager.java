@@ -5,8 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 import br.edu.fanor.entity.Reserva;
 import br.edu.fanor.entity.Solicitacao;
@@ -29,9 +31,31 @@ public class homeProfessorManager implements Serializable{
 	private Solicitacao solicitacao = new Solicitacao();
 	private List<Solicitacao> listaSolicitacao = new ArrayList<Solicitacao>();
 	
+	@SuppressWarnings("finally")
 	public String salvar(){
-		reservaService.salvaReserva(reserva, solicitacao);
-		return "homeProfessor";
+		try {
+			int a = reserva.getDataFinal().compareTo(reserva.getDataIncial());
+			if (a == 1){
+				reservaService.salvaReserva(reserva, solicitacao);
+				reserva = null;
+				solicitacao = null;
+				infoOk();
+			} else {
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Mensagem:", "Horário não permitido."));
+			}
+			
+		} catch (RuntimeException e) {
+			error();
+		} finally {
+			return "homeProfessor";
+		}
+	}
+	
+	public void infoOk() {  
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Mensagem:", "Solicitação enviada com sucesso."));  
+	}
+	public void error() {  
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Mensagem:", "Erro ao enviar solicitação, por favor tente mais tarde."));
 	}
 	
 	public Solicitacao getSolicitacao() {
@@ -51,14 +75,8 @@ public class homeProfessorManager implements Serializable{
 	}
 
 	public List<Solicitacao> getListaSolicitacao() {
-		if (listaSolicitacao.size() == 0) {
 			listaSolicitacao = solicitacaoService.listSolicitacao();
-			System.out.println(listaSolicitacao.toString());
 			return listaSolicitacao;
-		}else {
-			System.out.println(listaSolicitacao.toString());
-			return listaSolicitacao;
-		}
 	}
 
 }
