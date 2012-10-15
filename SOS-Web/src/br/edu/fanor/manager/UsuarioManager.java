@@ -2,6 +2,7 @@ package br.edu.fanor.manager;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.List;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -9,7 +10,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
 
-import antlr.collections.List;
+
 import br.edu.fanor.entity.Administrador;
 import br.edu.fanor.entity.Professor;
 import br.edu.fanor.entity.Usuario;
@@ -28,7 +29,6 @@ public class UsuarioManager implements Serializable{
 	@EJB
 	private UsuarioService usuarioService;
 	
-	private List usuariosList;
 	
 	public static long getSerialversionuid() {
 		return serialVersionUID;
@@ -70,15 +70,11 @@ public class UsuarioManager implements Serializable{
 		return usuarioService.findByEmail(usuario.getEmail());
 	 }
 	 
-	public List getUsuariosList() {
+	public List<Usuario> getUsuariosList() {
 		return usuarioService.getUsuariosList();
 	}
 
-//***********************************Só para o eclipse não reclamar *******************************//
-	public void setUsuariosList(List usuariosList) {
-		this.usuariosList = usuariosList;
-	}
-// **********************************************************************************************//
+
 	public void changeTipoUsuario(ValueChangeEvent e){
 		Integer tipo = Integer.parseInt((String) e.getNewValue());
 		if (tipo == 1) {
