@@ -9,13 +9,13 @@
 	<p:menubar autoSubmenuDisplay="true">
 
 		<p:submenu label="Cadastro" icon="ui-icon-document">
-			<p:menuitem value="Sala" url="#" />
+			<p:menuitem value="Sala" url="cadastroSala.jsf" />
 			<p:menuitem value="Funcionario" url="cadastroFuncionario.jsf" />
 		</p:submenu>
 		<p:submenu label="Pesquisar" icon="ui-icon-search">
-			<p:menuitem value="Sala" url="#" />
-			<p:menuitem value="Funcionario" url="#" />
-			<p:menuitem value="Professor" url="#" />
+			<p:menuitem value="Sala" url="listaSalas.jsf" />
+			<p:menuitem value="Funcionario" url="listaFuncAdmin.jsf" />
+			<p:menuitem value="Professor" url="listaProfAdmin.jsf" />
 		</p:submenu>
 
 		<p:menuitem value="Sair" actionListener="#{loginManager.logOut}"

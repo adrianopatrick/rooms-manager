@@ -11,7 +11,7 @@
             <f:facet name="first">
                 <meta http-equiv="X-UA-Compatible" content="EmulateIE8" />
                 <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
-                <title>Administrador-Sos</title>
+                <title>Lista Funcionario-Sos</title>
             </f:facet>
             <h:outputStylesheet name="css/default.css" />
             <h:outputStylesheet name="css/estilo.css" />
@@ -31,23 +31,15 @@
 							<h:form>  
 								<p:dataTable var="lista" paginator="true" rows="10" value="#{solicitacaoManager.listaSolicitacaoPendente}">  
 							        <f:facet name="header">
-							        	Lista de reservas solicitada
+							        	Lista de Funcionários
 							        </f:facet>
 							        
-							        <p:column headerText="Sala">  
+							        <p:column headerText="Nome">  
 							            <h:outputText value="#" />  
 							        </p:column>  
 							  
-							        <p:column headerText="Capacidade para" >  
-							            <h:outputText value="#{lista.nrAlunos} alunos" />  
-							        </p:column>
-							        
-							        <p:column headerText="Tipo de sala">  
+							        <p:column headerText="Email" >  
 							            <h:outputText value="#" />  
-							        </p:column>
-							        
-							        <p:column headerText="Acessorio(s)">  
-							            <h:outputText value="#{lista.data}" > <f:convertDateTime pattern="dd/MM/yyyy" /> </h:outputText>  
 							        </p:column>
 									
 									<p:column style="width:4%">  
