@@ -1,9 +1,10 @@
 package br.edu.fanor.service;
 
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
-import antlr.collections.List;
 import br.edu.fanor.dao.UsuarioDAO;
 import br.edu.fanor.entity.Usuario;
 
@@ -15,8 +16,6 @@ public class UsuarioService extends GenericService<Usuario>{
 	@EJB
 	private UsuarioDAO usuarioDAO;
 	
-	private List usuariosList;
-
 	public Usuario findByEmail(String email) {
 		Usuario usuario = usuarioDAO.findByEmail(email);
 		return usuario;
@@ -27,14 +26,13 @@ public class UsuarioService extends GenericService<Usuario>{
 	}
 	
 	//TODO terminar metodos e criar paginação
-	//TODO Criar paginação
-	public List getUsuariosList() {
-		return usuariosList;
+	public List<Usuario> getUsuariosList() {
+		
+		Class<Usuario> usuario = null;
+		
+		return usuarioDAO.findAll(usuario, true);
 	}
 
-	public void setUsuariosList(List usuariosList) {
-		this.usuariosList = usuariosList;
-	}
 }
 
 
