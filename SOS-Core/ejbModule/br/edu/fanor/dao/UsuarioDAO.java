@@ -30,6 +30,4 @@ public class UsuarioDAO extends GenericDAO<Usuario>{
 		return (Usuario) criteria.uniqueResult(); 
 	}
 	
-
-	
 }
