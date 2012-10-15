@@ -75,7 +75,7 @@ public class homeProfessorManager implements Serializable{
 	}
 
 	public List<Solicitacao> getListaSolicitacao() {
-			listaSolicitacao = solicitacaoService.listSolicitacao();
+			listaSolicitacao = solicitacaoService.listSolicitacaoProf();
 			return listaSolicitacao;
 	}
 
