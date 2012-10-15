@@ -20,7 +20,21 @@ public class UsuarioService extends GenericService<Usuario>{
 		Usuario usuario = usuarioDAO.findByEmail(email);
 		return usuario;
 	}
-
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	// q é isso?
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}

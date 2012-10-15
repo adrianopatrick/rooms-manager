@@ -15,7 +15,7 @@ import javax.faces.bean.ViewScoped;
 @SuppressWarnings("unused")
 @RequestScoped
 @ManagedBean
-public class ListaSolicitacaoManager {
+public class SolicitacaoManager {
 	
 	@EJB private SolicitacaoService solicitacaoService;
 	
