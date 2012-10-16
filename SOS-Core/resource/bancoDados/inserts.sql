@@ -1,13 +1,12 @@
-INSERT INTO perfis_admins VALUES (1, 'administradores');
-INSERT INTO perfis_admins VALUES (2, 'professores');
+INSERT INTO perfis_admins VALUES (1, 'master');
 
 INSERT INTO usuarios VALUES ('administradores', 1, 'admin', 'Administrador', 'admin', 1);
-INSERT INTO usuarios VALUES ('professores', 2, 'prof', 'Professor', 'prof', 2);
+INSERT INTO usuarios VALUES ('professores', 2, 'prof', 'Professor', 'prof');
 
-INSERT INTO permissoes VALUES (1, 'salvar', true);
-INSERT INTO permissoes VALUES (2, 'editar', true);
-INSERT INTO permissoes VALUES (3, 'atualizar', true);
-INSERT INTO permissoes VALUES (4, 'excluir', true);
+INSERT INTO permissoes VALUES (1, 2, true,1);
+INSERT INTO permissoes VALUES (2, 3, true,1);
+INSERT INTO permissoes VALUES (3, 1, true,1);
+
 
 <-- INSERT INTO perfis_admins_permissoes VALUES (1, 1);
 <-- INSERT INTO perfis_admins_permissoes VALUES (1, 2);

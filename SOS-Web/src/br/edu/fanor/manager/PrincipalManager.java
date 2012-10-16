@@ -12,6 +12,7 @@ import br.edu.fanor.entity.Usuario;
 import br.edu.fanor.enums.TipoPermissoes;
 import br.edu.fanor.exceptions.ValidacaoException;
 import br.edu.fanor.service.PerfilAdminService;
+import br.edu.fanor.service.PermissaoService;
 import br.edu.fanor.service.UsuarioService;
 
 /**
@@ -31,11 +32,14 @@ public class PrincipalManager {
 	@EJB
 	private PerfilAdminService perfilAdminService;
 
-//	@PostConstruct
+	@EJB
+	private PermissaoService permissaoService;
+	
+	@PostConstruct
 	public void init() {
 		createDefaultProf();
 		createDefaultAdmin();
-//		createAdminMaster();
+		createAdminMaster();
 //		createAdminBasic();
 	}
 
@@ -107,12 +111,14 @@ public class PrincipalManager {
 			return perfilAdmin;
 		}
 		perfilAdmin = new PerfilAdmin();
+		
 		perfilAdmin.setNome("master");
-		perfilAdmin.addPermission(TipoPermissoes.EDITAR, true);
-		perfilAdmin.addPermission(TipoPermissoes.EXCLUIR, true);
-		perfilAdmin.addPermission(TipoPermissoes.INSERIR, true);
+		perfilAdmin.setId(1L);
 		try {
 			perfilAdminService.saveOrUpdate(perfilAdmin);
+			permissaoService.addPermission(TipoPermissoes.EDITAR, true, perfilAdmin);
+			permissaoService.addPermission(TipoPermissoes.EXCLUIR, true, perfilAdmin);
+			permissaoService.addPermission(TipoPermissoes.INSERIR, true, perfilAdmin);
 		} catch (ValidacaoException e) {
 			System.out.println("perfil master nao inserido");
 			e.printStackTrace();

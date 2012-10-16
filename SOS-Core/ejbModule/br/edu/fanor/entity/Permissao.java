@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
 import br.edu.fanor.enums.TipoPermissoes;
@@ -19,6 +20,9 @@ public class Permissao {
 	private Integer tipo;
 	
 	private Boolean value;
+	
+	@ManyToOne(optional=false)
+	private PerfilAdmin perfilAdmin;
 
 	public Permissao() {
 		super();
@@ -31,6 +35,12 @@ public class Permissao {
 	public Permissao(TipoPermissoes tipoPermissoes, Boolean value) {
 		tipo = tipoPermissoes.getValue();
 		this.value = value;
+	}
+	
+	public Permissao(TipoPermissoes tipoPermissoes, Boolean value, PerfilAdmin perfilAdmin) {
+		tipo = tipoPermissoes.getValue();
+		this.value = value;
+		this.perfilAdmin = perfilAdmin;
 	}
 	
 	public Boolean getValue() {
@@ -49,4 +59,12 @@ public class Permissao {
 		this.tipo = tipo.getValue();
 	}
 
+	public PerfilAdmin getPerfilAdmin() {
+		return perfilAdmin;
+	}
+
+	public void setPerfilAdmin(PerfilAdmin perfilAdmin) {
+		this.perfilAdmin = perfilAdmin;
+	}
+	
 }

@@ -4,7 +4,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -29,7 +28,7 @@ public class PerfilAdmin {
 	@OneToMany(mappedBy="perfil")
 	private List<Administrador> administradores;
 	
-	@OneToMany(cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="perfilAdmin")
 	private Set<Permissao> permissoes =  new HashSet<Permissao>();
 
 	public Boolean checkPermission(TipoPermissoes tipoPermissao){
@@ -45,12 +44,12 @@ public class PerfilAdmin {
 		permissoes.add(permissao);
 	}
 	
-	public void addPermission(String nome, Boolean value){
-		
-	}
+//	public void addPermission(String nome, Boolean value){
+//		
+//	}
 	
 	public void addPermission(TipoPermissoes tipoPermissoes, Boolean value){
-		addPermission(new Permissao());
+		addPermission(new Permissao(tipoPermissoes, value, this));
 	}
 	
 	public void setPermission(String nome, Boolean value){
