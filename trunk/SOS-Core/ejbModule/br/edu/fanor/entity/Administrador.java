@@ -9,6 +9,14 @@ public class Administrador extends Usuario{
 	@ManyToOne
 	private PerfilAdmin perfil;
 
+	public Administrador() {
+		super();
+	}
+	
+	public Administrador(Usuario usuario) {
+		super(usuario);
+	}
+	
 	public PerfilAdmin getPerfil() {
 		return perfil;
 	}

@@ -32,6 +32,17 @@ public class Usuario {
 	@NotNull
 	private String senha;
 
+	public Usuario() {
+		super();
+	}
+	
+	public Usuario(Usuario user) {
+		id = user.getId();
+		nome = user.getNome();
+		email = user.getEmail();
+		senha = user.getSenha();
+	}
+	
 	public Long getId() {
 		return id;
 	}

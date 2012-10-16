@@ -6,10 +6,8 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
-import javax.faces.event.ValueChangeEvent;
-
 
 import br.edu.fanor.entity.Administrador;
 import br.edu.fanor.entity.Professor;
@@ -17,17 +15,18 @@ import br.edu.fanor.entity.Usuario;
 import br.edu.fanor.exceptions.ValidacaoException;
 import br.edu.fanor.service.UsuarioService;
 
-@SessionScoped
+@RequestScoped
 @ManagedBean(name="usuarioManager")
-public class UsuarioManager implements Serializable{
+public class UsuarioManager extends AbstractMB implements Serializable{
 
 	private static final long serialVersionUID = 8300564796942826471L;
 	
 	private Usuario usuario = new Usuario();
-	//usuario = getUsuario();
 	
 	@EJB
 	private UsuarioService usuarioService;
+	
+	private Integer tipoUsuario = 0;
 	
 	
 	public static long getSerialversionuid() {
@@ -47,15 +46,27 @@ public class UsuarioManager implements Serializable{
 	
 	//TODO Implementar TryCatch
 	public void salvar() throws ValidacaoException, IOException{
-		String url = null;
-		
-		usuarioService.save(usuario);	
-		
-		if (url == null || url.contains("SOS-Web/paginas/login/cadastroFuncionario.jsf")) {
-			FacesContext.getCurrentInstance().getExternalContext().redirect("/SOS-Web/paginas/admin/homeAdmin.jsf");
-			}
+		if (tipoUsuario == 1) {
+			usuario = new Professor(usuario);
+		}else {
+			usuario = new Administrador(usuario);
 		}
-	
+		FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
+		
+		
+		//TODO:  criar um arquivo de configuração para colocar todas as msgs do sistema
+		try {
+			usuarioService.save(usuario);
+			displayInfoMessageToUser("Usuario "+usuario.getNome()+" salvo com sucesso.");
+			
+		} catch (Exception e) {
+			displayErrorMessageToUser("Não foi possivel salvar o usuario");
+		}
+		
+		FacesContext.getCurrentInstance().getExternalContext().redirect("/SOS-Web/paginas/admin/homeAdmin.jsf");
+		
+	}
+		
 	//TODO Implementar TryCatch
 	public void deletar() throws ValidacaoException{
 		usuarioService.delete(usuario);		
@@ -74,15 +85,12 @@ public class UsuarioManager implements Serializable{
 		return usuarioService.getUsuariosList();
 	}
 
-
-	public void changeTipoUsuario(ValueChangeEvent e){
-		Integer tipo = Integer.parseInt((String) e.getNewValue());
-		if (tipo == 1) {
-			usuario = new Professor();
-		}else {
-			usuario = new Administrador();
-		}
+	public Integer getTipoUsuario() {
+		return tipoUsuario;
 	}
-	
+
+	public void setTipoUsuario(Integer tipoUsuario) {
+		this.tipoUsuario = tipoUsuario;
+	}
 
 }
