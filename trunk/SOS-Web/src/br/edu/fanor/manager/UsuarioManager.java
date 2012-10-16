@@ -54,13 +54,13 @@ public class UsuarioManager extends AbstractMB implements Serializable{
 		FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
 		
 		
-		//TODO:  criar um arquivo de configuração para colocar todas as msgs do sistema
+		//TODO:  criar um arquivo de configuraï¿½ï¿½o para colocar todas as msgs do sistema
 		try {
 			usuarioService.save(usuario);
-			displayInfoMessageToUser("Usuario "+usuario.getNome()+" salvo com sucesso.");
+			displayInfoMessageToUser("UsuÃ¡rio "+usuario.getNome()+" salvo com sucesso.");
 			
 		} catch (Exception e) {
-			displayErrorMessageToUser("Não foi possivel salvar o usuario");
+			displayErrorMessageToUser("NÃ£o foi possivel salvar o usuÃ¡rio");
 		}
 		
 		FacesContext.getCurrentInstance().getExternalContext().redirect("/SOS-Web/paginas/admin/homeAdmin.jsf");

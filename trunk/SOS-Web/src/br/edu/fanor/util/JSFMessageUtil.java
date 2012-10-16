@@ -6,7 +6,7 @@ import javax.faces.context.FacesContext;
 
 public class JSFMessageUtil {
 	public void sendInfoMessageToUser(String message) {
-		FacesMessage facesMessage = createMessage(FacesMessage.SEVERITY_INFO,"Informação!", message);
+		FacesMessage facesMessage = createMessage(FacesMessage.SEVERITY_INFO,"InformaÃ§Ã£o!", message);
 		addMessageToJsfContext(facesMessage);
 	}
 
