@@ -35,7 +35,7 @@ public class PrincipalManager {
 	@EJB
 	private PermissaoService permissaoService;
 	
-	@PostConstruct
+//	@PostConstruct
 	public void init() {
 		createDefaultProf();
 		createDefaultAdmin();
