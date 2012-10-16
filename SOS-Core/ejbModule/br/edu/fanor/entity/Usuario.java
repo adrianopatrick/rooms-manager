@@ -19,8 +19,8 @@ import javax.validation.constraints.NotNull;
 public class Usuario {
 
 	@Id
-	@SequenceGenerator(sequenceName="public.seq_pessoas",name="seq_pessoas",allocationSize=1)
-	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="seq_pessoas")
+	@SequenceGenerator(sequenceName="public.seq_usuarios",name="seq_usuarios",allocationSize=1)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="seq_usuarios")
 	private Long id;
 	
 	@NotNull
