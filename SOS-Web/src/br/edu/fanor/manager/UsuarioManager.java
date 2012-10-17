@@ -2,6 +2,7 @@ package br.edu.fanor.manager;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -19,19 +20,16 @@ import br.edu.fanor.service.UsuarioService;
 @ManagedBean(name="usuarioManager")
 public class UsuarioManager extends AbstractMB implements Serializable{
 
-	private static final long serialVersionUID = 8300564796942826471L;
-	
+	private static final long serialVersionUID = -1432844396467219691L;
+
 	private Usuario usuario = new Usuario();
 	
 	@EJB
 	private UsuarioService usuarioService;
 	
+	private List<Administrador> listAdmin = new ArrayList<Administrador>(); 
+	
 	private Integer tipoUsuario = 0;
-	
-	
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
 
 	public Usuario getUsuario() {
 		if (usuario == null) {
@@ -77,9 +75,9 @@ public class UsuarioManager extends AbstractMB implements Serializable{
 		usuarioService.update(usuario);
 	}
 	
-	 public Usuario findByEmail(){
+	public Usuario findByEmail() {
 		return usuarioService.findByEmail(usuario.getEmail());
-	 }
+	}
 	 
 	public List<Usuario> getUsuariosList() {
 		return usuarioService.getUsuariosList();
@@ -91,6 +89,15 @@ public class UsuarioManager extends AbstractMB implements Serializable{
 
 	public void setTipoUsuario(Integer tipoUsuario) {
 		this.tipoUsuario = tipoUsuario;
+	}
+
+	public List<Administrador> getListAdmin() {
+		listAdmin = usuarioService.findAllFuncionario();
+		return listAdmin;
+	}
+
+	public void setListAdmin(List<Administrador> listAdmin) {
+		this.listAdmin = listAdmin;
 	}
 
 }

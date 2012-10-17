@@ -11,7 +11,7 @@
             <f:facet name="first">
                 <meta http-equiv="X-UA-Compatible" content="EmulateIE8" />
                 <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
-                <title>Lista Funcionario-Sos</title>
+                <title>Sos:Funcionario</title>
             </f:facet>
             <h:outputStylesheet name="css/default.css" />
             <h:outputStylesheet name="css/estilo.css" />
@@ -25,25 +25,29 @@
                 <p:layoutUnit id="center" position="center">
 					
 					<div id="menu" >
-						<ui:include src="../menu.xhtml" />						
+						<ui:include src="../menu.xhtml" />
 					</div>
 					<div id="corpo">
 							<h:form>  
-								<p:dataTable var="lista" paginator="true" rows="10" value="#{solicitacaoManager.listaSolicitacaoPendente}">  
+								<p:dataTable var="lista" paginator="true" rows="10" value="#{usuarioManager.listAdmin}">  
 							        <f:facet name="header">
 							        	Lista de Funcionários
 							        </f:facet>
 							        
 							        <p:column headerText="Nome">  
-							            <h:outputText value="#" />  
+							            <h:outputText value="#{lista.nome}" />  
 							        </p:column>  
 							  
 							        <p:column headerText="Email" >  
-							            <h:outputText value="#" />  
+							            <h:outputText value="#{lista.email}" />  
 							        </p:column>
 									
-									<p:column style="width:4%">  
-							                <p:commandButton  oncomplete="fsolicDialog.show()" icon="ui-icon-search" title="Buscar Sala" />
+									<p:column >  
+							                <p:commandButton  oncomplete="fsolicDialog.show()" value="Editar" title="Editar" />
+							        </p:column>
+							        
+							        <p:column style="width:4%">  
+							                <p:commandButton  oncomplete="fsolicDialog.show()" value="Excluir" title="Excluir" />
 							        </p:column>
 							    </p:dataTable>
 							</h:form>
