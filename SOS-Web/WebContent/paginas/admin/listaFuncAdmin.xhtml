@@ -27,7 +27,20 @@
 					<div id="menu" >
 						<ui:include src="../menu.xhtml" />
 					</div>
-					<div id="corpo">
+				<div id="pesq" align="center">
+					<h:form>
+						<h:panelGrid columns="5">
+							<h:outputText value="Nome: " />
+							<p:inputText value="" size="10" />
+
+							<h:outputText value="Email: " />
+							<p:inputText value="" size="10" />
+
+							<p:commandButton value="Pesquisar" action="#" />
+						</h:panelGrid>
+					</h:form>
+				</div>
+				<div id="corpo">
 							<h:form>  
 								<p:dataTable var="lista" paginator="true" rows="10" value="#{usuarioManager.listAdmin}">  
 							        <f:facet name="header">
