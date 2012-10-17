@@ -6,6 +6,7 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 import br.edu.fanor.dao.UsuarioDAO;
+import br.edu.fanor.entity.Administrador;
 import br.edu.fanor.entity.Usuario;
 
 @Stateless
@@ -20,31 +21,18 @@ public class UsuarioService extends GenericService<Usuario>{
 		Usuario usuario = usuarioDAO.findByEmail(email);
 		return usuario;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	// q é isso?
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-	
+
 	//TODO terminar metodos e criar paginação
 	public List<Usuario> getUsuariosList() {
 		
 		Class<Usuario> usuario = null;
 		
 		return usuarioDAO.findAll(usuario, true);
+	}
+
+	public List<Administrador> findAllFuncionario() {
+		List<Administrador> administradors = usuarioDAO.findAllFuncionario();
+		return administradors;
 	}
 
 }
