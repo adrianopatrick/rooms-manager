@@ -35,6 +35,11 @@ public class UsuarioService extends GenericService<Usuario>{
 		return administradors;
 	}
 
+	public List<Administrador> listFuncionario(String nome, String email) {
+		List<Administrador> funcionarios = usuarioDAO.listFuncionario(nome, email);
+		return funcionarios;
+	}
+
 }
 
 
