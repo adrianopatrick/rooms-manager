@@ -22,27 +22,13 @@ public class UsuarioManager extends AbstractMB implements Serializable{
 
 	private static final long serialVersionUID = -1432844396467219691L;
 
-	private Usuario usuario = new Usuario();
-	
 	@EJB
 	private UsuarioService usuarioService;
 	
+	private Usuario usuario = new Usuario();
 	private List<Administrador> listAdmin = new ArrayList<Administrador>(); 
-	
 	private Integer tipoUsuario = 0;
 
-	public Usuario getUsuario() {
-		if (usuario == null) {
-			usuario = new Usuario();
-		}
-		return usuario;
-	}
-	
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
-	
-	//TODO Implementar TryCatch
 	public void salvar() throws ValidacaoException, IOException{
 		if (tipoUsuario == 1) {
 			usuario = new Professor(usuario);
@@ -51,8 +37,6 @@ public class UsuarioManager extends AbstractMB implements Serializable{
 		}
 		FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
 		
-		
-		//TODO:  criar um arquivo de configura��o para colocar todas as msgs do sistema
 		try {
 			usuarioService.save(usuario);
 			displayInfoMessageToUser("Usuário "+usuario.getNome()+" salvo com sucesso.");
@@ -64,13 +48,19 @@ public class UsuarioManager extends AbstractMB implements Serializable{
 		FacesContext.getCurrentInstance().getExternalContext().redirect("/SOS-Web/paginas/admin/homeAdmin.jsf");
 		
 	}
+	
+	public void listFuncionario(){
+		listAdmin = usuarioService.listFuncionario(usuario.getNome(), usuario.getEmail());
+	}
+	
+	public void findAllFuncionario(){
+		listAdmin = usuarioService.findAllFuncionario();
+	}
 		
-	//TODO Implementar TryCatch
 	public void deletar() throws ValidacaoException{
 		usuarioService.delete(usuario);		
 	}
 	
-	//TODO Implementar TryCatch
 	public void atualizar() throws ValidacaoException{
 		usuarioService.update(usuario);
 	}
@@ -78,7 +68,18 @@ public class UsuarioManager extends AbstractMB implements Serializable{
 	public Usuario findByEmail() {
 		return usuarioService.findByEmail(usuario.getEmail());
 	}
-	 
+	
+	public Usuario getUsuario() {
+		if (usuario == null) {
+			usuario = new Usuario();
+		}
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+	
 	public List<Usuario> getUsuariosList() {
 		return usuarioService.getUsuariosList();
 	}
@@ -92,7 +93,6 @@ public class UsuarioManager extends AbstractMB implements Serializable{
 	}
 
 	public List<Administrador> getListAdmin() {
-		listAdmin = usuarioService.findAllFuncionario();
 		return listAdmin;
 	}
 

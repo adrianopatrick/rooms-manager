@@ -12,8 +12,6 @@ import org.hibernate.criterion.Restrictions;
 import br.edu.fanor.entity.Administrador;
 import br.edu.fanor.entity.Usuario;
 
-
-
 @Stateless
 public class UsuarioDAO extends GenericDAO<Usuario>{
 
@@ -31,6 +29,13 @@ public class UsuarioDAO extends GenericDAO<Usuario>{
 		Query query = getEntityManager().createQuery("from usuarios where perfil_id = 2");
 		administradors = query.getResultList();
 		return administradors;
+	}
+
+	public List<Administrador> listFuncionario(String nome, String email) {
+		Criteria criteria = getCriteria(Usuario.class);
+		criteria.add(Restrictions.eq("nomep", nome));
+		criteria.add(Restrictions.eq("email", email));
+		return null;
 	}
 	
 }
