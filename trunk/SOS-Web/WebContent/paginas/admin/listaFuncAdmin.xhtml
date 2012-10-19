@@ -17,8 +17,7 @@
             <h:outputStylesheet name="css/estilo.css" />
         </h:head>
         <h:body>
-
-            <p:layout fullPage="true" >
+            <p:layout id="seila" fullPage="true" >
                 <p:layoutUnit id="bottom" position="south" size="30" >
                      <ui:include src="../rodape.xhtml" />
                 </p:layoutUnit>
@@ -28,21 +27,18 @@
 						<ui:include src="../menu.xhtml" />
 					</div>
 				<div id="pesq" align="center">
-					<h:form>
-						<h:panelGrid columns="5">
-							<h:outputText value="Nome: " />
-							<p:inputText value="" size="10" />
+					<h:form id="pesquisa">
+						<h:panelGrid id="painelGrid" columns="5">
+							<h:outputText id="nomePesq" value="Nome: " />
+							<p:inputText id="pesqNome" value="#{usuarioManager.usuario.nome}" size="10" />
 
-							<h:outputText value="Email: " />
-							<p:inputText value="" size="10" />
-
-							<p:commandButton value="Pesquisar" action="#{usuarioManager.}" />
+							<p:commandButton id="buttonPesquisa" value="Pesquisar" actionListener="#{usuarioManager.listFuncionario()}" ajax="false" update="seila,corpo" />
 						</h:panelGrid>
 					</h:form>
 				</div>
 				<div id="corpo">
-							<h:form>  
-								<p:dataTable var="lista" paginator="true" rows="10" value="#{usuarioManager.listAdmin}">  
+							<h:form id="lista_funcionario" >  
+								<p:dataTable id="tabelaFunc" var="lista" paginator="true" rows="10" value="#{usuarioManager.listAdmin}">
 							        <f:facet name="header">
 							        	Lista de Funcionários
 							        </f:facet>

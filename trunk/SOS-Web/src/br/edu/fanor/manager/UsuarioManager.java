@@ -50,7 +50,7 @@ public class UsuarioManager extends AbstractMB implements Serializable{
 	}
 	
 	public void listFuncionario(){
-		listAdmin = usuarioService.listFuncionario(usuario.getNome(), usuario.getEmail());
+		listAdmin = usuarioService.pesquisaFuncionario(usuario.getNome());
 	}
 	
 	public void findAllFuncionario(){
