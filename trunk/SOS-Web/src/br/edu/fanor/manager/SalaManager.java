@@ -1,5 +1,8 @@
 package br.edu.fanor.manager;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -15,20 +18,28 @@ public class SalaManager {
 	@EJB
 	SalaService salaService;
 	
+	private List<Sala> listarSalas = new ArrayList<Sala>(); 
+	
 	private Sala sala = new Sala();
 
 	public void saveSala(){
-
-//		Sala s = new Sala();
-//		s.setNome("sala teste");
-//		s.setCapacidade(50);
-
 		try {
 			salaService.save(sala);
 		} catch (ValidacaoException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	public List<Sala> getListarSalas() {
+		
+		this.listarSalas = salaService.findAll(Sala.class);
+		
+		return listarSalas;
+	}
+
+	public void setListarSalas(List<Sala> listarSalas) {
+		this.listarSalas = listarSalas;
 	}
 	
 	public Sala getSala() {
