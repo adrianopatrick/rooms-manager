@@ -1,3 +1,5 @@
+﻿CREATE DATABASE sosdb;
+
 INSERT INTO perfis_admins VALUES (nextval('seq_perfis_admins'), 'master');
 INSERT INTO perfis_admins VALUES (nextval('seq_perfis_admins'), 'basic');
 
