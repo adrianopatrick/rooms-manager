@@ -17,7 +17,7 @@ import br.edu.fanor.service.SolicitacaoService;
 
 @SessionScoped
 @ManagedBean
-public class homeProfessorManager implements Serializable{
+public class ProfessorManager implements Serializable{
 	
 	private static final long serialVersionUID = -7652074045374161311L;
 
