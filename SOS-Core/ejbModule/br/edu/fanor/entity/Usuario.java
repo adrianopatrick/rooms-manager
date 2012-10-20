@@ -1,5 +1,6 @@
 package br.edu.fanor.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -27,6 +28,7 @@ public class Usuario {
 	private String nome;
 	
 	@NotNull
+	@Column(unique=true)
 	private String email;
 	
 	@NotNull
