@@ -37,18 +37,19 @@
 	                    		<h:outputText value="Capacidade: " />
 	                    		<p:inputText value="#{salaManager.sala.capacidade}" />
 	                    		
-	                    		<h:outputText vakue="Tipo de Sala: "/>
+	                    		<h:outputText value="Tipo de Sala: "/>
 	                    		<p:selectOneMenu value="#{salaManager.sala.tipoSala}">
 	                    		
 	                    			<f:selectItem itemValue="" itemLabel="Selecione" />
-	                    			<f:selectItem itemValue="1" itemLabel="Sala" />
-	                    			<f:selectItem itemValue="2" itemLabel="Laboratório" />
-	                    			<f:selectItem itemValue="3" itemLabel="Auditório" />
+	                    			<f:selectItem itemValue="Sala" itemLabel="Sala" />
+	                    			<f:selectItem itemValue="Laboratório" itemLabel="Laboratório" />
+	                    			<f:selectItem itemValue="Auditório" itemLabel="Auditório" />
 	                    		</p:selectOneMenu>
 								
 								<h:outputText value="Observação: "/>
 								<p:inputTextarea value="#{salaManager.sala.observacao}"/>
-									<p:commandButton value="Adicionar" action="#{salaManager.saveSala()}" ajax="false"/>
+								
+								<p:commandButton value="Adicionar" action="#{salaManager.saveSala()}" ajax="false"/>
 								</h:panelGrid>
 							</p:panel>
 	                    </h:form>
