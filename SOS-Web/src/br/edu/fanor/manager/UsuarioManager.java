@@ -40,21 +40,19 @@ public class UsuarioManager extends AbstractMB implements Serializable{
 		try {
 			usuarioService.save(usuario);
 			displayInfoMessageToUser("Usuário "+usuario.getNome()+" salvo com sucesso.");
-			
 		} catch (Exception e) {
 			displayErrorMessageToUser("Não foi possivel salvar o usuário");
 		}
-		
 		FacesContext.getCurrentInstance().getExternalContext().redirect("/SOS-Web/paginas/admin/homeAdmin.jsf");
 		
 	}
 	
-	public void listFuncionario(){
-		listAdmin = usuarioService.pesquisaFuncionario(usuario.getNome());
+	public void listUsuarios(){
+		listAdmin = usuarioService.pesquisaUsuario(usuario.getNome());
 	}
 	
-	public void findAllFuncionario(){
-		listAdmin = usuarioService.findAllFuncionario();
+	public void findAllUsuario(){
+		listAdmin = usuarioService.findAllUsuario();
 	}
 		
 	public void deletar() throws ValidacaoException{

@@ -24,18 +24,16 @@ public class UsuarioService extends GenericService<Usuario>{
 
 	//TODO terminar metodos e criar paginação
 	public List<Usuario> getUsuariosList() {
-		
 		Class<Usuario> usuario = null;
-		
 		return usuarioDAO.findAll(usuario, true);
 	}
 
-	public List<Administrador> findAllFuncionario() {
-		List<Administrador> administradors = usuarioDAO.findAllFuncionario();
+	public List<Administrador> findAllUsuario() {
+		List<Administrador> administradors = usuarioDAO.findAllUsuario();
 		return administradors;
 	}
 
-	public List<Administrador> pesquisaFuncionario(String nome) {
+	public List<Administrador> pesquisaUsuario(String nome) {
 		List<Administrador> funcionarios = usuarioDAO.pesquisaFuncionario(nome);
 		return funcionarios;
 	}
