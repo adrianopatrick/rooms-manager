@@ -30,23 +30,16 @@
 					</div>
 					<div id="corpo">
 							<h:form id="form">  
-									<p:dataTable var="sala" value="#{salaManager.listarSalas}" paginator="true" style="width: 90%; margin-top: 20px;">
-									    	<p:column headerText="Nome">
+									<p:dataGrid var="sala" value="#{salaManager.listarSalas}" columns="2" rows="12" paginator="true" style="width: 90%; margin-top: 20px;">
+									    <p:panel >
+									    	<f:facet name="header">
+									    		<p:commandButton  oncomplete="fsolicDialog.show()" icon="ui-icon-search" title="Abrir" />
 									    		<h:outputText value=" #{sala.nome}" />
-									    	</p:column>
-									    	
-									    	<p:column headerText="Tipo de sala">
-									    		<h:outputText value="#{sala.tipoSala}" />
-									    	</p:column>
-									    	
-									    	<p:column headerText="Capacidade">
-									    		<h:outputText value="#{sala.capacidade}" />
-									    	</p:column>
-									    	
-									    	<p:column headerText="Abservação">
-									    		<h:outputText value="#{sala.observacao}" />
-									    	</p:column>
-        							</p:dataTable>
+									    	</f:facet> 
+									                <p:schedule locale="pt" style=""/>
+								        </p:panel>
+        							
+        							</p:dataGrid>
 							</h:form>
 					</div>
                 </p:layoutUnit>

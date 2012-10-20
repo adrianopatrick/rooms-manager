@@ -25,33 +25,36 @@
                 <p:layoutUnit id="center" position="center">
 					
 					<div id="menu" >
-						<ui:include src="../menu.xhtml" />						
+						<ui:include src="../menu.xhtml" />	
 					</div>
 					<div id="corpo">
 	                    <h:form >
 	                    	<p:panel header="Cadastro de salas">
-								<h:panelGrid>
+								<h:panelGrid columns="2">
 									<h:outputText value="Numero sala: " />
-									<p:inputText value="" size="5"/>
+									<p:inputText value="#{salaManager.sala.nome}" size="5"/>
 									
 									<h:outputText value="Capacidade: " />
-									<p:inputText value="" size="5"/>
+									<p:inputText value="#{salaManager.sala.capacidade}" size="5"/>
 									
-									<h:outputText value="Tipo de sala: " />  
-							        <p:selectOneMenu value="" effect="fade">  
+									<h:outputText value="Tipo de sala: " /> 
+							        <p:selectOneMenu value="#{salaManager.sala.tipoSala}" effect="fade">
 							            <f:selectItem itemLabel="selecione" itemValue="" />
-							            <f:selectItem itemLabel="Sala" itemValue="1" /> 
-							            <f:selectItem itemLabel="Laboratorio" itemValue="2" />
-							            <f:selectItem itemLabel="Auditorio" itemValue="3" />
+							            <f:selectItem itemLabel="Sala" itemValue="Sala" /> 
+							            <f:selectItem itemLabel="Laboratorio" itemValue="Laboratorio" />
+							            <f:selectItem itemLabel="Auditorio" itemValue="Auditorio" />
 							        </p:selectOneMenu>
-							        
-							        <h:outputText value="Acessorio: " />
-							       	<h:panelGrid columns="3" >
-							       		
-							      	  	<p:inputText value="" /> 
-							       	 	<p:commandButton value="+" />
-							       	</h:panelGrid>
-									<p:commandButton value="Adicionar"/>
+							       
+							       <h:outputText value="Acessorio: " />
+                                   <h:panelGrid columns="3" >
+	                                           <p:inputText value="testando"/>
+	                                           <p:commandButton value="+" />
+                                   </h:panelGrid>
+							       
+								    <h:outputText value="Observação: "/>
+									<p:inputTextarea value="#{salaManager.sala.observacao}"/>
+							       
+									<p:commandButton action="#{salaManager.saveSala}" value="Salvar" ajax="false"/>
 								</h:panelGrid>
 							</p:panel>
 	                    </h:form>
