@@ -24,7 +24,7 @@ public class UsuarioDAO extends GenericDAO<Usuario>{
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Administrador> findAllFuncionario() {
+	public List<Administrador> findAllUsuario() {
 		List<Administrador> administradors = new ArrayList<Administrador>();
 		Query query = getEntityManager().createQuery("from usuarios where perfil_id = 2");
 		administradors = query.getResultList();
