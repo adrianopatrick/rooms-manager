@@ -28,13 +28,13 @@ public class UsuarioService extends GenericService<Usuario>{
 		return usuarioDAO.findAll(usuario, true);
 	}
 
-	public List<Administrador> findAllUsuario() {
-		List<Administrador> administradors = usuarioDAO.findAllUsuario();
+	public List<Usuario> findAllUsuario() {
+		List<Usuario> administradors = usuarioDAO.findAllUsuario();
 		return administradors;
 	}
 
-	public List<Administrador> pesquisaUsuario(String nome) {
-		List<Administrador> funcionarios = usuarioDAO.pesquisaFuncionario(nome);
+	public List<Usuario> pesquisaUsuario(String nome) {
+		List<Usuario> funcionarios = usuarioDAO.pesquisaFuncionario(nome);
 		return funcionarios;
 	}
 

@@ -31,24 +31,30 @@
 	                    <h:form >
 							<p:panel header="Cadastro de Usuario" id="panelcorpo">
 								<h:panelGrid >
+									
+									<h:inputHidden id="idUsuario" value="#{usuarioManager.usuario.id}" />
 									<h:outputText value="nome: " />
 									<p:inputText value="#{usuarioManager.usuario.nome}" required="true" requiredMessage="Campo Obrigatório."/>
 									
 									<h:outputText value="E-mail: " />
-									<p:inputText value="#{usuarioManager.usuario.email}" required="true" requiredMessage="Campo Obrigatório."/>
+									<p:inputText value="#{usuarioManager.usuario.email}" required="true" requiredMessage="Campo Obrigatório.">
+									 <f:ajax event="blur" listener="#{usuarioManager.validaEmail}" render="emailException"/>
+									</p:inputText>
+									<h:outputText id="emailException" value="#{usuarioManager.msgEmailException}" />
+									
 									
 									<h:outputText value="Cargo: " />  
-							        <h:selectOneMenu effect="fade" required="true" requiredMessage="Campo Obrigatório." value="#{usuarioManager.tipoUsuario}"  >  
+							        <h:selectOneMenu effect="fade" required="true" requiredMessage="Campo Obrigatório." value="#{usuarioManager.tipoUsuario}" disabled="#{usuarioManager.isEdit()}" >  
 							            <f:selectItem itemLabel="selecione" itemValue="" />
 							            <f:selectItem itemLabel="Professor" itemValue="1" /> 
 							            <f:selectItem itemLabel="Atendente" itemValue="2" />
 							            <f:selectItem itemLabel="Administrador" itemValue="3" />
 							        </h:selectOneMenu>
 							        
-							        <h:outputText value="Senha: " />
-									<p:password value="#{usuarioManager.usuario.senha}" required="true" requiredMessage="Campo Obrigatório."/>
+							        <h:outputText value="Senha: " rendered="#{usuarioManager.isNew()}"/>
+									<p:password value="#{usuarioManager.usuario.senha}" required="true" requiredMessage="Campo Obrigatório." rendered="#{usuarioManager.isNew()}"/>
 									
-									<p:commandButton value="Adicionar" action="#{usuarioManager.salvar()}" ajax="false" update="growl"/>
+									<p:commandButton value="Salvar" action="#{usuarioManager.salvar()}" ajax="false" update="growl"/>
 								</h:panelGrid>
 								<h:message for="panelcorpo"></h:message>
 							</p:panel>
