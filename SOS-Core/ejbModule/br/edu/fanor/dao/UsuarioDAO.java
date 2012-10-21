@@ -9,7 +9,6 @@ import javax.persistence.Query;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 
-import br.edu.fanor.entity.Administrador;
 import br.edu.fanor.entity.Usuario;
 
 @Stateless
@@ -24,15 +23,15 @@ public class UsuarioDAO extends GenericDAO<Usuario>{
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Administrador> findAllUsuario() {
-		List<Administrador> administradors = new ArrayList<Administrador>();
+	public List<Usuario> findAllUsuario() {
+		List<Usuario> administradors = new ArrayList<Usuario>();
 		Query query = getEntityManager().createQuery("from usuarios where perfil_id = 2");
 		administradors = query.getResultList();
 		return administradors;
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Administrador> pesquisaFuncionario(String nome) {
+	public List<Usuario> pesquisaFuncionario(String nome) {
 		Criteria criteria = getCriteria(Usuario.class);
 		criteria.add(Restrictions.ilike("nome","%"+nome+"%"));
 //		criteria.add(Restrictions.eq("perfil_id", "2"));
