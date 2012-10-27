@@ -1,5 +1,6 @@
 package br.edu.fanor.manager;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,8 +13,14 @@ import br.edu.fanor.exceptions.ValidacaoException;
 import br.edu.fanor.service.SalaService;
 
 @RequestScoped
-@ManagedBean
-public class SalaManager {
+@ManagedBean(name="salaManager")
+public class SalaManager extends AbstractMB implements Serializable{
+
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -84971612047807691L;
 
 	@EJB
 	SalaService salaService;
@@ -22,23 +29,35 @@ public class SalaManager {
 	
 	private Sala sala = new Sala();
 
-	public void salvaSala(){
+	public void saveSala(){
 		try {
-			System.out.println("======================== TESTANDO METODO SALVAR===================");
+
 			salaService.save(sala);
+			displayInfoMessageToUser("Usuário "+sala.getNome()+" salvo com sucesso.");
 		} catch (ValidacaoException e) {
+			displayErrorMessageToUser("Erro ao tentar salvar "+sala.getNome());
 			e.printStackTrace();
-			System.out.println("======================== Erro ao salvar Sala! ===================");
 		}
 	}
 
-	public List<Sala> getListarSalas() {
-		this.listarSalas = salaService.findAll(Sala.class);
-		return listarSalas;
+	public List<Sala> listarTodasSalas() {
+		return salaService.listarTodas();
+	}
+	
+	public List<Sala> findByQtd(){
+		return salaService.findByQtd(sala.getCapacidade());
+	}
+	
+	public List<Sala> findByNome(){
+		return salaService.findByNome(sala.getNome());
 	}
 
 	public void setListarSalas(List<Sala> listarSalas) {
 		this.listarSalas = listarSalas;
+	}
+	
+	public List<Sala> getListarSalas(){
+		return listarSalas;
 	}
 	
 	public Sala getSala() {
