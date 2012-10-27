@@ -21,7 +21,7 @@ public class UsuarioService extends GenericService<Usuario>{
 		return usuario;
 	}
 
-	//TODO terminar metodos e criar paginação
+
 	public List<Usuario> getUsuariosList() {
 		Class<Usuario> usuario = null;
 		return usuarioDAO.findAll(usuario, true);
