@@ -1,6 +1,5 @@
 package br.edu.fanor.dao;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -24,10 +23,8 @@ public class UsuarioDAO extends GenericDAO<Usuario>{
 
 	@SuppressWarnings("unchecked")
 	public List<Usuario> findAllUsuario() {
-		List<Usuario> administradors = new ArrayList<Usuario>();
 		Query query = getEntityManager().createQuery("from usuarios where perfil_id = 2");
-		administradors = query.getResultList();
-		return administradors;
+		return query.getResultList();
 	}
 
 	@SuppressWarnings("unchecked")
