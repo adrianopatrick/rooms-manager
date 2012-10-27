@@ -6,7 +6,6 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 import br.edu.fanor.dao.UsuarioDAO;
-import br.edu.fanor.entity.Administrador;
 import br.edu.fanor.entity.Usuario;
 
 @Stateless

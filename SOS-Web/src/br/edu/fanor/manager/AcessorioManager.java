@@ -15,11 +15,10 @@ import br.edu.fanor.service.AcessorioService;
 public class AcessorioManager {
 
 	@EJB
-	AcessorioService aceService;
+	AcessorioService acessorioService;
 	
 	private Acessorio acessorio = new Acessorio();
-	
-	List<Acessorio> listarAcessorios = new ArrayList<Acessorio>();
+	private List<Acessorio> listarAcessorios = new ArrayList<Acessorio>();
 
 	public Acessorio getAcessorio() {
 		return acessorio;
@@ -30,13 +29,11 @@ public class AcessorioManager {
 	}
 
 	public List<Acessorio> getListarAcessorios() {
-		Acessorio a = new Acessorio();
-		a.setId(5l);
-		a.setNome("Giz");
-		
-		this.listarAcessorios = aceService.findAll(Acessorio.class);
-		this.listarAcessorios.add(a);
-		
+		this.listarAcessorios = acessorioService.listaTodos();
 		return listarAcessorios;
+	}
+
+	public void setListarAcessorios(List<Acessorio> listarAcessorios) {
+		this.listarAcessorios = listarAcessorios;
 	}
 }

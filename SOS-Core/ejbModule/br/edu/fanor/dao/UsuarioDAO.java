@@ -34,12 +34,6 @@ public class UsuarioDAO extends GenericDAO<Usuario>{
 	public List<Usuario> pesquisaFuncionario(String nome) {
 		Criteria criteria = getCriteria(Usuario.class);
 		criteria.add(Restrictions.ilike("nome","%"+nome+"%"));
-//		criteria.add(Restrictions.eq("perfil_id", "2"));
-		
-//		List<Administrador> administradors = new ArrayList<Administrador>();
-//		Query query = getEntityManager().createQuery("from usuarios where perfil_id = 2 and nome ilike ' :nome %'");
-//		query.setParameter("nome", nome);
-//		administradors = query.getResultList();
 		return criteria.list();
 	}
 	
