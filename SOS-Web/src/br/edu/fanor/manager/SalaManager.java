@@ -16,10 +16,6 @@ import br.edu.fanor.service.SalaService;
 @ManagedBean(name="salaManager")
 public class SalaManager extends AbstractMB implements Serializable{
 
-	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -84971612047807691L;
 
 	@EJB
@@ -31,15 +27,14 @@ public class SalaManager extends AbstractMB implements Serializable{
 
 	public void saveSala(){
 		try {
-
 			salaService.save(sala);
-			displayInfoMessageToUser("Usuário "+sala.getNome()+" salvo com sucesso.");
+			displayInfoMessageToUser("Sala " + sala.getNome() + " salvo com sucesso.");
 		} catch (ValidacaoException e) {
 			displayErrorMessageToUser("Erro ao tentar salvar "+sala.getNome());
 			e.printStackTrace();
 		}
 	}
-
+	
 	public List<Sala> listarTodasSalas() {
 		return salaService.listarTodas();
 	}
@@ -67,4 +62,5 @@ public class SalaManager extends AbstractMB implements Serializable{
 	public void setSala(Sala sala) {
 		this.sala = sala;
 	}
+
 }
