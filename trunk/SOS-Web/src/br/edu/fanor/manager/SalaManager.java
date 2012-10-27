@@ -13,7 +13,7 @@ import br.edu.fanor.exceptions.ValidacaoException;
 import br.edu.fanor.service.SalaService;
 
 @RequestScoped
-@ManagedBean(name="salaManager")
+@ManagedBean
 public class SalaManager extends AbstractMB implements Serializable{
 
 	private static final long serialVersionUID = -84971612047807691L;
@@ -25,12 +25,12 @@ public class SalaManager extends AbstractMB implements Serializable{
 	
 	private Sala sala = new Sala();
 
-	public void saveSala(){
+	public void salvaSala(){
 		try {
 			salaService.save(sala);
 			displayInfoMessageToUser("Sala " + sala.getNome() + " salvo com sucesso.");
 		} catch (ValidacaoException e) {
-			displayErrorMessageToUser("Erro ao tentar salvar "+sala.getNome());
+			displayErrorMessageToUser("Erro ao tentar salvar " + sala.getNome());
 			e.printStackTrace();
 		}
 	}
