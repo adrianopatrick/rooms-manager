@@ -28,7 +28,7 @@
 						<ui:include src="../menu.xhtml" />	
 					</div>
 					<div id="corpo">
-	                    <h:form >
+	                    <h:form id="formCadastroSala">
 	                    	<p:panel header="Cadastro de salas">
 								<h:panelGrid columns="2">
 									<h:outputText value="Numero sala: " />
@@ -40,16 +40,14 @@
 									<h:outputText value="Tipo de sala: " /> 
 							        <p:selectOneMenu value="#{salaManager.sala.tipoSala}" effect="fade">
 							            <f:selectItem itemLabel="selecione" itemValue="" />
-							            <f:selectItem itemLabel="Sala" itemValue="Sala" /> 
-							            <f:selectItem itemLabel="Laboratorio" itemValue="Laboratorio" />
-							            <f:selectItem itemLabel="Auditorio" itemValue="Auditorio" />
+							            <f:selectItem itemLabel="Sala" itemValue="1" /> 
+							            <f:selectItem itemLabel="Laboratorio" itemValue="2" />
+							            <f:selectItem itemLabel="Auditorio" itemValue="3" />
 							        </p:selectOneMenu>
-							       
-							       <h:outputText value="Acessorio: " />
-                                   <h:panelGrid columns="3" >
-	                                           <p:inputText value="testando"/>
-	                                           <p:commandButton value="+" />
-                                   </h:panelGrid>
+							        <h:outputText value="Acessorios: " />
+							        <p:selectCheckboxMenu value="#{salaManager.sala.acessorios}" label="Acessorio" filter="true" filterText="Filter" filterMatchMode="startsWith" panelStyle="width:220px">
+								        <f:selectItems value="#{acessorioManager.listarAcessorios}" />
+    								</p:selectCheckboxMenu>
 							       
 								    <h:outputText value="Observação: "/>
 									<p:inputTextarea value="#{salaManager.sala.observacao}"/>
