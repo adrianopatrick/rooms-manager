@@ -23,7 +23,7 @@ public class SalaManager extends AbstractMB implements Serializable{
 	@EJB
 	SalaService salaService;
 	
-	private List<Sala> listarSalas = new ArrayList<Sala>();
+	private List<Sala> listarSalas;
 	private Sala sala = new Sala();
 	private Integer tipoSala = 0;
 
@@ -64,7 +64,12 @@ public class SalaManager extends AbstractMB implements Serializable{
 	}
 	
 	public List<Sala> getListarSalas(){
-		return listarSalas;
+		if (listarSalas == null){
+			return listarSalas = salaService.listarTodas();
+		}
+		else{
+			return listarSalas;
+		}
 	}
 	
 	public Sala getSala() {
