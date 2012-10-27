@@ -1,5 +1,6 @@
 package br.edu.fanor.manager;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -7,6 +8,7 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 
 import br.edu.fanor.entity.Sala;
 import br.edu.fanor.exceptions.ValidacaoException;
@@ -21,34 +23,44 @@ public class SalaManager extends AbstractMB implements Serializable{
 	@EJB
 	SalaService salaService;
 	
-	private List<Sala> listarSalas = new ArrayList<Sala>(); 
-	
+	private List<Sala> listarSalas = new ArrayList<Sala>();
 	private Sala sala = new Sala();
+	private Integer tipoSala = 0;
 
-	public void salvaSala(){
+	//TODO Tratar Exception
+	public void salvaSala() throws IOException{
 		try {
-			salaService.save(sala);
+			salaService.saveOrUpdate(sala);
 			displayInfoMessageToUser("Sala " + sala.getNome() + " salvo com sucesso.");
+			FacesContext.getCurrentInstance().getExternalContext().redirect("/SOS-Web/paginas/admin/homeAdmin.jsf");
+			
 		} catch (ValidacaoException e) {
-			displayErrorMessageToUser("Erro ao tentar salvar " + sala.getNome());
-			e.printStackTrace();
+			displayErrorMessageToUser("Erro ao tentar salvar ");
 		}
 	}
 	
-	public List<Sala> listarTodasSalas() {
-		return salaService.listarTodas();
-	}
 	
-	public List<Sala> findByQtd(){
-		return salaService.findByQtd(sala.getCapacidade());
-	}
-	
-	public List<Sala> findByNome(){
-		return salaService.findByNome(sala.getNome());
-	}
 
-	public void setListarSalas(List<Sala> listarSalas) {
-		this.listarSalas = listarSalas;
+	
+	//TODO implementar métodos para checagem de nova entidade.
+	public Boolean checarNovo(){
+		return true;		 
+	}
+	//TODO implementar método de checagem de edição
+	public Boolean checarEdit(){
+		return !checarNovo();
+	}
+	
+	public void listarTodasSalas() {
+		listarSalas = salaService.listarTodas();
+	}
+	
+	public void findByQtd(){
+		listarSalas =  salaService.findByQtd(sala.getCapacidade());
+	}
+	
+	public void findByNome(){
+		listarSalas = salaService.findByNome(sala.getNome());
 	}
 	
 	public List<Sala> getListarSalas(){
@@ -61,6 +73,14 @@ public class SalaManager extends AbstractMB implements Serializable{
 
 	public void setSala(Sala sala) {
 		this.sala = sala;
+	}
+
+	public Integer getTipoSala() {
+		return tipoSala;
+	}
+
+	public void setTipoSala(Integer tipoSala) {
+		this.tipoSala = tipoSala;
 	}
 
 }

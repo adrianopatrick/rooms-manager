@@ -25,7 +25,7 @@ public class Sala {
 	private Integer capacidade;
 	
 	@NotNull
-	private String tipoSala;
+	private Integer tipoSala;
 	
 	@ManyToMany(mappedBy="salas")
 	private List<Acessorio> acessorios;
@@ -51,11 +51,11 @@ public class Sala {
 		this.capacidade = capacidade;
 	}
 	
-	public String getTipoSala() {
+	public Integer getTipoSala() {
 		return tipoSala;
 	}
 
-	public void setTipoSala(String tipoSala) {
+	public void setTipoSala(Integer tipoSala) {
 		this.tipoSala = tipoSala;
 	}
 
@@ -73,5 +73,9 @@ public class Sala {
 
 	public void setObservacao(String observacao) {
 		this.observacao = observacao;
+	}
+	
+	public Long getId(){
+		return id;
 	}
 }
