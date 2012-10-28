@@ -32,10 +32,10 @@
 	                    	<p:panel header="Cadastro de salas">
 								<h:panelGrid columns="2">
 									<h:outputText value="Numero sala: " />
-									<p:inputText value="#{salaManager.sala.nome}" size="5"/>
+									<p:inputText value="#{salaManager.sala.nome}" size="5" />
 									
 									<h:outputText value="Capacidade: " />
-									<p:inputText value="#{salaManager.sala.capacidade}" size="5"/>
+									<p:inputMask value="#{salaManager.sala.capacidade}" mask="999" size="5" /> 
 									
 									<h:outputText value="Tipo de sala: " /> 
 							        <p:selectOneMenu value="#{salaManager.sala.tipoSala}" effect="fade">
