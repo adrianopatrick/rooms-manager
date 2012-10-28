@@ -2,7 +2,6 @@ package br.edu.fanor.manager;
 
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -29,6 +28,7 @@ public class SalaManager extends AbstractMB implements Serializable{
 
 	//TODO Tratar Exception
 	public void salvaSala() throws IOException{
+		FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
 		try {
 			salaService.saveOrUpdate(sala);
 			displayInfoMessageToUser("Sala " + sala.getNome() + " salvo com sucesso.");
@@ -39,13 +39,11 @@ public class SalaManager extends AbstractMB implements Serializable{
 		}
 	}
 	
-	
-
-	
 	//TODO implementar métodos para checagem de nova entidade.
 	public Boolean checarNovo(){
 		return true;		 
 	}
+	
 	//TODO implementar método de checagem de edição
 	public Boolean checarEdit(){
 		return !checarNovo();
@@ -66,8 +64,7 @@ public class SalaManager extends AbstractMB implements Serializable{
 	public List<Sala> getListarSalas(){
 		if (listarSalas == null){
 			return listarSalas = salaService.listarTodas();
-		}
-		else{
+		} else {
 			return listarSalas;
 		}
 	}
