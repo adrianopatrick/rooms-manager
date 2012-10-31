@@ -11,7 +11,7 @@
             <f:facet name="first">
                 <meta http-equiv="X-UA-Compatible" content="EmulateIE8" />
                 <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
-                <title>SOS</title>
+                <title>Sos:Editar</title>
             </f:facet>
             <h:outputStylesheet name="css/default.css" />
             <h:outputStylesheet name="css/estilo.css" />
@@ -51,10 +51,13 @@
 							            <f:selectItem itemLabel="Administrador" itemValue="3" />
 							        </h:selectOneMenu>
 							        
-							        <h:outputText value="Senha: " rendered="#{usuarioManager.isNew()}"/>
-									<p:password value="#{usuarioManager.usuario.senha}" required="true" requiredMessage="Campo Obrigatório." />
+							        <h:outputText value="Senha: " />
+									<p:password value="#{usuarioManager.usuario.senha}" redisplay="true" required="true" requiredMessage="Campo Obrigatório." />
 									
-									<p:commandButton value="Salvar" action="#{usuarioManager.salvar()}" ajax="false" update="growl"/>
+									<p:panelGrid columns="2" >
+										<p:commandButton value="Salvar" action="#{usuarioManager.salvar()}" ajax="false" update="growl"/>
+										<p:commandButton value="Voltar" action="#{usuarioManager.voltar()}" ajax="false" update="growl"/>
+									</p:panelGrid>
 								</h:panelGrid>
 								<h:message for="panelcorpo"></h:message>
 							</p:panel>

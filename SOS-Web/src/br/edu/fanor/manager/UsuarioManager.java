@@ -69,9 +69,14 @@ public class UsuarioManager extends AbstractMB implements Serializable{
 	}
 	
 	public String editar(Usuario user){
-		System.out.println("deu certo "+user.getNome());
 		setUsuario(user);
-		return "cadastroFuncionario";
+		System.out.println("/**************************" + usuario.getSenha().toString());
+		return "editarFuncionario";
+	}
+	
+	public String voltar(){
+		setUsuario(null);
+		return "listaUsuarios";
 	}
 	
 	public Boolean isNew(){
