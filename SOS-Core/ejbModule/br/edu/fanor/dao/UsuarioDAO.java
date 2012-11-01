@@ -34,4 +34,10 @@ public class UsuarioDAO extends GenericDAO<Usuario>{
 		return criteria.list();
 	}
 	
+	@SuppressWarnings("unchecked")
+	public List<Usuario> buscaAutoComplete(String nome) {
+		Query query = getEntityManager().createQuery("from usuarios u where upper(u.nome) like upper(:nome)");
+		query.setParameter("nome", nome+"%");
+		return query.getResultList();
+	}
 }

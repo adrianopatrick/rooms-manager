@@ -36,6 +36,10 @@ public class UsuarioService extends GenericService<Usuario>{
 		List<Usuario> funcionarios = usuarioDAO.pesquisaFuncionario(nome);
 		return funcionarios;
 	}
+	
+	public List<Usuario> buscaAutoComplete(String nome) {
+		return usuarioDAO.buscaAutoComplete(nome);
+	}
 
 }
 
