@@ -33,6 +33,9 @@ public class Usuario {
 	
 	@NotNull
 	private String senha;
+	
+	@NotNull
+	private Long perfil;
 
 	public Usuario() {
 		super();
@@ -75,6 +78,14 @@ public class Usuario {
 
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+
+	public Long getPerfil() {
+		return perfil;
+	}
+
+	public void setPerfil(Long perfil) {
+		this.perfil = perfil;
 	}
 	
 }
