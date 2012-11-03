@@ -90,6 +90,7 @@ public class LoginManager {
 				.getExternalContext().getRequest();
 	}
 	
+	@SuppressWarnings("unused")
 	private HttpServletResponse getResponse() {
 		return (HttpServletResponse) FacesContext.getCurrentInstance()
 				.getExternalContext().getResponse();
