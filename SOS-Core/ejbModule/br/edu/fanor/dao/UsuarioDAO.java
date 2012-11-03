@@ -6,6 +6,7 @@ import javax.ejb.Stateless;
 import javax.persistence.Query;
 
 import org.hibernate.Criteria;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
 import br.edu.fanor.entity.Usuario;
@@ -30,6 +31,7 @@ public class UsuarioDAO extends GenericDAO<Usuario>{
 	@SuppressWarnings("unchecked")
 	public List<Usuario> pesquisaFuncionario(String nome) {
 		Criteria criteria = getCriteria(Usuario.class);
+		criteria.addOrder(Order.asc("nome"));
 		criteria.add(Restrictions.ilike("nome","%"+nome+"%"));
 		return criteria.list();
 	}
@@ -40,4 +42,5 @@ public class UsuarioDAO extends GenericDAO<Usuario>{
 		query.setParameter("nome", nome+"%");
 		return query.getResultList();
 	}
+
 }

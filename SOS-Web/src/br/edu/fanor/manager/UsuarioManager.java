@@ -29,36 +29,58 @@ public class UsuarioManager extends AbstractMB implements Serializable{
 	
 	private Usuario usuario = new Usuario();
 	private List<Usuario> listAdmin = new ArrayList<Usuario>(); 
-	private Integer tipoUsuario = 0;
+	private Long tipoUsuario = 0l;
 	
 	public void salvar() throws ValidacaoException, IOException{
-		if (tipoUsuario == 1) {
-			usuario = new Professor(usuario);
-		}else {
+		if (tipoUsuario == 1 || tipoUsuario == 2) {
 			usuario = new Administrador(usuario);
+		}else {
+			usuario = new Professor(usuario);
 			//TODO implementar atendente
 		}
 		FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
 		
 		try {
-			usuarioService.saveOrUpdate(usuario);
-			displayInfoMessageToUser("Usuário "+usuario.getNome()+" salvo com sucesso.");
-		} catch (Exception e) {
-			displayErrorMessageToUser("Não foi possivel salvar o usuário");
+			usuario.setPerfil(tipoUsuario);
+			usuarioService.save(usuario);
+		}catch (Exception e) {
+			displayErrorMessageToUser("Não foi possivel salvar o usuário, verifique os dados informados ou tente mais tarde.");
 		}
 		
 		if (isNew()) {
+			displayInfoMessageToUser("Usuário "+usuario.getNome()+" salvo com sucesso.");
 			FacesContext.getCurrentInstance().getExternalContext().redirect("/SOS-Web/paginas/admin/homeAdmin.jsf");
 		}else {
+			displayInfoMessageToUser("Usuário "+usuario.getNome()+" atualizado com sucesso.");
 			FacesContext.getCurrentInstance().getExternalContext().redirect("/SOS-Web/paginas/admin/listaUsuarios.jsf");
 		}
-		
 		usuario = null;
 		
 	}
 	
+	public void editar() throws ValidacaoException, IOException{
+		deletarEdit(usuario);
+		if (tipoUsuario == 1 || tipoUsuario == 2) {
+			usuario = new Administrador(usuario);
+		}else {
+			usuario = new Professor(usuario);
+		}
+		FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
+		
+		try {
+			usuario.setPerfil(tipoUsuario);
+			usuarioService.saveOrUpdate(usuario);
+			displayInfoMessageToUser("Usuário "+usuario.getNome()+" atualizado com sucesso.");
+		}catch (Exception e) {
+			displayErrorMessageToUser("Não foi possivel salvar o usuário, verifique os dados informados ou tente mais tarde.");
+		}finally{
+			FacesContext.getCurrentInstance().getExternalContext().redirect("/SOS-Web/paginas/admin/listaUsuarios.jsf");
+		}
+		
+		usuario = null;
+	}
+	
 	public void deletar(Usuario usuario){
-		System.out.println("deletando usuario: "+usuario.getNome());
 		try {
 			usuarioService.delete(usuario);
 			displayInfoMessageToUser("Usuário "+usuario.getNome()+" excluido com sucesso.");
@@ -68,9 +90,15 @@ public class UsuarioManager extends AbstractMB implements Serializable{
 		listUsuarios();
 	}
 	
-	public String editar(Usuario user){
+	public void deletarEdit(Usuario usuario){
+		try {
+			usuarioService.delete(usuario);
+		} catch (Exception e) {	}
+	}
+	
+	public String pegar(Usuario user){
+		tipoUsuario = user.getPerfil();
 		setUsuario(user);
-		System.out.println("/**************************" + usuario.getSenha().toString());
 		return "editarFuncionario";
 	}
 	
@@ -121,10 +149,10 @@ public class UsuarioManager extends AbstractMB implements Serializable{
 
 	public void setUsuario(Usuario usuario) {
 		if (usuario instanceof Professor	) {
-			tipoUsuario = 1;
+			tipoUsuario = 1l;
 		}
 		if (usuario instanceof Administrador) {
-			tipoUsuario = 3;
+			tipoUsuario = 3l;
 			//implementar atendente
 		}
 		this.usuario = usuario;
@@ -134,11 +162,11 @@ public class UsuarioManager extends AbstractMB implements Serializable{
 		return usuarioService.getUsuariosList();
 	}
 
-	public Integer getTipoUsuario() {
+	public Long getTipoUsuario() {
 		return tipoUsuario;
 	}
 
-	public void setTipoUsuario(Integer tipoUsuario) {
+	public void setTipoUsuario(Long tipoUsuario) {
 		this.tipoUsuario = tipoUsuario;
 	}
 

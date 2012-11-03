@@ -7,7 +7,7 @@ import javax.persistence.ManyToOne;
 public class Administrador extends Usuario{
 	
 	@ManyToOne
-	private PerfilAdmin perfil;
+	private PerfilAdmin perfilId;
 
 	public Administrador() {
 		super();
@@ -17,12 +17,12 @@ public class Administrador extends Usuario{
 		super(usuario);
 	}
 	
-	public PerfilAdmin getPerfil() {
-		return perfil;
+	public PerfilAdmin getPerfilId() {
+		return perfilId;
 	}
 
-	public void setPerfil(PerfilAdmin perfil) {
-		this.perfil = perfil;
+	public void setPerfilId(PerfilAdmin perfil) {
+		this.perfilId = perfil;
 	}
 	
 }

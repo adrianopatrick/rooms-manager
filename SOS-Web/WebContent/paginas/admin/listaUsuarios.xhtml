@@ -11,7 +11,7 @@
 		<f:facet name="first">
 			<meta http-equiv="X-UA-Compatible" content="EmulateIE8" />
 			<meta content='text/html; charset=UTF-8' http-equiv="Content-Type" />
-			<title>Sos:Usuario</title>
+			<title>Sos:Usuarios</title>
 		</f:facet>
 		<h:outputStylesheet name="css/default.css" />
 		<h:outputStylesheet name="css/estilo.css" />
@@ -42,8 +42,7 @@
 				</div>
 				<div id="corpo">
 					<h:form id="teste">
-						<p:dataTable id="tabelaFunc" var="user" paginator="true" rows="10"
-							value="#{usuarioManager.listAdmin}">
+						<p:dataTable id="tabelaFunc" var="user" paginator="true" rows="10" value="#{usuarioManager.listAdmin}">
 							<f:facet name="header">
 					        	Lista de Funcionários
 					        </f:facet>
@@ -59,7 +58,7 @@
 							<p:column>
 								<f:facet name="header">Editar</f:facet>
 								<p:commandButton ajax="false"
-									action="#{usuarioManager.editar(user)}" id="editButton"
+									action="#{usuarioManager.pegar(user)}" id="editButton"
 									icon="ui-icon-pencil" title="Editar" />
 							</p:column>
 

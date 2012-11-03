@@ -25,7 +25,7 @@ public class PerfilAdmin {
 	@Column(unique=true, nullable=false)
 	private String nome;
 
-	@OneToMany(mappedBy="perfil")
+	@OneToMany(mappedBy="perfilId")
 	private List<Administrador> administradores;
 	
 	@OneToMany(mappedBy="perfilAdmin")
