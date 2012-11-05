@@ -35,7 +35,7 @@
 									<p:inputText value="#{salaManager.sala.nome}" size="5" />
 									
 									<h:outputText value="Capacidade: " />
-									<p:inputMask value="#{salaManager.sala.capacidade}" mask="999" size="5" /> 
+									<p:inputText value="#{salaManager.sala.capacidade}" maxlength="3" size="5" /> 
 									
 									<h:outputText value="Tipo de sala: " /> 
 							        <p:selectOneMenu value="#{salaManager.sala.tipoSala}" effect="fade">
@@ -44,8 +44,9 @@
 							            <f:selectItem itemLabel="Laboratório" itemValue="2" />
 							            <f:selectItem itemLabel="Auditório" itemValue="3" />
 							        </p:selectOneMenu>
+							        
 							        <h:outputText value="Acessorios: " />
-							        <p:selectCheckboxMenu value="#{salaManager.sala.acessorios}" label="Acessorio" filter="true" filterText="Filter" filterMatchMode="startsWith" panelStyle="width:220px">
+							        <p:selectCheckboxMenu value="#{salaManager.acessoriosList}" label="Acessorio" filter="true" filterText="Filter" filterMatchMode="startsWith" panelStyle="width:220px">
 								        <f:selectItems value="#{acessorioManager.mapListAcessorios}" />
     								</p:selectCheckboxMenu>
 							       

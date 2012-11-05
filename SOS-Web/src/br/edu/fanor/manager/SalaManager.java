@@ -9,6 +9,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 
+import br.edu.fanor.entity.Acessorio;
 import br.edu.fanor.entity.Sala;
 import br.edu.fanor.exceptions.ValidacaoException;
 import br.edu.fanor.service.SalaService;
@@ -23,6 +24,7 @@ public class SalaManager extends AbstractMB implements Serializable{
 	SalaService salaService;
 	
 	private List<Sala> listarSalas;
+	private List<Acessorio> acessoriosList;
 	private Sala sala = new Sala();
 	private Integer tipoSala = 0;
 
@@ -30,7 +32,12 @@ public class SalaManager extends AbstractMB implements Serializable{
 	public void salvaSala() throws IOException{
 		FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
 		try {
-			salaService.saveOrUpdate(sala);
+//			sala.setAcessorios(acessoriosList); isso nao presta!
+			salaService.save(sala);
+			Long id = salaService.pagaUltimoRegistroSala();
+			System.out.println("aaaaaaaaaaadddddddddddddddddddddddddddddd dd dd dd  " + id);
+//			salaService.salvaAcessoriosDaSala(id, acessoriosList);
+			
 			displayInfoMessageToUser("Sala " + sala.getNome() + " salvo com sucesso.");
 			FacesContext.getCurrentInstance().getExternalContext().redirect("/SOS-Web/paginas/admin/homeAdmin.jsf");
 			
@@ -83,6 +90,14 @@ public class SalaManager extends AbstractMB implements Serializable{
 
 	public void setTipoSala(Integer tipoSala) {
 		this.tipoSala = tipoSala;
+	}
+
+	public List<Acessorio> getAcessoriosList() {
+		return acessoriosList;
+	}
+
+	public void setAcessoriosList(List<Acessorio> acessoriosList) {
+		this.acessoriosList = acessoriosList;
 	}
 
 }

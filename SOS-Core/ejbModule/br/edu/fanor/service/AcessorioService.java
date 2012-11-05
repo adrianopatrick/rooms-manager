@@ -19,7 +19,7 @@ public class AcessorioService extends GenericService<Acessorio> {
 	@EJB
 	AcessorioDAO acessorioDAO;
 	
-	private Map<String, Long> mapListAcessorios = new HashMap<String, Long>();
+	private Map<String, Acessorio> mapListAcessorios = new HashMap<String, Acessorio>();
 	List<Acessorio> acessorios = new ArrayList<Acessorio>();
 	
 	public List<Acessorio> listaTodos(){
@@ -27,14 +27,14 @@ public class AcessorioService extends GenericService<Acessorio> {
 		return acessorios;
 	}
 	
-	public Map<String, Long> getMapListAcessorios() {
+	public Map<String, Acessorio> getMapListAcessorios() {
 		for (int i = 0; i < listaTodos().size(); i++) {
-			mapListAcessorios.put(acessorios.get(i).getNome(), acessorios.get(i).getId());
+			mapListAcessorios.put(acessorios.get(i).getNome(), acessorios.get(i));
 		}
 		return mapListAcessorios;
 	}
 
-	public void setMapListAcessorios(Map<String, Long> mapListAcessorios) {
+	public void setMapListAcessorios(Map<String, Acessorio> mapListAcessorios) {
 		this.mapListAcessorios = mapListAcessorios;
 	}
 
