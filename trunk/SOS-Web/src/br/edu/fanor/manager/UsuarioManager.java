@@ -149,11 +149,12 @@ public class UsuarioManager extends AbstractMB implements Serializable{
 
 	public void setUsuario(Usuario usuario) {
 		if (usuario instanceof Professor	) {
-			tipoUsuario = 1l;
-		}
-		if (usuario instanceof Administrador) {
 			tipoUsuario = 3l;
-			//implementar atendente
+		}
+		if (usuario instanceof Administrador && usuario.getPerfil() == 1) {
+			tipoUsuario = 1l;
+		} else {
+			tipoUsuario = 2l;
 		}
 		this.usuario = usuario;
 	}
