@@ -7,6 +7,7 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 import br.edu.fanor.dao.SalaDAO;
+import br.edu.fanor.entity.Acessorio;
 import br.edu.fanor.entity.Sala;
 
 @Stateless
@@ -27,6 +28,16 @@ public class SalaService extends GenericService<Sala>{
 	
 	public List<Sala> listarTodas(){
 		return salaDAO.listarTodas();
+	}
+
+	public Long pagaUltimoRegistroSala() {
+		return salaDAO.pagaUltimoRegistroSala();
+	}
+
+	public void salvaAcessoriosDaSala(Long id, List<Acessorio> acessoriosList) {
+		for (int i = 0; i < acessoriosList.size(); i++) {
+			salaDAO.salvaAcessoriosDaSala(id, acessoriosList.get(i));
+		}
 	}
 
 }

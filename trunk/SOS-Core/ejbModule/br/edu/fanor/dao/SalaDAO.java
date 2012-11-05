@@ -8,8 +8,10 @@ import org.hibernate.criterion.Restrictions;
 
 
 import javax.ejb.Stateful;
+import javax.persistence.Query;
 
 
+import br.edu.fanor.entity.Acessorio;
 import br.edu.fanor.entity.Sala;
 
 @Stateful
@@ -38,8 +40,16 @@ public class SalaDAO extends GenericDAO<Sala> {
 		Criteria query = getCriteria(Sala.class);		
 		return query.list();
 	}
-	
-	
-	
 
+	public Long pagaUltimoRegistroSala() {
+		Query query = getEntityManager().createQuery("select id from salas where id = (select max(id) from salas)");
+		return (Long) query.getResultList().get(0);
+	}
+
+	public void salvaAcessoriosDaSala(Long id, Acessorio acessorio) {
+		Query query = getEntityManager().createQuery("INSERT INTO acessorios_salas (id_acessorio, id_sala) values (:id, :idsala);");
+		query.setParameter("id", id);
+		query.setParameter("idsala", acessorio.getId());
+		query.executeUpdate();
+	}
 }
