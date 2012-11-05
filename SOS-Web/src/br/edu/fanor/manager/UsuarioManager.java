@@ -2,7 +2,6 @@ package br.edu.fanor.manager;
 
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -28,7 +27,7 @@ public class UsuarioManager extends AbstractMB implements Serializable{
 	private String msgEmailException;
 	
 	private Usuario usuario = new Usuario();
-	private List<Usuario> listAdmin = new ArrayList<Usuario>(); 
+	private List<Usuario> listAdmin;
 	private Long tipoUsuario = 0l;
 	
 	public void salvar() throws ValidacaoException, IOException{
@@ -36,7 +35,6 @@ public class UsuarioManager extends AbstractMB implements Serializable{
 			usuario = new Administrador(usuario);
 		}else {
 			usuario = new Professor(usuario);
-			//TODO implementar atendente
 		}
 		FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
 		
@@ -87,7 +85,7 @@ public class UsuarioManager extends AbstractMB implements Serializable{
 		} catch (Exception e) {
 			displayErrorMessageToUser("Não foi possivel excluir o usuário");
 		}
-		listUsuarios();
+		listaUsuariosPorNome();
 	}
 	
 	public void deletarEdit(Usuario usuario){
@@ -120,7 +118,7 @@ public class UsuarioManager extends AbstractMB implements Serializable{
 		return !isNew();
 	}
 	
-	public void listUsuarios(){
+	public void listaUsuariosPorNome(){
 		listAdmin = usuarioService.pesquisaUsuario(usuario.getNome());
 	}
 	
@@ -172,7 +170,11 @@ public class UsuarioManager extends AbstractMB implements Serializable{
 	}
 
 	public List<Usuario> getListAdmin() {
-		return listAdmin;
+		if (listAdmin == null) {
+			return listAdmin = usuarioService.findAllUsuario();
+		} else {
+			return listAdmin;
+		}
 	}
 
 	public void setListAdmin(List<Usuario> listAdmin) {

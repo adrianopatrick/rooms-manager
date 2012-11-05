@@ -35,7 +35,7 @@
 
 							<p:commandButton id="buttonPesquisa" value="Pesquisar"
 								title="Para exibir todos apenas click em Pesquisar"
-								actionListener="#{usuarioManager.listUsuarios()}" ajax="false"
+								actionListener="#{usuarioManager.listaUsuariosPorNome()}" ajax="false"
 								update="seila,corpo" />
 						</h:panelGrid>
 					</h:form>
@@ -44,7 +44,7 @@
 					<h:form id="teste">
 						<p:dataTable id="tabelaFunc" var="user" paginator="true" rows="10" value="#{usuarioManager.listAdmin}">
 							<f:facet name="header">
-					        	Lista de Funcionários
+					        	Lista de Usuários
 					        </f:facet>
 
 							<p:column headerText="Nome">

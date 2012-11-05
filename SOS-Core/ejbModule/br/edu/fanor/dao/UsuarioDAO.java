@@ -24,7 +24,7 @@ public class UsuarioDAO extends GenericDAO<Usuario>{
 
 	@SuppressWarnings("unchecked")
 	public List<Usuario> findAllUsuario() {
-		Query query = getEntityManager().createQuery("from usuarios where perfil_id = 2");
+		Query query = getEntityManager().createQuery("from usuarios");
 		return query.getResultList();
 	}
 
