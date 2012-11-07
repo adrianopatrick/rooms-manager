@@ -33,14 +33,14 @@ public class Reserva {
 	private String observacao;
 
 	@Column(name = "data_inicial")
-	@Temporal(TemporalType.TIME)
+	//@Temporal(TemporalType.TIMESTAMP)
 	private Date dataIncial;
 
 	@Column(name = "data_final")
-	@Temporal(TemporalType.TIME)
+	//@Temporal(TemporalType.TIMESTAMP)
 	private Date dataFinal;
 	
-	@ManyToOne
+	@ManyToOne(optional=false)
 	private Sala sala;
 
 	@OneToOne
