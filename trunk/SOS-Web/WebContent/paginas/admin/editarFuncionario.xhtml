@@ -59,13 +59,10 @@
 
 									<h:outputText value="Senha: " />
 									<p:password value="#{usuarioManager.usuario.senha}"
-										redisplay="true" required="true"
-										requiredMessage="Campo Obrigatório."
-										promptLabel="Digite uma senha segura" weakLabel="Razoável" goodLabel="Boa" 
-										strongLabel="Ótima" feedback="true"  minLength="6"
-										requiredMessage="O campo senha deve conter no minimo 6 caracteres."
-										match="pwd2" validatorMessage="senha digitada incorretamente" 
-										match="pwd2" minLength="6" maxlength="15"/>
+									required="true" promptLabel="Digite uma senha segura" weakLabel="Razoável" goodLabel="Boa" 
+									strongLabel="Ótima" feedback="true"  minLength="6" maxlength="15"
+									requiredMessage="O campo senha deve conter no minimo 6 caracteres."
+									match="pwd2" validatorMessage="senha digitada incorretamente"/>
 										
 									<h:outputText value="Confirmar Senha: " />
 									<p:password id="pwd2" value="#{usuarioManager.usuario.senha}" feedback="false"
