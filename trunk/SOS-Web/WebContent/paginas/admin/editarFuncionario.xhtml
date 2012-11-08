@@ -7,66 +7,88 @@
 	xmlns:p="http://primefaces.org/ui" xml:lang="pt" lang="pt-br">
 
 <f:view contentType="text/html">
-        <h:head>
-            <f:facet name="first">
-                <meta http-equiv="X-UA-Compatible" content="EmulateIE8" />
-                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
-                <title>Sos:Editar</title>
-            </f:facet>
-            <h:outputStylesheet name="css/default.css" />
-            <h:outputStylesheet name="css/estilo.css" />
-        </h:head>
-        <h:body>
-			<div id="global">
-            <p:layout fullPage="true" >
-                <p:layoutUnit id="bottom" position="south" size="30" >
-                     <ui:include src="../rodape.xhtml" />
-                </p:layoutUnit>
-                <p:layoutUnit id="center" position="center">
-					<div id="menu" >
-						<ui:include src="../menu.xhtml" />						
+	<h:head>
+		<f:facet name="first">
+			<meta http-equiv="X-UA-Compatible" content="EmulateIE8" />
+			<meta content='text/html; charset=UTF-8' http-equiv="Content-Type" />
+			<title>Sos:Editar</title>
+		</f:facet>
+		<h:outputStylesheet name="css/default.css" />
+		<h:outputStylesheet name="css/estilo.css" />
+	</h:head>
+	<h:body>
+		<div id="global">
+			<p:layout fullPage="true">
+				<p:layoutUnit id="bottom" position="south" size="30">
+					<ui:include src="../rodape.xhtml" />
+				</p:layoutUnit>
+				<p:layoutUnit id="center" position="center">
+					<div id="menu">
+						<ui:include src="../menu.xhtml" />
 					</div>
 					<div id="corpo">
-	                    <p:growl id="growl" showDetail="true" sticky="true" />
-	                    <h:form >
+						<p:growl id="growl" showDetail="true" sticky="true" />
+						<h:form>
 							<p:panel header="Cadastro de Usuario" id="panelcorpo">
-								<h:panelGrid >
-									
-									<h:inputHidden id="idUsuario" value="#{usuarioManager.usuario.id}" />
+								<h:panelGrid>
+
+									<h:inputHidden id="idUsuario"
+										value="#{usuarioManager.usuario.id}" />
 									<h:outputText value="nome: " />
-									<p:inputText value="#{usuarioManager.usuario.nome}" required="true" requiredMessage="Campo Obrigatório."/>
-									
+									<p:inputText value="#{usuarioManager.usuario.nome}"
+										required="true" requiredMessage="Campo Obrigatório." />
+
 									<h:outputText value="E-mail: " />
-									<p:inputText value="#{usuarioManager.usuario.email}" required="true" requiredMessage="Campo Obrigatório.">
-									 <f:ajax event="blur" listener="#{usuarioManager.validaEmail}" render="emailException"/>
+									<p:inputText value="#{usuarioManager.usuario.email}"
+										required="true" requiredMessage="Campo Obrigatório.">
+										<f:ajax event="blur" listener="#{usuarioManager.validaEmail}"
+											render="emailException" />
 									</p:inputText>
-									<h:outputText id="emailException" value="#{usuarioManager.msgEmailException}" />
-									
-									<h:outputText value="Cargo: " />  
-							        <h:selectOneMenu effect="fade" required="true" requiredMessage="Campo Obrigatório." value="#{usuarioManager.tipoUsuario}" >  
-							            <f:selectItem itemLabel="selecione" itemValue="" />
-							            <f:selectItem itemLabel="Administrador" itemValue="1" /> 
-							            <f:selectItem itemLabel="Atendente" itemValue="2" />
-							            <f:selectItem itemLabel="Professor" itemValue="3" />
-							        </h:selectOneMenu>
-							        
-							        <h:outputText value="Senha: " />
-									<p:password value="#{usuarioManager.usuario.senha}" redisplay="true" required="true" requiredMessage="Campo Obrigatório." />
-									
-									<p:panelGrid columns="2" >
-										<p:commandButton value="Salvar" action="#{usuarioManager.editar()}" ajax="false" update="growl"/>
-										<p:commandButton value="Voltar" action="#{usuarioManager.voltar()}" ajax="false" update="growl"/>
+									<h:outputText id="emailException"
+										value="#{usuarioManager.msgEmailException}" />
+
+									<h:outputText value="Cargo: " />
+									<h:selectOneMenu effect="fade" required="true"
+										requiredMessage="Campo Obrigatório."
+										value="#{usuarioManager.tipoUsuario}">
+										<f:selectItem itemLabel="selecione" itemValue="" />
+										<f:selectItem itemLabel="Administrador" itemValue="1" />
+										<f:selectItem itemLabel="Atendente" itemValue="2" />
+										<f:selectItem itemLabel="Professor" itemValue="3" />
+									</h:selectOneMenu>
+
+									<h:outputText value="Senha: " />
+									<p:password value="#{usuarioManager.usuario.senha}"
+										redisplay="true" required="true"
+										requiredMessage="Campo Obrigatório."
+										promptLabel="Digite uma senha segura" weakLabel="Razoável" goodLabel="Boa" 
+										strongLabel="Ótima" feedback="true"  minLength="6"
+										requiredMessage="O campo senha deve conter no minimo 6 caracteres."
+										match="pwd2" validatorMessage="senha digitada incorretamente" 
+										match="pwd2" minLength="6" maxlength="15"/>
+										
+									<h:outputText value="Confirmar Senha: " />
+									<p:password id="pwd2" value="#{usuarioManager.usuario.senha}" feedback="false"
+										label="Password 2" required="true" />
+
+									<p:panelGrid columns="2">
+										<p:commandButton value="Salvar"
+											action="#{usuarioManager.editar()}" ajax="false"
+											update="growl" />
+										<p:commandButton value="Voltar"
+											action="#{usuarioManager.voltar()}" ajax="false"
+											update="growl" />
 									</p:panelGrid>
 								</h:panelGrid>
 								<h:message for="panelcorpo"></h:message>
 							</p:panel>
-		                 </h:form>
+						</h:form>
 					</div>
-                
-                </p:layoutUnit>
-            </p:layout>
-            </div>
-        </h:body>
-        
-    </f:view>
+
+				</p:layoutUnit>
+			</p:layout>
+		</div>
+	</h:body>
+
+</f:view>
 </html>
