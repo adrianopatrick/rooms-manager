@@ -35,14 +35,15 @@
 
 							<p:commandButton id="buttonPesquisa" value="Pesquisar"
 								title="Para exibir todos apenas click em Pesquisar"
-								actionListener="#{usuarioManager.listaUsuariosPorNome()}" ajax="false"
-								update="seila,corpo" />
+								actionListener="#{usuarioManager.listaUsuariosPorNome()}"
+								ajax="false" update="seila,corpo" />
 						</h:panelGrid>
 					</h:form>
 				</div>
 				<div id="corpo">
 					<h:form id="teste">
-						<p:dataTable id="tabelaFunc" var="user" paginator="true" rows="10" value="#{usuarioManager.listAdmin}">
+						<p:dataTable id="tabelaFunc" var="user" paginator="true" rows="10"
+							value="#{usuarioManager.listAdmin}">
 							<f:facet name="header">
 					        	Lista de Usuários
 					        </f:facet>
@@ -55,16 +56,18 @@
 								<h:outputText value="#{user.email}" />
 							</p:column>
 
-							<p:column>
+							<p:column style="width: 5%">
 								<f:facet name="header">Editar</f:facet>
 								<p:commandButton ajax="false"
 									action="#{usuarioManager.pegar(user)}" id="editButton"
 									icon="ui-icon-pencil" title="Editar" />
 							</p:column>
 
-							<p:column>
+							<p:column style="width: 5%">
 								<f:facet name="header">Excluir</f:facet>
-								<p:commandButton update="corpo" ajax="false" action="#{usuarioManager.deletar(user)}" id="deleteButton" icon="ui-icon-closethick" title="Deletar" />
+								<p:commandButton update="corpo" ajax="false"
+									action="#{usuarioManager.deletar(user)}" id="deleteButton"
+									icon="ui-icon-closethick" title="Deletar" />
 							</p:column>
 
 						</p:dataTable>
