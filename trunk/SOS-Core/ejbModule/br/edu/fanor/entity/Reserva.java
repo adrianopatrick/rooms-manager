@@ -14,8 +14,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import br.edu.fanor.enums.EstadoReserva;
 
@@ -40,7 +38,7 @@ public class Reserva {
 	//@Temporal(TemporalType.TIMESTAMP)
 	private Date dataFinal;
 	
-	@ManyToOne(optional=false)
+	@ManyToOne
 	private Sala sala;
 
 	@OneToOne

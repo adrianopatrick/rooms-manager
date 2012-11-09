@@ -21,8 +21,8 @@
 		<h:outputStylesheet name="css/default.css" />	
 		<h:outputStylesheet name="css/estilo.css" />
 	</h:head>
-	<h:body>
-
+	<h:body id="bodyy">
+	<form id="tudo">
 		<p:layout fullPage="true">
 			<p:layoutUnit id="bottom" position="south" size="60">
 				<ui:include src="../rodape.xhtml" />
@@ -32,8 +32,7 @@
 					<p:menubar autoSubmenuDisplay="true">
 						<p:menuitem value="Minhas Reservas" url="#" />
 						<p:menuitem value="Reservas pendente" url="#" />
-						<p:menuitem value="Sair" actionListener="#{loginManager.logOut}"
-							helpText="CTRL+p" />
+						<p:menuitem value="Sair" action="#{loginManager.logOut}" helpText="CTRL+p" />
 					</p:menubar>
 				</h:form>
 				<div id="corpo">
@@ -42,35 +41,35 @@
 							<h:panelGrid columns="2">
 								<h:outputText value="Capacidade: " />
 								<p:inputText id="nrAluno"
-									value="#{homeProfessorManager.solicitacao.nrAlunos}" size="5"
+									value="#{professorManager.solicitacao.nrAlunos}" size="5"
 									maxlength="3" required="true"
 									requiredMessage="Campo obrigatório" />
 
 
 								<h:outputText value="Data: " />
 								<p:calendar id="dataSolicitacao"
-									value="#{homeProfessorManager.solicitacao.data}"
+									value="#{professorManager.solicitacao.data}"
 									mask="99/99/9999" size="8" required="true"
 									requiredMessage="Campo obrigatório" />
 
 								<h:outputText value="Horario inicial: " />
 								<p:inputMask id="horaInicial"
-									value="#{homeProfessorManager.reserva.dataIncial}" mask="99:99"
+									value="#{professorManager.reserva.dataIncial}" mask="99:99"
 									validatorMessage="Campo Obrigatório" size="5" required="true"
-									requiredMessage="Campo obrigatório">
+									requiredMessage="Campo obrigatório" converterMessage="Hora inicial invalida">
 									<f:convertDateTime timeZone="GMT-3" pattern="HH:mm" />
 								</p:inputMask>
 
 								<h:outputText value="Horario Final: " />
 								<p:inputMask id="horaFinal"
-									value="#{homeProfessorManager.reserva.dataFinal}" mask="99:99"
-									size="5" required="true" requiredMessage="Campo obrigatório">
+									value="#{professorManager.reserva.dataFinal}" mask="99:99"
+									size="5" required="true" requiredMessage="Campo obrigatório" converterMessage="Hora final invalida">
 									<f:convertDateTime timeZone="GMT-3" pattern="HH:mm" />
 								</p:inputMask>
 
 								<h:outputText value="Tipo de sala: " />
 								<p:selectOneMenu id="tipo"
-									value="#{homeProfessorManager.solicitacao.observacao}"
+									value="#{professorManager.solicitacao.observacao}"
 									effect="fade">
 									<f:selectItem itemLabel="Sala" itemValue="Sala" />
 									<f:selectItem itemLabel="Laboratório" itemValue="Laboratorio" />
@@ -80,12 +79,11 @@
 
 								<h:outputText value="Observações: " />
 								<p:inputTextarea id="obs"
-									value="#{homeProfessorManager.solicitacao.observacao}" rows="6"
+									value="#{professorManager.solicitacao.observacao}" rows="6"
 									cols="33" />
 								<p:commandButton id="btSalvar" value="Reservar"
-									action="#{homeProfessorManager.salvar()}"
+									action="#{professorManager.salvar()}"
 									update="formSolicitacao">
-									<f:ajax execute="@form" render="@form :tabelaSolicitacao" />
 								</p:commandButton>
 								<p:messages id="mensagem" showDetail="true" autoUpdate="true"
 									closable="true" />
@@ -100,7 +98,7 @@
 				<h:form id="tabelaSolicitacao">
 
 					<p:dataTable id="dataTable" var="lista"
-						value="#{homeProfessorManager.listaSolicitacao}"
+						value="#{professorManager.listaSolicitacao}"
 						style="max-width: 500px; min-width:500px" paginator="true"
 						rows="10"
 						paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
@@ -138,6 +136,7 @@
 			</p:layoutUnit>
 
 		</p:layout>
+		</form>
 	</h:body>
 
 </f:view>

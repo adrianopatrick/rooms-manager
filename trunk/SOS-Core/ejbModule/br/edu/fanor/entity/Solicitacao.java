@@ -101,4 +101,12 @@ public class Solicitacao {
 		this.estado = estado;
 	}
 
+	public Reserva getReserva() {
+		return reserva;
+	}
+
+	public void setReserva(Reserva reserva) {
+		this.reserva = reserva;
+	}
+
 }
