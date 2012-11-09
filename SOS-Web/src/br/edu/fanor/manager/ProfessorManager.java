@@ -35,8 +35,8 @@ public class ProfessorManager implements Serializable{
 	public String salvar(){
 		try {
 			int a = reserva.getDataFinal().compareTo(reserva.getDataIncial());
+			
 			if (a == 1){
-				//por que o professor está salvando uma reserva???? professor apenas deve fazer a solicitação
 				reservaService.salvaReserva(reserva, solicitacao);
 				reserva = null;
 				solicitacao = null;
