@@ -43,6 +43,7 @@ public class ProfessorManager implements Serializable{
 		solicitacao = new Solicitacao();
 		data = null;
 		listaSolicitacao = solicitacaoService.listSolicitacaoProf();
+		infoOk();
 		return "homeProfessor";
 	}
 	

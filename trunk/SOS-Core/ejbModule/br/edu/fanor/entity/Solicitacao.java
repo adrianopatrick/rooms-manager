@@ -32,7 +32,7 @@ public class Solicitacao {
 	@NotNull
 	@Column(name="nr_alunos")
 	private Integer nrAlunos;
-	
+	private String tipoSala;
 	private String observacao;
 	
 	@Enumerated(EnumType.STRING)
@@ -146,6 +146,14 @@ public class Solicitacao {
 
 	public void setDataFinal(Date dataFinal) {
 		this.dataFinal = dataFinal;
+	}
+
+	public String getTipoSala() {
+		return tipoSala;
+	}
+
+	public void setTipoSala(String tipoSala) {
+		this.tipoSala = tipoSala;
 	}
 
 }

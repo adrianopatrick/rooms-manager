@@ -23,8 +23,8 @@ public class SolicitacaoService extends GenericService<Usuario>{
 	
 
 	/*
-	 * TODO: pra quem fez esse método..... listar solicitação professor.... 
-	 * tem q passar o professor como parametro... e listar apenas as solicitações
+	 * TODO: pra quem fez esse mï¿½todo..... listar solicitaï¿½ï¿½o professor.... 
+	 * tem q passar o professor como parametro... e listar apenas as solicitaï¿½ï¿½es
 	 * do respectivo professor passado.
 	 */
 	public List<Solicitacao> listSolicitacaoProf(){
