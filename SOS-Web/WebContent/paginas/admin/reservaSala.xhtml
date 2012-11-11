@@ -38,6 +38,17 @@
 <!-- 										minQueryLength="3" /> -->
 										
 									<p:inputText value="#{reservaManager.usuario.nome}"  />
+									<h:outputText value="Sala: " />
+									<p:inputText id="sala"
+										value=#{reservaManager.reserva.sala.nome} size="5"
+										required="true" requiredMessage="Selecione uma sala" />
+										
+									<h:outputText value="Dia: " />
+									<p:calendar value="#{reservaManager.dia}" pattern="MM/dd/yyyy" />  
+									<h:outputText value="Hora Inicial: " />
+									<p:calendar value="#{reservaManager.reserva.dataIncial}" pattern="HH:mm" timeOnly="true" />
+									<h:outputText value="Hora Final: " />
+									<p:calendar value="#{reservaManager.reserva.dataFinal}" pattern="HH:mm" timeOnly="true" />  
 								</h:panelGrid>
 							</p:panel>
 						</h:form>
