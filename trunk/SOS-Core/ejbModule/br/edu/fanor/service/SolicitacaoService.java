@@ -21,6 +21,12 @@ public class SolicitacaoService extends GenericService<Usuario>{
 		solicitacaoDAO.insert(solicitacao);
 	}
 	
+
+	/*
+	 * TODO: pra quem fez esse método..... listar solicitação professor.... 
+	 * tem q passar o professor como parametro... e listar apenas as solicitações
+	 * do respectivo professor passado.
+	 */
 	public List<Solicitacao> listSolicitacaoProf(){
 		List<Solicitacao> list = solicitacaoDAO.findAllProf();
 		return list;

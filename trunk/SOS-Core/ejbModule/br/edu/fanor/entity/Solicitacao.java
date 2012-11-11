@@ -1,5 +1,6 @@
 package br.edu.fanor.entity;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -43,6 +44,14 @@ public class Solicitacao {
 	@NotNull
 	@Column(name="data_reserva")
 	private Date data;
+
+	@NotNull
+	@Column(name="data_inicial")
+	private Date dataInicial;
+
+	@NotNull
+	@Column(name="data_final")
+	private Date dataFinal;
 	
 	@ManyToOne(optional=false)
 	@JoinTable ( name ="professor_solicitacao",
@@ -50,8 +59,22 @@ public class Solicitacao {
 	joinColumns = @JoinColumn ( name ="id_solicitacao"))
 	private Professor professor;
 	
-	@ManyToMany(mappedBy="solicitacoes")
+	@ManyToMany
+	@JoinTable ( name ="acessorios_solicitacoes",
+	inverseJoinColumns = @JoinColumn ( name ="id_acessorio"),
+	joinColumns = @JoinColumn ( name ="id_solicitacao"))
 	private List<Acessorio> acessorios;
+
+	public List<Acessorio> getAcessorios() {
+		if (acessorios == null) {
+			acessorios = new ArrayList<Acessorio>();
+		}
+		return acessorios;
+	}
+
+	public void setAcessorios(List<Acessorio> acessorios) {
+		this.acessorios = acessorios;
+	}
 
 	public Long getId() {
 		return id;
@@ -107,6 +130,22 @@ public class Solicitacao {
 
 	public void setReserva(Reserva reserva) {
 		this.reserva = reserva;
+	}
+
+	public Date getDataInicial() {
+		return dataInicial;
+	}
+
+	public void setDataInicial(Date dataInicial) {
+		this.dataInicial = dataInicial;
+	}
+
+	public Date getDataFinal() {
+		return dataFinal;
+	}
+
+	public void setDataFinal(Date dataFinal) {
+		this.dataFinal = dataFinal;
 	}
 
 }

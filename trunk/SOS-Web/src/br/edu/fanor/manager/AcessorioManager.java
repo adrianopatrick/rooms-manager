@@ -5,13 +5,14 @@ import java.util.Map;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 
 import br.edu.fanor.entity.Acessorio;
 import br.edu.fanor.service.AcessorioService;
 
+
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class AcessorioManager {
 
 	@EJB
