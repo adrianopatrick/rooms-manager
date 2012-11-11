@@ -9,6 +9,7 @@ import org.hibernate.Criteria;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
+import br.edu.fanor.entity.Solicitacao;
 import br.edu.fanor.entity.Usuario;
 
 @Stateless
@@ -41,6 +42,17 @@ public class UsuarioDAO extends GenericDAO<Usuario>{
 		Query query = getEntityManager().createQuery("from usuarios u where upper(u.nome) like upper(:nome)");
 		query.setParameter("nome", nome+"%");
 		return query.getResultList();
+	}
+
+	public Long pegaUserPorSolicitacao(Solicitacao solicitacao) {
+//		Criteria criteria = getCriteria(Usuario.class);
+//		criteria.add(Restrictions.eq("id_solicitacao", solicitacao.getId()));
+//		return criteria.uniqueResult();
+		
+		
+		Query query = getEntityManager().createNamedQuery("select id_professor from professor_solicitacao where id_solicitacao = :id");
+		query.setParameter("id", solicitacao.getId());
+		return (Long) query.getResultList().get(0);
 	}
 
 }

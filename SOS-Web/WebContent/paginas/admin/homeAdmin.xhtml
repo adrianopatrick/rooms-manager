@@ -51,7 +51,7 @@
 							        </p:column>
 									
 									<p:column style="width:4%">  
-							                <p:commandButton  oncomplete="fsolicDialog.show()" icon="ui-icon-search" title="Buscar Sala" />
+							                <p:commandButton id="verificaReserva" ajax="false" action="#{solicitacaoManager.pegaSolicitacao}" value="Reservar" />
 							        </p:column>
 							    </p:dataTable>
 							</h:form>
