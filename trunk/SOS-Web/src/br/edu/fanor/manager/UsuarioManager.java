@@ -41,16 +41,12 @@ public class UsuarioManager extends AbstractMB implements Serializable{
 		try {
 			usuario.setPerfil(tipoUsuario);
 			usuarioService.save(usuario);
-		}catch (Exception e) {
-			displayErrorMessageToUser("Não foi possivel salvar o usuário, verifique os dados informados ou tente mais tarde.");
-		}
-		
-		if (isNew()) {
+
 			displayInfoMessageToUser("Usuário "+usuario.getNome()+" salvo com sucesso.");
 			FacesContext.getCurrentInstance().getExternalContext().redirect("/SOS-Web/paginas/admin/homeAdmin.jsf");
-		}else {
-			displayInfoMessageToUser("Usuário "+usuario.getNome()+" atualizado com sucesso.");
-			FacesContext.getCurrentInstance().getExternalContext().redirect("/SOS-Web/paginas/admin/listaUsuarios.jsf");
+			
+		}catch (Exception e) {
+			displayErrorMessageToUser("Não foi possivel salvar o usuário, verifique os dados informados ou tente mais tarde.");
 		}
 		usuario = null;
 		

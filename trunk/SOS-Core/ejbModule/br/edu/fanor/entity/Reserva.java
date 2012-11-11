@@ -26,7 +26,7 @@ public class Reserva {
 	private Long id;
 
 	@Enumerated(EnumType.STRING)
-	private EstadoReserva estadoReserva = EstadoReserva.PENDENDE;
+	private EstadoReserva estadoReserva = EstadoReserva.PENDENTE;
 
 	private String observacao;
 
