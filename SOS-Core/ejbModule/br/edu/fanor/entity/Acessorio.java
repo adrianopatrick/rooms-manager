@@ -30,10 +30,7 @@ public class Acessorio {
 	private List<Sala> salas;
 	
 
-	@ManyToMany
-	@JoinTable ( name ="acessorios_solicitacoes",
-	joinColumns = @JoinColumn ( name ="id_acessorio"),
-	inverseJoinColumns = @JoinColumn ( name ="id_solicitacao"))
+	@ManyToMany(mappedBy="acessorios")
 	private List<Solicitacao> solicitacoes;
 
 
@@ -76,5 +73,32 @@ public class Acessorio {
 	public void setSolicitacoes(List<Solicitacao> solicitacoes) {
 		this.solicitacoes = solicitacoes;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Acessorio other = (Acessorio) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
+	}
+	
+	
 	
 }

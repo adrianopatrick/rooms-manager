@@ -2,6 +2,8 @@ package br.edu.fanor.manager;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -10,13 +12,12 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
-import br.edu.fanor.entity.Reserva;
+import br.edu.fanor.entity.Professor;
 import br.edu.fanor.entity.Solicitacao;
-import br.edu.fanor.service.ReservaService;
 import br.edu.fanor.service.SolicitacaoService;
 
-@SessionScoped
 @ManagedBean
+@SessionScoped
 public class ProfessorManager implements Serializable{
 	
 	private static final long serialVersionUID = -7652074045374161311L;
@@ -24,32 +25,40 @@ public class ProfessorManager implements Serializable{
 	@EJB
 	SolicitacaoService solicitacaoService;
 	
-	@EJB
-	ReservaService reservaService;
-	
-	private Reserva reserva = new Reserva();
 	private Solicitacao solicitacao = new Solicitacao();
+	
+	private Date data;
+
 	private List<Solicitacao> listaSolicitacao = new ArrayList<Solicitacao>();
 	
-	@SuppressWarnings("finally")
-	public String salvar(){
-		try {
-			int a = reserva.getDataFinal().compareTo(reserva.getDataIncial());
-			
-			if (a == 1){
-				reservaService.salvaReserva(reserva, solicitacao);
-				reserva = null;
-				solicitacao = null;
-				infoOk();
-			} else {
-				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Mensagem:", "Horário não permitido."));
-			}
-			
-		} catch (RuntimeException e) {
-			error();
-		} finally {
-			return "homeProfessor";
-		}
+	
+	public String salvarSolicitacao(){
+		//TODO: usar uma variavel statica para saber qual o nome do objeto do usuario na sessao
+		solicitacao.setProfessor((Professor)FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario"));
+		solicitacao.setData(new Date());
+		sincronyzeData(solicitacao, data);
+		
+		//TODO: tipo da sala nao salvo (campo inexistente)
+		solicitacaoService.salvaSolicitacao(solicitacao);
+		solicitacao = new Solicitacao();
+		data = null;
+		listaSolicitacao = solicitacaoService.listSolicitacaoProf();
+		return "homeProfessor";
+	}
+	
+	public void sincronyzeData(Solicitacao solicitacao, Date date){
+		Calendar data = Calendar.getInstance();
+		data.setTime(date);
+		
+		Calendar dataInicial = Calendar.getInstance();
+		dataInicial.setTime(solicitacao.getDataInicial());
+		dataInicial.set(data.get(Calendar.YEAR), data.get(Calendar.MONTH), data.get(Calendar.DATE));
+		solicitacao.setDataInicial(dataInicial.getTime());
+		
+		Calendar dataFinal = Calendar.getInstance();
+		dataFinal.setTime(solicitacao.getDataFinal());
+		dataFinal.set(data.get(Calendar.YEAR), data.get(Calendar.MONTH), data.get(Calendar.DATE));
+		solicitacao.setDataFinal(dataFinal.getTime());
 	}
 	
 	public void infoOk() {  
@@ -67,17 +76,17 @@ public class ProfessorManager implements Serializable{
 		this.solicitacao = solicitacao;
 	}
 
-	public Reserva getReserva() {
-		return reserva;
-	}
-
-	public void setReserva(Reserva reserva) {
-		this.reserva = reserva;
-	}
-
 	public List<Solicitacao> getListaSolicitacao() {
 			listaSolicitacao = solicitacaoService.listSolicitacaoProf();
 			return listaSolicitacao;
 	}
+	
+	public Date getData() {
+		return data;
+	}
 
+	public void setData(Date data) {
+		this.data = data;
+	}
+	
 }
