@@ -32,10 +32,12 @@
 							<p:panel header="Reserva de Sala" id="panelcorpo">
 								<h:panelGrid>
 									<h:outputText value="Responsavel: " />
-									<p:autoComplete value="#{reservaManager.usuario}" id="prof"
-										completeMethod="#{reservaManager.buscaPorNome}" var="p"
-										itemLabel="#{p.nome}" itemValue="#{p}" forceSelection="true"
-										minQueryLength="3" />
+<!-- 									<p:autoComplete value="#{reservaManager.usuario}" id="prof" -->
+<!-- 										completeMethod="#{reservaManager.buscaPorNome}" var="p" -->
+<!-- 										itemLabel="#{p.nome}" itemValue="#{p}" forceSelection="true" -->
+<!-- 										minQueryLength="3" /> -->
+										
+									<p:inputText value="#{reservaManager.usuario.nome}"  />
 								</h:panelGrid>
 							</p:panel>
 						</h:form>

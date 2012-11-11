@@ -6,6 +6,7 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 import br.edu.fanor.dao.UsuarioDAO;
+import br.edu.fanor.entity.Solicitacao;
 import br.edu.fanor.entity.Usuario;
 
 @Stateless
@@ -39,6 +40,11 @@ public class UsuarioService extends GenericService<Usuario>{
 	
 	public List<Usuario> buscaAutoComplete(String nome) {
 		return usuarioDAO.buscaAutoComplete(nome);
+	}
+
+
+	public Long pegaUserPorSolicitacao(Solicitacao solicitacao) {
+		return usuarioDAO.pegaUserPorSolicitacao(solicitacao); 
 	}
 
 }

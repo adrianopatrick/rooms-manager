@@ -62,11 +62,11 @@
 									required="true" promptLabel="Digite uma senha segura" weakLabel="Razoável" goodLabel="Boa" 
 									strongLabel="Ótima" feedback="true"  minLength="6" maxlength="15"
 									requiredMessage="O campo senha deve conter no minimo 6 caracteres."
-									match="pwd2" validatorMessage="senha digitada incorretamente"/>
+									match="pwd2" validatorMessage="senha digitada incorretamente" redisplay="true" />
 										
 									<h:outputText value="Confirmar Senha: " />
 									<p:password id="pwd2" value="#{usuarioManager.usuario.senha}" feedback="false"
-										label="Password 2" required="true" />
+										label="Password 2" required="true" redisplay="true" />
 
 									<p:panelGrid columns="2">
 										<p:commandButton value="Salvar"
