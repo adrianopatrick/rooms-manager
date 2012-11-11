@@ -52,19 +52,19 @@
 										pattern="MM/dd/yyyy" required="true"
 										requiredMessage="Campo obrigatório" />
 
-									<h:outputText value="Horario Inicial: " />
+									<h:outputText value="Horário Inicial: " />
 									<p:calendar value="#{professorManager.solicitacao.dataInicial}"
 										pattern="HH:mm" timeOnly="true" required="true"
 										requiredMessage="Campo obrigatório" />
 
-									<h:outputText value="Horario Final: " />
+									<h:outputText value="Horário Final: " />
 									<p:calendar value="#{professorManager.solicitacao.dataFinal}"
 										pattern="HH:mm" timeOnly="true" required="true"
 										requiredMessage="Campo obrigatório" />
 
 									<h:outputText value="Tipo de sala: " />
 									<p:selectOneMenu id="tipo"
-										value="#{professorManager.solicitacao.observacao}"
+										value="#{professorManager.solicitacao.tipoSala}"
 										effect="fade">
 										<f:selectItem itemLabel="Sala" itemValue="Sala" />
 										<f:selectItem itemLabel="Laboratório" itemValue="Laboratorio" />
