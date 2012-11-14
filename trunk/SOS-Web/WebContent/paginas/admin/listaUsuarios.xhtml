@@ -26,24 +26,28 @@
 				<div id="menu">
 					<ui:include src="../menu.xhtml" />
 				</div>
+				
 				<div id="pesq" align="center">
 					<h:form id="pesquisa">
 						<h:panelGrid id="painelGrid" columns="5">
+						
 							<h:outputText id="nomePesq" value="Nome: " />
-							<p:inputText id="pesqNome" value="#{usuarioManager.usuario.nome}"
-								size="10" />
+							<p:inputText id="pesqNome" value="#{usuarioManager.usuario.nome}" size="10" />
 
 							<p:commandButton id="buttonPesquisa" value="Pesquisar"
 								title="Para exibir todos apenas click em Pesquisar"
 								actionListener="#{usuarioManager.listaUsuariosPorNome()}"
 								ajax="false" update="seila,corpo" />
+								
 						</h:panelGrid>
 					</h:form>
 				</div>
+				
 				<div id="corpo">
 					<h:form id="teste">
 						<p:dataTable id="tabelaFunc" var="user" paginator="true" rows="10"
 							value="#{usuarioManager.listAdmin}">
+							
 							<f:facet name="header">
 					        	Lista de Usuários
 					        </f:facet>

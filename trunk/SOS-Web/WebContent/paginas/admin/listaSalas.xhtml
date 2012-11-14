@@ -11,7 +11,7 @@
             <f:facet name="first">
                 <meta http-equiv="X-UA-Compatible" content="EmulateIE8" />
                 <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
-                <title>SOS</title>
+                <title>Sos:Salas</title>
             </f:facet>
             <h:outputStylesheet name="css/default.css" />
             <h:outputStylesheet name="css/estilo.css" />
@@ -28,26 +28,55 @@
 					<div id="menu" >
 						<ui:include src="../menu.xhtml" />						
 					</div>
+						
+					<div id="pesq" align="center">
+						<h:form id="pesquisa">
+							<h:panelGrid id="painelGrid" columns="5">
+							
+								<h:outputText id="nomePesq" value="Nome: " />
+								<p:inputText id="pesqNome" value="#" size="10" />
+
+								<p:commandButton id="buttonPesquisa" value="Pesquisar"
+									title="Para exibir todos apenas click em Pesquisar"
+									actionListener="#" ajax="false" update="corpo" />
+									
+							</h:panelGrid>
+						</h:form>
+					</div>
 					<div id="corpo">
-							<h:form id="form">  
-									<p:dataTable var="sala" value="#{salaManager.listarSalas}" paginator="true" style="width: 90%; margin-top: 20px;">
-									    	<p:column headerText="Nome">
-									    		<h:outputText value=" #{sala.nome}" />
-									    	</p:column>
-									    	
-									    	<p:column headerText="Tipo de sala">
-									    		<h:outputText value="#{sala.tipoSala}" />
-									    	</p:column>
-									    	
-									    	<p:column headerText="Capacidade">
-									    		<h:outputText value="#{sala.capacidade}" />
-									    	</p:column>
-									    	
-									    	<p:column headerText="Observação">
-									    		<h:outputText value="#{sala.observacao}" />
-									    	</p:column>
-        							</p:dataTable>
-							</h:form>
+						<h:form id="form">  
+							<p:dataTable var="sala" value="#{salaManager.listarSalas}" paginator="true" style="width: 90%; margin-top: 20px;">
+							
+						    	<p:column headerText="Nome">
+						    		<h:outputText value=" #{sala.nome}" />
+						    	</p:column>
+						    	
+						    	<p:column headerText="Tipo de sala">
+						    		<h:outputText value="#{sala.tipoSala}" />
+						    	</p:column>
+						    	
+						    	<p:column headerText="Capacidade">
+						    		<h:outputText value="#{sala.capacidade}" />
+						    	</p:column>
+						    	
+						    	<p:column headerText="Observação">
+						    		<h:outputText value="#{sala.observacao}" />
+						    	</p:column>
+
+								<p:column style="width: 5%">
+									<f:facet name="header">Editar</f:facet>
+									<p:commandButton ajax="false" action="#{salaManager.pegarSala(sala)}" id="editButton"
+										icon="ui-icon-pencil" title="Editar" />
+								</p:column>
+
+								<p:column style="width: 5%">
+									<f:facet name="header">Excluir</f:facet>
+									<p:commandButton update="corpo" ajax="false" action="#"
+										id="deleteButton" icon="ui-icon-closethick" title="Deletar" />
+								</p:column>
+
+							</p:dataTable>
+						</h:form>
 					</div>
                 </p:layoutUnit>
             </p:layout>

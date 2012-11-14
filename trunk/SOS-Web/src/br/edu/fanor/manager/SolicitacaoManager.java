@@ -20,7 +20,7 @@ public class SolicitacaoManager {
 	@EJB private SolicitacaoService solicitacaoService;
 	
 	private List<Solicitacao> listaSolicitacaoPendente = new ArrayList<Solicitacao>();
-
+	
 	public List<Solicitacao> getListaSolicitacaoPendente(){
 		List<Solicitacao> list = solicitacaoService.listSolicitacaoPendente();
 		return list;
@@ -37,5 +37,5 @@ public class SolicitacaoManager {
 	public void setSolicitacaoService(SolicitacaoService solicitacaoService) {
 		this.solicitacaoService = solicitacaoService;
 	}
-	
+
 }

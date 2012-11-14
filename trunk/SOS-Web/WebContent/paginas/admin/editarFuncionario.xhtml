@@ -19,21 +19,26 @@
 	<h:body>
 		<div id="global">
 			<p:layout fullPage="true">
+			
 				<p:layoutUnit id="bottom" position="south" size="30">
 					<ui:include src="../rodape.xhtml" />
 				</p:layoutUnit>
+				
 				<p:layoutUnit id="center" position="center">
+				
 					<div id="menu">
 						<ui:include src="../menu.xhtml" />
 					</div>
+					
 					<div id="corpo">
 						<p:growl id="growl" showDetail="true" sticky="true" />
+						
 						<h:form>
 							<p:panel header="Cadastro de Usuario" id="panelcorpo">
 								<h:panelGrid>
 
-									<h:inputHidden id="idUsuario"
-										value="#{usuarioManager.usuario.id}" />
+									<h:inputHidden id="idUsuario" value="#{usuarioManager.usuario.id}" />
+									
 									<h:outputText value="nome: " />
 									<p:inputText value="#{usuarioManager.usuario.nome}"
 										required="true" requiredMessage="Campo Obrigatório." />
@@ -44,6 +49,7 @@
 										<f:ajax event="blur" listener="#{usuarioManager.validaEmail}"
 											render="emailException" />
 									</p:inputText>
+									
 									<h:outputText id="emailException"
 										value="#{usuarioManager.msgEmailException}" />
 
@@ -59,10 +65,17 @@
 
 									<h:outputText value="Senha: " />
 									<p:password value="#{usuarioManager.usuario.senha}"
-									required="true" promptLabel="Digite uma senha segura" weakLabel="Razoável" goodLabel="Boa" 
-									strongLabel="Ótima" feedback="true"  minLength="6" maxlength="15"
-									requiredMessage="O campo senha deve conter no minimo 6 caracteres."
-									match="pwd2" validatorMessage="senha digitada incorretamente" redisplay="true" />
+										required="true" promptLabel="Digite uma senha segura" 
+										weakLabel="Razoável"
+										goodLabel="Boa" 
+										strongLabel="Ótima"
+										feedback="true" 
+										minLength="6"
+										maxlength="15"
+										requiredMessage="O campo senha deve conter no minimo 6 caracteres."
+										match="pwd2"
+										validatorMessage="senha digitada incorretamente"
+										redisplay="true" />
 										
 									<h:outputText value="Confirmar Senha: " />
 									<p:password id="pwd2" value="#{usuarioManager.usuario.senha}" feedback="false"
@@ -76,6 +89,7 @@
 											action="#{usuarioManager.voltar()}" ajax="false"
 											update="growl" />
 									</p:panelGrid>
+									
 								</h:panelGrid>
 								<h:message for="panelcorpo"></h:message>
 							</p:panel>
