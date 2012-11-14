@@ -19,3 +19,7 @@ INSERT INTO permissoes (id, tipo, "value", perfiladmin_id) VALUES (nextval('seq_
 INSERT INTO acessorios (id, descricao, nome) VALUES (nextval('seq_acessorios'), 'Projeta imagens', 'Projetor');
 INSERT INTO acessorios (id, descricao, nome) VALUES (nextval('seq_acessorios'), 'Pinceis para quadro branco', 'Pinceis');
 INSERT INTO acessorios (id, descricao, nome) VALUES (nextval('seq_acessorios'), 'Quadro para maior interação', 'Quadro Digital');
+
+INSERT INTO salas (id, capacidade, estado, nome, tiposala, observacao) VALUES (nextval('seq_salas'), 40, 'LIVRE', '01', 'Sala de Aula', '');
+INSERT INTO salas (id, capacidade, estado, nome, tiposala, observacao) VALUES (nextval('seq_salas'), 30, 'LIVRE', 'Lab-01', 'Laboratório', '');
+INSERT INTO salas (id, capacidade, estado, nome, tiposala, observacao) VALUES (nextval('seq_salas'), 30, 'LIVRE', '101', 'Auditório', 'Primeiro Andar');
