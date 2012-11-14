@@ -34,17 +34,25 @@ public class ProfessorManager implements Serializable{
 	
 	public String salvarSolicitacao(){
 		//TODO: usar uma variavel statica para saber qual o nome do objeto do usuario na sessao
-		solicitacao.setProfessor((Professor)FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario"));
-		solicitacao.setData(new Date());
-		sincronyzeData(solicitacao, data);
+//		solicitacao.setProfessor((Professor)FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario"));
+//		Professor professor = new Professor();
+//		professor = (Professor) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
+		solicitacao.setId_professor(profLogado().getId());
+//		solicitacao.setData(new Date());
+//		sincronyzeData(solicitacao, data);
 		
-		//TODO: tipo da sala nao salvo (campo inexistente)
 		solicitacaoService.salvaSolicitacao(solicitacao);
 		solicitacao = new Solicitacao();
-		data = null;
-		listaSolicitacao = solicitacaoService.listSolicitacaoProf();
+//		data = null;
+//		listaSolicitacao = solicitacaoService.listSolicitacaoProf(profLogado().getId());
 		infoOk();
 		return "homeProfessor";
+	}
+	
+	private Professor profLogado(){
+		Professor professor = new Professor();
+		professor = (Professor) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
+		return professor;
 	}
 	
 	public void sincronyzeData(Solicitacao solicitacao, Date date){
@@ -78,8 +86,10 @@ public class ProfessorManager implements Serializable{
 	}
 
 	public List<Solicitacao> getListaSolicitacao() {
-			listaSolicitacao = solicitacaoService.listSolicitacaoProf();
-			return listaSolicitacao;
+//		Professor professor = new Professor();
+//		professor = (Professor) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
+		listaSolicitacao = solicitacaoService.listSolicitacaoProf(profLogado().getId());
+		return listaSolicitacao;
 	}
 	
 	public Date getData() {

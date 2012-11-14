@@ -9,13 +9,12 @@
 	xmlns:p="http://primefaces.org/ui" xml:lang="pt" lang="pt-br">
 
 <f:view contentType="text/html">
-
 	<h:head>
 
 		<f:facet name="first">
 			<meta http-equiv="X-UA-Compatible" content="EmulateIE8" />
 			<meta content='text/html; charset=UTF-8' http-equiv="Content-Type" />
-			<title>SOS</title>
+			<title>Sos:Professor</title>
 		</f:facet>
 
 		<h:outputStylesheet name="css/default.css" />
@@ -46,10 +45,9 @@
 										maxlength="3" required="true"
 										requiredMessage="Campo obrigatório" />
 
-
 									<h:outputText value="Data: " />
-									<p:calendar value="#{professorManager.data}"
-										pattern="MM/dd/yyyy" required="true"
+									<p:calendar value="#{professorManager.solicitacao.data}"
+										pattern="dd/MM/yyyy" required="true" 
 										requiredMessage="Campo obrigatório" />
 
 									<h:outputText value="Horário Inicial: " />

@@ -14,7 +14,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.NotNull;
@@ -53,11 +52,16 @@ public class Solicitacao {
 	@Column(name="data_final")
 	private Date dataFinal;
 	
-	@ManyToOne(optional=false)
-	@JoinTable ( name ="professor_solicitacao",
-	inverseJoinColumns = @JoinColumn ( name ="id_professor"),
-	joinColumns = @JoinColumn ( name ="id_solicitacao"))
-	private Professor professor;
+	@NotNull
+	private Long id_professor;
+	
+//	@ManyToOne(optional=false)
+//	@JoinTable ( name ="professor_solicitacao",
+//	inverseJoinColumns = @JoinColumn ( name ="id_professor"),
+//	joinColumns = @JoinColumn ( name ="id_solicitacao"))
+//	private Professor professor;
+	
+	
 	
 	@ManyToMany
 	@JoinTable ( name ="acessorios_solicitacoes",
@@ -108,13 +112,13 @@ public class Solicitacao {
 		this.data = data;
 	}
 
-	public Professor getProfessor() {
-		return professor;
-	}
-
-	public void setProfessor(Professor professor) {
-		this.professor = professor;
-	}
+//	public Professor getProfessor() {
+//		return professor;
+//	}
+//
+//	public void setProfessor(Professor professor) {
+//		this.professor = professor;
+//	}
 	
 	public EstadoSolicitacao getEstado() {
 		return estado;
@@ -154,6 +158,14 @@ public class Solicitacao {
 
 	public void setTipoSala(String tipoSala) {
 		this.tipoSala = tipoSala;
+	}
+
+	public Long getId_professor() {
+		return id_professor;
+	}
+
+	public void setId_professor(Long id_professor) {
+		this.id_professor = id_professor;
 	}
 
 }
