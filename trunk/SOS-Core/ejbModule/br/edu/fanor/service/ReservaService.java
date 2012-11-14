@@ -25,7 +25,8 @@ public class ReservaService extends GenericService<Reserva>{
 		Professor professor = new Professor();
 		professor = (Professor) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
 		
-			solicitacao.setProfessor(professor);
+//			solicitacao.setProfessor(professor);
+			solicitacao.setId_professor(professor.getId());
 			solicitacaoService.salvaSolicitacao(solicitacao);
 			reserva.setSolicitacao(solicitacao);
 			reservaDAO.insert(reserva);

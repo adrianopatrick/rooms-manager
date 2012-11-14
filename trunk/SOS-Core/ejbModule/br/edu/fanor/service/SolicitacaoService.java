@@ -27,8 +27,8 @@ public class SolicitacaoService extends GenericService<Usuario>{
 	 * tem q passar o professor como parametro... e listar apenas as solicita��es
 	 * do respectivo professor passado.
 	 */
-	public List<Solicitacao> listSolicitacaoProf(){
-		List<Solicitacao> list = solicitacaoDAO.findAllProf();
+	public List<Solicitacao> listSolicitacaoProf(Long id){
+		List<Solicitacao> list = solicitacaoDAO.findAllProf(id);
 		return list;
 	}
 	
