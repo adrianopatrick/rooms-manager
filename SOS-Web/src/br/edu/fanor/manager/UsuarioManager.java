@@ -11,6 +11,7 @@ import javax.faces.context.FacesContext;
 
 import br.edu.fanor.entity.Administrador;
 import br.edu.fanor.entity.Professor;
+import br.edu.fanor.entity.Solicitacao;
 import br.edu.fanor.entity.Usuario;
 import br.edu.fanor.exceptions.ValidacaoException;
 import br.edu.fanor.service.UsuarioService;
@@ -25,7 +26,7 @@ public class UsuarioManager extends AbstractMB implements Serializable{
 	private UsuarioService usuarioService;
 	
 	private String msgEmailException;
-	
+	private Solicitacao solicitacao = new Solicitacao();
 	private Usuario usuario = new Usuario();
 	private List<Usuario> listAdmin;
 	private Long tipoUsuario = 0l;
@@ -94,6 +95,11 @@ public class UsuarioManager extends AbstractMB implements Serializable{
 		tipoUsuario = user.getPerfil();
 		setUsuario(user);
 		return "editarFuncionario";
+	}
+	
+	public String pegaSolicitacao(Solicitacao lista){
+		setSolicitacao(lista);
+		return "reservaSala";
 	}
 	
 	public String voltar(){
@@ -183,6 +189,14 @@ public class UsuarioManager extends AbstractMB implements Serializable{
 
 	public void setMsgEmailException(String msgEmailException) {
 		this.msgEmailException = msgEmailException;
+	}
+
+	public Solicitacao getSolicitacao() {
+		return solicitacao;
+	}
+
+	public void setSolicitacao(Solicitacao solicitacao) {
+		this.solicitacao = solicitacao;
 	}
 
 }

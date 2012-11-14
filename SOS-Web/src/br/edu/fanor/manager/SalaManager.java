@@ -32,11 +32,7 @@ public class SalaManager extends AbstractMB implements Serializable{
 	public void salvaSala() throws IOException{
 		FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
 		try {
-//			sala.setAcessorios(acessoriosList); isso nao presta!
 			salaService.save(sala);
-			Long id = salaService.pagaUltimoRegistroSala();
-			System.out.println("aaaaaaaaaaadddddddddddddddddddddddddddddd dd dd dd  " + id);
-//			salaService.salvaAcessoriosDaSala(id, acessoriosList);
 			
 			displayInfoMessageToUser("Sala " + sala.getNome() + " salvo com sucesso.");
 			FacesContext.getCurrentInstance().getExternalContext().redirect("/SOS-Web/paginas/admin/homeAdmin.jsf");
@@ -44,6 +40,12 @@ public class SalaManager extends AbstractMB implements Serializable{
 		} catch (ValidacaoException e) {
 			displayErrorMessageToUser("Erro ao tentar salvar ");
 		}
+	}
+	
+	//TODO criar tela de edição de sala
+	public String pegarSala(Sala sala){
+		setSala(sala);
+		return "";
 	}
 	
 	//TODO implementar métodos para checagem de nova entidade.

@@ -2,7 +2,6 @@ package br.edu.fanor.manager;
 
 import java.io.Serializable;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -82,7 +81,7 @@ public class ReservaManager extends AbstractMB implements Serializable {
 	public void setSolicitacao(Solicitacao solicitacao) {
 		this.solicitacao = solicitacao;
 		reserva.setDataIncial(solicitacao.getData());
-		//TODO: colocar data final em solicitação ou horas de reserva para calcular a data final.
+		//TODO: colocar data final em solicitacao ou horas de reserva para calcular a data final.
 		reserva.setDataFinal(solicitacao.getData());
 	}
 
