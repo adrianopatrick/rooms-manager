@@ -2,6 +2,7 @@ package br.edu.fanor.manager;
 
 import java.io.Serializable;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -29,8 +30,8 @@ public class ReservaManager extends AbstractMB implements Serializable {
 
 	private Solicitacao solicitacao;
 	
-	private Calendar dia;
-
+	private Date dia;
+	
 	private Sala sala = new Sala();
 	
 	private Reserva reserva = new Reserva();
@@ -40,12 +41,12 @@ public class ReservaManager extends AbstractMB implements Serializable {
 
 	@EJB
 	ReservaService reservaService;
-	
-	public void reservarSala(){
+
+	public String reservarSala(){
 		
 		try {
 			reserva.setAdministrador((Administrador)FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario"));
-			
+			synchronizeDates();
 			if (reserva.getSolicitacao() == null) {
 				reserva.setEstadoReserva(EstadoReserva.RESERVADO);
 				reservaService.save(reserva);
@@ -58,20 +59,28 @@ public class ReservaManager extends AbstractMB implements Serializable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return "homeAdmin";
 		
 	}
 
+	private void synchronizeDates() {
+		Calendar d = Calendar.getInstance();
+		d.setTime(dia);
+		
+		Calendar inicio = Calendar.getInstance();
+		inicio.setTime(reserva.getDataIncial());
+		inicio.set(d.get(Calendar.YEAR), d.get(Calendar.MONTH), d.get(Calendar.DATE));
+		reserva.setDataIncial(inicio.getTime());
+		
+		Calendar fim = Calendar.getInstance();
+		fim.setTime(reserva.getDataFinal());
+		fim.set(d.get(Calendar.YEAR), d.get(Calendar.MONTH), d.get(Calendar.DATE));
+		reserva.setDataFinal(fim.getTime());
+	}
+	
 	public List<Usuario> buscaPorNome(String query) {
 		return usuarioService.buscaAutoComplete(query);
 
-	}
-
-	public Sala getSala() {
-		return sala;
-	}
-
-	public void setSala(Sala sala) {
-		this.sala = sala;
 	}
 
 	public Solicitacao getSolicitacao() {
@@ -93,23 +102,29 @@ public class ReservaManager extends AbstractMB implements Serializable {
 		this.usuario = usuario;
 	}
 
-	public Calendar getDia() {
+	public Date getDia() {
 		return dia;
 	}
 
-	public void setDia(Calendar dia) {
+	public Reserva getReserva() {
+		return reserva;
+	}
+	
+	public void setReserva(Reserva reserva) {
+		this.reserva = reserva;
+	}
+	
+	public void setDia(Date dia) {
 		this.dia = dia;
 		
-		Calendar inicio = Calendar.getInstance();
-		inicio.setTime(reserva.getDataIncial());
-		inicio.set(dia.get(Calendar.YEAR), dia.get(Calendar.MONTH), dia.get(Calendar.DATE));
-		reserva.setDataIncial(inicio.getTime());
-		
-		Calendar fim = Calendar.getInstance();
-		fim.setTime(reserva.getDataFinal());
-		fim.set(dia.get(Calendar.YEAR), dia.get(Calendar.MONTH), dia.get(Calendar.DATE));
-		reserva.setDataFinal(fim.getTime());
-		
+	}
+	
+	public Sala getSala() {
+		return sala;
+	}
+
+	public void setSala(Sala sala) {
+		this.sala = sala;
 	}
 
 }

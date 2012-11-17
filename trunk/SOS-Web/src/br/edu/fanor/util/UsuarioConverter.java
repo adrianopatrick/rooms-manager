@@ -1,17 +1,26 @@
 package br.edu.fanor.util;
 
-import javax.ejb.EJB;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 
 import br.edu.fanor.entity.Usuario;
 import br.edu.fanor.service.UsuarioService;
 
 public class UsuarioConverter implements Converter{
 
-	@EJB
 	UsuarioService usuarioService;
+	
+	public UsuarioConverter() {
+		try {
+			InitialContext ctx = new InitialContext();
+			usuarioService = (UsuarioService) ctx.lookup("java:global/SOS-EAR/SOS-Core/UsuarioService");
+		} catch (NamingException e) {
+			e.printStackTrace();
+		}
+	}
 	
 	@Override
 	public Object getAsObject(FacesContext context, UIComponent component,
@@ -19,7 +28,7 @@ public class UsuarioConverter implements Converter{
 		if (value == null || value.trim().equals("")) {  
             return null;  
         }
-		return usuarioService.findById(Usuario.class, value);
+		return usuarioService.findById(Usuario.class, Long.parseLong(value));
 	}
 
 	@Override
