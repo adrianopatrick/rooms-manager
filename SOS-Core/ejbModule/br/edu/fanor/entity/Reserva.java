@@ -106,4 +106,13 @@ public class Reserva {
 		this.solicitacao = solicitacao;
 	}
 
+	public Sala getSala() {
+		return sala;
+	}
+
+	public void setSala(Sala sala) {
+		this.sala = sala;
+	}
+
+	
 }

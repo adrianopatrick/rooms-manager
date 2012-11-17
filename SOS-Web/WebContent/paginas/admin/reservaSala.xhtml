@@ -19,17 +19,17 @@
 	<h:body>
 		<div id="global">
 			<p:layout fullPage="true">
-			
+
 				<p:layoutUnit id="bottom" position="south" size="30">
 					<ui:include src="../rodape.xhtml" />
 				</p:layoutUnit>
-				
+
 				<p:layoutUnit id="center" position="center">
-				
+
 					<div id="menu">
 						<ui:include src="../menu.xhtml" />
 					</div>
-					
+
 					<div id="corpo">
 						<p:growl id="growl" showDetail="true" sticky="true" />
 						<h:form>
@@ -40,20 +40,36 @@
 										completeMethod="#{reservaManager.buscaPorNome}" var="p"
 										itemLabel="#{p.nome}" itemValue="#{p}" forceSelection="true"
 										minQueryLength="3" />
-										
-									<h:outputText value="Sala: " />
-									<p:inputText id="sala"
-										value=#{reservaManager.reserva.sala.nome} size="5"
-										required="true" requiredMessage="Selecione uma sala" />
-										
+
+									<h:panelGroup>
+										<h:outputText value="Sala: " />
+
+										<p:inputText id="sala" value="#{reservaManager.sala.nome}"
+											size="5" required="true" requiredMessage="Selecione uma sala"
+											disabled="true" />
+
+										<p:commandButton value="Selecionar" actionListener="#{reservaManager.carregaPesquisa()}"
+											update=":pesqSalaDialogForm"
+											onclick="pesqSalaDialogWidget.show();" />
+									</h:panelGroup>
+
 									<h:outputText value="Dia: " />
-									<p:calendar value="#{reservaManager.dia}" pattern="MM/dd/yyyy" /> 
-									 
+									<p:calendar value="#{reservaManager.dia}" pattern="MM/dd/yyyy" />
+
 									<h:outputText value="Hora Inicial: " />
-									<p:calendar value="#{reservaManager.reserva.dataIncial}" pattern="HH:mm" timeOnly="true" />
-									
+									<p:calendar value="#{reservaManager.reserva.dataIncial}"
+										pattern="HH:mm" timeOnly="true" />
+
 									<h:outputText value="Hora Final: " />
-									<p:calendar value="#{reservaManager.reserva.dataFinal}" pattern="HH:mm" timeOnly="true" />  
+									<p:calendar value="#{reservaManager.reserva.dataFinal}"
+										pattern="HH:mm" timeOnly="true" />
+
+									<h:outputText value="Observação: " />
+									<h:inputTextarea value="#{reservaManager.reserva.observacao}"
+										cols="50" rows="7" />
+
+									<p:commandButton style="float:right;" value="Reservar"
+										action="#{reservaManager.reservarSala}" ajax="false" />
 								</h:panelGrid>
 							</p:panel>
 						</h:form>
@@ -61,7 +77,7 @@
 				</p:layoutUnit>
 			</p:layout>
 		</div>
-
+		<ui:include src="pesqSalas.xhtml" />
 	</h:body>
 
 </f:view>
