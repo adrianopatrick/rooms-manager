@@ -6,15 +6,20 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
+
+import org.primefaces.event.SelectEvent;
 
 import br.edu.fanor.entity.Acessorio;
 import br.edu.fanor.entity.Sala;
 import br.edu.fanor.exceptions.ValidacaoException;
 import br.edu.fanor.service.SalaService;
+import br.edu.fanor.util.SalaDataModel;
+import br.edu.fanor.util.SalaListener;
 
-@RequestScoped
+@SessionScoped
 @ManagedBean
 public class SalaManager extends AbstractMB implements Serializable{
 
@@ -24,9 +29,12 @@ public class SalaManager extends AbstractMB implements Serializable{
 	SalaService salaService;
 	
 	private List<Sala> listarSalas;
+	private SalaDataModel salasDisponiveis;
 	private List<Acessorio> acessoriosList;
 	private Sala sala = new Sala();
 	private Integer tipoSala = 0;
+	
+	private SalaListener salaListener;
 
 	//TODO Tratar Exception
 	public void salvaSala() throws IOException{
@@ -61,6 +69,18 @@ public class SalaManager extends AbstractMB implements Serializable{
 	public void listarTodasSalas() {
 		listarSalas = salaService.listarTodas();
 	}
+	
+	public void listarSalasDisponiveis(ActionEvent event){
+		salasDisponiveis = new SalaDataModel(salaService.listarSalasDisponiveis(null, null));
+		for (Sala sala2 : salasDisponiveis) {
+			System.out.println(sala2.getNome());
+		}
+		
+	}
+	
+	public void onRowSelect(SelectEvent event) {
+		salaListener.selecionaSalaDisponivel((Sala) event.getObject());
+    }
 	
 	public void findByQtd(){
 		listarSalas =  salaService.findByQtd(sala.getCapacidade());
@@ -100,6 +120,31 @@ public class SalaManager extends AbstractMB implements Serializable{
 
 	public void setAcessoriosList(List<Acessorio> acessoriosList) {
 		this.acessoriosList = acessoriosList;
+	}
+
+	public SalaListener getSalaListener() {
+		if (salaListener == null) {
+			salaListener = new SalaListener() {
+				
+				@Override
+				public void selecionaSalaDisponivel(Sala sala) {
+					System.out.println("vc deve setar o salaListener");
+				}
+			};
+		}
+		return salaListener;
+	}
+
+	public void setSalaListener(SalaListener salaListener) {
+		this.salaListener = salaListener;
+	}
+	
+	public SalaDataModel getSalasDisponiveis() {
+		return salasDisponiveis;
+	}
+
+	public void setSalasDisponiveis(SalaDataModel salasDisponiveis) {
+		this.salasDisponiveis = salasDisponiveis;
 	}
 
 }

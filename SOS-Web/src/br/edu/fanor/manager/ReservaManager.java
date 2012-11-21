@@ -7,8 +7,10 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
 
 import br.edu.fanor.entity.Administrador;
 import br.edu.fanor.entity.Reserva;
@@ -19,6 +21,7 @@ import br.edu.fanor.enums.EstadoReserva;
 import br.edu.fanor.exceptions.ValidacaoException;
 import br.edu.fanor.service.ReservaService;
 import br.edu.fanor.service.UsuarioService;
+import br.edu.fanor.util.SalaListener;
 
 @SessionScoped
 @ManagedBean
@@ -32,10 +35,15 @@ public class ReservaManager extends AbstractMB implements Serializable {
 	
 	private Date dia;
 	
-	private Sala sala = new Sala();
+//	private Sala sala = new Sala();
 	
 	private Reserva reserva = new Reserva();
-
+	
+	private List<Sala> salas;
+	
+	@ManagedProperty(value = "#{salaManager}")
+	private SalaManager salaManager;
+	
 	@EJB
 	UsuarioService usuarioService;
 
@@ -62,7 +70,7 @@ public class ReservaManager extends AbstractMB implements Serializable {
 		return "homeAdmin";
 		
 	}
-
+	
 	private void synchronizeDates() {
 		Calendar d = Calendar.getInstance();
 		d.setTime(dia);
@@ -78,6 +86,16 @@ public class ReservaManager extends AbstractMB implements Serializable {
 		reserva.setDataFinal(fim.getTime());
 	}
 	
+	public void carregaPesquisa(ActionEvent event){
+		salaManager.setSalaListener(new SalaListener() {
+			
+			@Override
+			public void selecionaSalaDisponivel(Sala sala) {
+				reserva.setSala(sala);
+			}
+		});
+	}
+	
 	public List<Usuario> buscaPorNome(String query) {
 		return usuarioService.buscaAutoComplete(query);
 
@@ -90,7 +108,6 @@ public class ReservaManager extends AbstractMB implements Serializable {
 	public void setSolicitacao(Solicitacao solicitacao) {
 		this.solicitacao = solicitacao;
 		reserva.setDataIncial(solicitacao.getData());
-		//TODO: colocar data final em solicitacao ou horas de reserva para calcular a data final.
 		reserva.setDataFinal(solicitacao.getData());
 	}
 
@@ -119,12 +136,29 @@ public class ReservaManager extends AbstractMB implements Serializable {
 		
 	}
 	
-	public Sala getSala() {
-		return sala;
+//	public Sala getSala() {
+//		return sala;
+//	}
+//
+//	public void setSala(Sala sala) {
+//		this.sala = sala;
+//	}
+
+	public List<Sala> getSalas() {
+		return salas;
 	}
 
-	public void setSala(Sala sala) {
-		this.sala = sala;
+	public void setSalas(List<Sala> salas) {
+		this.salas = salas;
 	}
+	
+	public SalaManager getSalaManager() {
+		return salaManager;
+	}
+
+	public void setSalaManager(SalaManager salaManager) {
+		this.salaManager = salaManager;
+	}
+
 
 }
