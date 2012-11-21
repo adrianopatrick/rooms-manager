@@ -9,8 +9,6 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
@@ -32,7 +30,7 @@ public class Reserva {
 
 	@Column(name = "data_inicial")
 	//@Temporal(TemporalType.TIMESTAMP)
-	private Date dataIncial;
+	private Date dataInicial;
 
 	@Column(name = "data_final")
 	//@Temporal(TemporalType.TIMESTAMP)
@@ -44,10 +42,7 @@ public class Reserva {
 	@OneToOne
 	private Solicitacao solicitacao;
 
-	@ManyToOne
-	@JoinTable(name = "administrador_reserva", 
-		inverseJoinColumns = @JoinColumn(name = "id_administrador"), 
-		joinColumns = @JoinColumn(name = "id_reserva"))
+	@ManyToOne(optional=false)
 	private Administrador administrador;
 
 	public Long getId() {
@@ -67,11 +62,11 @@ public class Reserva {
 	}
 
 	public Date getDataIncial() {
-		return dataIncial;
+		return dataInicial;
 	}
 
 	public void setDataIncial(Date dataIncial) {
-		this.dataIncial = dataIncial;
+		this.dataInicial = dataIncial;
 	}
 
 	public Date getDataFinal() {

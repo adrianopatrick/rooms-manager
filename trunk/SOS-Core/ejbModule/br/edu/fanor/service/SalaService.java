@@ -1,13 +1,13 @@
 package br.edu.fanor.service;
 
 
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 import br.edu.fanor.dao.SalaDAO;
-import br.edu.fanor.entity.Acessorio;
 import br.edu.fanor.entity.Sala;
 
 @Stateless
@@ -34,10 +34,14 @@ public class SalaService extends GenericService<Sala>{
 		return salaDAO.pagaUltimoRegistroSala();
 	}
 
-	public void salvaAcessoriosDaSala(Long id, List<Acessorio> acessoriosList) {
-		for (int i = 0; i < acessoriosList.size(); i++) {
-			salaDAO.salvaAcessoriosDaSala(id, acessoriosList.get(i));
-		}
+//	public void salvaAcessoriosDaSala(Long id, List<Acessorio> acessoriosList) {
+//		for (int i = 0; i < acessoriosList.size(); i++) {
+//			salaDAO.salvaAcessoriosDaSala(id, acessoriosList.get(i));
+//		}
+//	}
+	
+	public List<Sala> listarSalasDisponiveis(Date inicio, Date fim) {
+		return salaDAO.listarSalasDisponiveis(inicio, fim);
 	}
 
 }
