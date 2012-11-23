@@ -31,8 +31,8 @@
 					</div>
 
 					<div id="corpo">
-						<p:growl id="growl" showDetail="true" sticky="true" life="3000"/>
-						
+						<p:growl id="growl" showDetail="true" sticky="true" life="3000" />
+
 						<h:form id="reserva">
 							<p:panel header="Reserva de Sala" id="panelcorpo">
 								<h:panelGrid>
@@ -42,28 +42,31 @@
 										itemLabel="#{p.nome}" itemValue="#{p}" forceSelection="true"
 										minQueryLength="3" />
 
-									<h:panelGroup >
+									<h:panelGroup>
 										<h:outputText value="Sala: " />
 
-										<p:inputText id="sala" value="#{reservaManager.reserva.sala.nome}"
-											size="5" required="true" requiredMessage="Selecione uma sala"
+										<p:inputText id="sala"
+											value="#{reservaManager.reserva.sala.nome}" size="5"
+											required="true" requiredMessage="Selecione uma sala"
 											disabled="true" />
 
-										<p:commandButton value="Selecionar" actionListener="#{reservaManager.carregaPesquisa}"
+										<p:commandButton value="Selecionar"
+											actionListener="#{reservaManager.carregaPesquisa}"
 											update=":pesqSalaDialogForm"
 											onclick="pesqSalaDialogWidget.show();" />
 									</h:panelGroup>
 
 									<h:outputText value="Dia: " />
-									<p:calendar value="#{reservaManager.dia}" pattern="MM/dd/yyyy" />
+									<p:calendar value="#{reservaManager.dia}" pattern="MM/dd/yyyy"
+										disabled="true" />
 
 									<h:outputText value="Hora Inicial: " />
 									<p:calendar value="#{reservaManager.reserva.dataIncial}"
-										pattern="HH:mm" timeOnly="true" />
+										pattern="HH:mm" timeOnly="true" disabled="true" />
 
 									<h:outputText value="Hora Final: " />
 									<p:calendar value="#{reservaManager.reserva.dataFinal}"
-										pattern="HH:mm" timeOnly="true" />
+										pattern="HH:mm" timeOnly="true" disabled="true" />
 
 									<h:outputText value="Observação: " />
 									<h:inputTextarea value="#{reservaManager.reserva.observacao}"

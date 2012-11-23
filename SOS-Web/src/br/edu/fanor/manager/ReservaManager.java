@@ -1,7 +1,6 @@
 package br.edu.fanor.manager;
 
 import java.io.Serializable;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -54,7 +53,8 @@ public class ReservaManager extends AbstractMB implements Serializable {
 		
 		try {
 			reserva.setAdministrador((Administrador)FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario"));
-			synchronizeDates();
+//			reserva.setDataIncial(synchronizeDate(reserva.getDataIncial(), dia));
+//			reserva.setDataFinal(synchronizeDate(reserva.getDataFinal(), dia));
 			if (reserva.getSolicitacao() == null) {
 				reserva.setEstadoReserva(EstadoReserva.RESERVADO);
 				reservaService.save(reserva);
@@ -71,27 +71,30 @@ public class ReservaManager extends AbstractMB implements Serializable {
 		
 	}
 	
-	private void synchronizeDates() {
-		Calendar d = Calendar.getInstance();
-		d.setTime(dia);
-		
-		Calendar inicio = Calendar.getInstance();
-		inicio.setTime(reserva.getDataIncial());
-		inicio.set(d.get(Calendar.YEAR), d.get(Calendar.MONTH), d.get(Calendar.DATE));
-		reserva.setDataIncial(inicio.getTime());
-		
-		Calendar fim = Calendar.getInstance();
-		fim.setTime(reserva.getDataFinal());
-		fim.set(d.get(Calendar.YEAR), d.get(Calendar.MONTH), d.get(Calendar.DATE));
-		reserva.setDataFinal(fim.getTime());
-	}
+//	private void synchronizeDates() {
+//		Calendar d = Calendar.getInstance();
+//		d.setTime(dia);
+//		
+//		Calendar inicio = Calendar.getInstance();
+//		inicio.setTime(reserva.getDataIncial());
+//		inicio.set(d.get(Calendar.YEAR), d.get(Calendar.MONTH), d.get(Calendar.DATE));
+//		reserva.setDataIncial(inicio.getTime());
+//		
+//		Calendar fim = Calendar.getInstance();
+//		fim.setTime(reserva.getDataFinal());
+//		fim.set(d.get(Calendar.YEAR), d.get(Calendar.MONTH), d.get(Calendar.DATE));
+//		reserva.setDataFinal(fim.getTime());
+//	}
 	
 	public void carregaPesquisa(ActionEvent event){
 		salaManager.setSalaListener(new SalaListener() {
 			
 			@Override
 			public void selecionaSalaDisponivel(Sala sala) {
+				dia = salaManager.getDia();
 				reserva.setSala(sala);
+				reserva.setDataIncial(salaManager.getDataInicio());
+				reserva.setDataFinal(salaManager.getDataFim());
 			}
 		});
 	}

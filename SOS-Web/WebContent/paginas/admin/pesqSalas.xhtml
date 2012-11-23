@@ -13,44 +13,45 @@
 		<h:form id="pesqSalaDialogForm" title="Pesquisar">
 			<h:panelGrid columns="9">
 			
-<!-- 				<h:outputText value="Nome sala: " />
-				<p:inputText value="" size="5" />
+				<h:outputText value="Dia: " />
+				<p:calendar value="#{salaManager.dia}" pattern="MM/dd/yyyy"
+					mindate="#{salaManager.currentDate()}" required="true" size="12" />
 
-				<h:outputText value="Capacidade: " />
-				<p:inputText value="" size="5" />
+				<h:outputText value="Hora Inicial: " />
+				<p:calendar value="#{salaManager.dataInicio}" size="5"
+					pattern="HH:mm" timeOnly="true" />
 
-				<h:outputText value="Tipo de sala: " />
-				<p:selectOneMenu value="" effect="fade">
-					<f:selectItem itemLabel="selecione" itemValue="" />
-					<f:selectItem itemLabel="Sala" itemValue="1" />
-					<f:selectItem itemLabel="Laboratorio" itemValue="2" />
-					<f:selectItem itemLabel="Auditorio" itemValue="3" />
-				</p:selectOneMenu>
- -->
-				<p:commandButton value="Pesquisar" actionListener="#{salaManager.listarSalasDisponiveis}" update=":salas" />
+				<h:outputText value="Hora Final: " />
+				<p:calendar value="#{salaManager.dataFim}" size="5" pattern="HH:mm"
+					timeOnly="true" />
+
+				<p:commandButton value="Pesquisar"
+					actionListener="#{salaManager.listarSalasDisponiveis}"
+					update=":salas" />
+
 			</h:panelGrid>
 		</h:form>
 
-			<p:dataTable id="salas" var="sala"
-				value="#{salaManager.salasDisponiveis}" paginator="true" rows="10"
-				selectionMode="single">
+		<p:dataTable id="salas" var="sala"
+			value="#{salaManager.salasDisponiveis}" paginator="true" rows="10"
+			selectionMode="single">
 
-				<p:ajax event="rowSelect" listener="#{salaManager.onRowSelect}"
-					oncomplete="pesqSalaDialogWidget.hide()" update=":reserva" />
+			<p:ajax event="rowSelect" listener="#{salaManager.onRowSelect}"
+				oncomplete="pesqSalaDialogWidget.hide()" update=":reserva" />
 
-				<f:facet name="header">
+			<f:facet name="header">
             		Selecione a sala para a reserva.
         		</f:facet>
 
-				<p:column headerText="Nome">
+			<p:column headerText="Nome">
             		#{sala.nome}
         		</p:column>
 
-				<p:column headerText="Capacidade">
+			<p:column headerText="Capacidade">
             		#{sala.capacidade}
         		</p:column>
 
-			</p:dataTable>
+		</p:dataTable>
 
 	</p:dialog>
 </h:body>

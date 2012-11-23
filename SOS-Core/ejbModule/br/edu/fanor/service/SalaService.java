@@ -1,6 +1,7 @@
 package br.edu.fanor.service;
 
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -8,6 +9,7 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 import br.edu.fanor.dao.SalaDAO;
+import br.edu.fanor.entity.Acessorio;
 import br.edu.fanor.entity.Sala;
 
 @Stateless
@@ -44,4 +46,26 @@ public class SalaService extends GenericService<Sala>{
 		return salaDAO.listarSalasDisponiveis(inicio, fim);
 	}
 
+	public List<Sala> listarSalasDisponiveis(Date inicio, Date fim, List<Acessorio> acessorios) {
+		return filtrarAcessorios(salaDAO.listarSalasDisponiveis(inicio, fim), acessorios);
+	}
+	
+	public List<Sala> filtrarAcessorios(List<Sala> salas, List<Acessorio> acessorios){
+		List<Sala> result = new ArrayList<Sala>();
+		
+		for (Sala sala : salas) {
+			boolean pass = true;
+			for (Acessorio acessorio : acessorios) {
+				if (!sala.getAcessorios().contains(acessorio)) {
+					pass = false;
+				}
+			}
+			if (pass) {
+				result.add(sala);
+			}
+		}
+		
+		return result;
+	}
+	
 }
