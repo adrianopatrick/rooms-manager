@@ -43,11 +43,21 @@ public class SalaService extends GenericService<Sala>{
 //	}
 	
 	public List<Sala> listarSalasDisponiveis(Date inicio, Date fim) {
-		return salaDAO.listarSalasDisponiveis(inicio, fim);
+		return listarSalasDisponiveis(inicio, fim, null, null, null);
+	}
+	
+	public List<Sala> listarSalasDisponiveis(Date inicio, Date fim, Integer qtdAlunos, String tipoSala) {
+		return listarSalasDisponiveis(inicio, fim, qtdAlunos, tipoSala, null);
 	}
 
-	public List<Sala> listarSalasDisponiveis(Date inicio, Date fim, List<Acessorio> acessorios) {
-		return filtrarAcessorios(salaDAO.listarSalasDisponiveis(inicio, fim), acessorios);
+	public List<Sala> listarSalasDisponiveis(Date inicio, Date fim, Integer qtdAlunos, String tipoSala, List<Acessorio> acessorios) {
+		List<Sala> salas = salaDAO.listarSalasDisponiveis(inicio, fim, qtdAlunos, tipoSala);
+		
+		if (acessorios != null) {
+			salas = filtrarAcessorios(salas, acessorios);
+		}
+		
+		return salas;
 	}
 	
 	public List<Sala> filtrarAcessorios(List<Sala> salas, List<Acessorio> acessorios){
