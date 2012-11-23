@@ -52,8 +52,20 @@ public class Solicitacao {
 	@Column(name="data_final")
 	private Date dataFinal;
 	
+	//TODO: (Herbeth) isso está errado.... nao existe relacionamento aki.... sem contar o nome da variavel com "_"
+	//      por favor ne vamos seguir as boa praticas né
 	@NotNull
 	private Long id_professor;
+	// mudar para isso... 
+	//
+	// @ManyToOne(optional=false)
+	// private Professor professor;
+	//
+	// nao vai gerar outra tabela da mesma forma... 
+	// masta deixar sem o jointable e ele vai apenas criar o campo do id_professor 
+	// com o relacionamento existindo, assim como a reserva tem Administrador...
+	// se vc verificar ele nao gera a tabela .... mas o relacionamento é kuase igual
+	
 	
 //	@ManyToOne(optional=false)
 //	@JoinTable ( name ="professor_solicitacao",

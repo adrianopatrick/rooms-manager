@@ -2,7 +2,6 @@ package br.edu.fanor.manager;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -18,7 +17,7 @@ import br.edu.fanor.service.SolicitacaoService;
 
 @ManagedBean
 @SessionScoped
-public class ProfessorManager implements Serializable{
+public class ProfessorManager extends AbstractMB implements Serializable{
 	
 	private static final long serialVersionUID = -7652074045374161311L;
 
@@ -39,7 +38,9 @@ public class ProfessorManager implements Serializable{
 //		professor = (Professor) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
 		solicitacao.setId_professor(profLogado().getId());
 //		solicitacao.setData(new Date());
-//		sincronyzeData(solicitacao, data);
+		solicitacao.setDataInicial(synchronizeDate(solicitacao.getDataInicial(), data));
+		solicitacao.setDataFinal(synchronizeDate(solicitacao.getDataFinal(), data));
+		
 		
 		solicitacaoService.salvaSolicitacao(solicitacao);
 		solicitacao = new Solicitacao();
@@ -55,20 +56,7 @@ public class ProfessorManager implements Serializable{
 		return professor;
 	}
 	
-	public void sincronyzeData(Solicitacao solicitacao, Date date){
-		Calendar data = Calendar.getInstance();
-		data.setTime(date);
-		
-		Calendar dataInicial = Calendar.getInstance();
-		dataInicial.setTime(solicitacao.getDataInicial());
-		dataInicial.set(data.get(Calendar.YEAR), data.get(Calendar.MONTH), data.get(Calendar.DATE));
-		solicitacao.setDataInicial(dataInicial.getTime());
-		
-		Calendar dataFinal = Calendar.getInstance();
-		dataFinal.setTime(solicitacao.getDataFinal());
-		dataFinal.set(data.get(Calendar.YEAR), data.get(Calendar.MONTH), data.get(Calendar.DATE));
-		solicitacao.setDataFinal(dataFinal.getTime());
-	}
+
 	
 	public void infoOk() {  
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Mensagem:", "Solicitação enviada com sucesso."));  

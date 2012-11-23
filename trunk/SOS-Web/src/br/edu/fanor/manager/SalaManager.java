@@ -2,6 +2,7 @@ package br.edu.fanor.manager;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -29,10 +30,16 @@ public class SalaManager extends AbstractMB implements Serializable{
 	SalaService salaService;
 	
 	private List<Sala> listarSalas;
-	private SalaDataModel salasDisponiveis;
+	
 	private List<Acessorio> acessoriosList;
 	private Sala sala = new Sala();
 	private Integer tipoSala = 0;
+
+	
+	private SalaDataModel salasDisponiveis;
+	private Date dia;
+	private Date dataInicio;
+	private Date dataFim;
 	
 	private SalaListener salaListener;
 
@@ -66,16 +73,18 @@ public class SalaManager extends AbstractMB implements Serializable{
 		return !checarNovo();
 	}
 	
+	public Date currentDate(){
+		return new Date();
+	}
+	
 	public void listarTodasSalas() {
 		listarSalas = salaService.listarTodas();
 	}
 	
 	public void listarSalasDisponiveis(ActionEvent event){
-		salasDisponiveis = new SalaDataModel(salaService.listarSalasDisponiveis(null, null));
-		for (Sala sala2 : salasDisponiveis) {
-			System.out.println(sala2.getNome());
-		}
-		
+		dataInicio = synchronizeDate(dataInicio, dia);
+		dataFim = synchronizeDate(dataFim, dia);
+		salasDisponiveis = new SalaDataModel(salaService.listarSalasDisponiveis(dataInicio, dataFim));
 	}
 	
 	public void onRowSelect(SelectEvent event) {
@@ -145,6 +154,30 @@ public class SalaManager extends AbstractMB implements Serializable{
 
 	public void setSalasDisponiveis(SalaDataModel salasDisponiveis) {
 		this.salasDisponiveis = salasDisponiveis;
+	}
+
+	public Date getDataInicio() {
+		return dataInicio;
+	}
+
+	public void setDataInicio(Date dataInicio) {
+		this.dataInicio = dataInicio;
+	}
+
+	public Date getDataFim() {
+		return dataFim;
+	}
+
+	public void setDataFim(Date dataFim) {
+		this.dataFim = dataFim;
+	}
+
+	public Date getDia() {
+		return dia;
+	}
+
+	public void setDia(Date dia) {
+		this.dia = dia;
 	}
 
 }

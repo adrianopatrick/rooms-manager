@@ -53,11 +53,16 @@ public class SalaDAO extends GenericDAO<Sala> {
 	
 	
 	@SuppressWarnings("unchecked")
-	public List<Sala> listarSalasDisponiveis(Date inicio, Date fim) {		
-		//TODO: parametrizar datas. e filtrar acessorios
-		Query query = getEntityManager().createQuery("select r.sala.id from reservas r where not (('2012-11-07 06:00:00' < r.dataInicial and '2012-11-07 07:30:00' <= r.dataInicial) or ('2012-11-07 06:00:00' >= r.dataFinal and '2012-11-07 07:30:00' > r.dataFinal))");
+	public List<Sala> listarSalasDisponiveis(Date inicio, Date fim) {
+		Query query = getEntityManager().createQuery("select r.sala.id from reservas r where not ((:inicio < r.dataInicial and :fim <= r.dataInicial) or (:inicio >= r.dataFinal and :fim > r.dataFinal))");
+		query.setParameter("inicio", inicio);
+		query.setParameter("fim", fim);
 		Criteria qSala = getCriteria(Sala.class);
-		qSala.add(Restrictions.not(Restrictions.in("id", query.getResultList())));
+		List<?> list = query.getResultList();
+		if (!list.isEmpty()) {
+			qSala.add(Restrictions.not(Restrictions.in("id", list)));
+		}
 		return (List<Sala>) qSala.list();
 	}
+	
 }
