@@ -15,8 +15,8 @@ public class SolicitacaoDAO extends GenericDAO<Solicitacao>{
 	@SuppressWarnings("unchecked")
 	public List<Solicitacao> findAllProf(Long id) {
 		List<Solicitacao> list = new ArrayList<Solicitacao>();
-		Query query = getEntityManager().createQuery("from solicitacoes where id_professor = :id");
-		query.setParameter("id", id);
+		Query query = getEntityManager().createQuery("from solicitacoes");
+//		query.setParameter("id", id);
 		list = query.getResultList();
 		return list;
 	}
