@@ -4,9 +4,9 @@ INSERT INTO perfis_admins (id,nome) VALUES (nextval('seq_perfis_admins'), 'maste
 INSERT INTO perfis_admins (id,nome) VALUES (nextval('seq_perfis_admins'), 'basic');
 INSERT INTO perfis_admins (id,nome) VALUES (nextval('seq_perfis_admins'), 'externo');
 
-INSERT INTO usuarios (dtype, id, email, nome, senha, perfil) VALUES ('administradores', nextval('seq_usuarios'), 'admin', 'Administrador', 'admin', 1);
-INSERT INTO usuarios (dtype, id, email, nome, senha, perfil) VALUES ('administradores', nextval('seq_usuarios'), 'func', 'Funcionario', 'func', 2);
-INSERT INTO usuarios (dtype, id, email, nome, senha, perfil) VALUES ('professores', nextval('seq_usuarios'), 'prof', 'Professor', 'prof', 3);
+INSERT INTO usuarios (dtype, id, email, nome, senha, perfil_id) VALUES ('administradores', nextval('seq_usuarios'), 'admin', 'Administrador', 'admin', 1);
+INSERT INTO usuarios (dtype, id, email, nome, senha, perfil_id) VALUES ('administradores', nextval('seq_usuarios'), 'func', 'Funcionario', 'func', 2);
+INSERT INTO usuarios (dtype, id, email, nome, senha, perfil_id) VALUES ('professores', nextval('seq_usuarios'), 'prof', 'Professor', 'prof', 3);
 
 INSERT INTO permissoes (id, tipo, "value", perfiladmin_id) VALUES (nextval('seq_permissoes'), 2, true,1);
 INSERT INTO permissoes (id, tipo, "value", perfiladmin_id) VALUES (nextval('seq_permissoes'), 3, true,1);

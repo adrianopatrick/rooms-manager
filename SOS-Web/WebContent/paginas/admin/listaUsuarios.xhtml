@@ -32,7 +32,7 @@
 						<h:panelGrid id="painelGrid" columns="5">
 						
 							<h:outputText id="nomePesq" value="Nome: " />
-							<p:inputText id="pesqNome" value="#{usuarioManager.usuario.nome}" size="10" />
+							<p:inputText id="pesqNome" value="#{usuarioManager.nomeUsuario}" size="10" />
 
 							<p:commandButton id="buttonPesquisa" value="Pesquisar"
 								title="Para exibir todos apenas click em Pesquisar"
@@ -44,6 +44,7 @@
 				</div>
 				
 				<div id="corpo">
+				<p:messages id="mensagem" showDetail="true" redisplay="false" autoUpdate="true" closable="true" />
 					<h:form id="teste">
 						<p:dataTable id="tabelaFunc" var="user" paginator="true" rows="10"
 							value="#{usuarioManager.listAdmin}">
@@ -77,8 +78,7 @@
 						</p:dataTable>
 					</h:form>
 				</div>
-				<p:messages id="mensagem" showDetail="true" autoUpdate="true"
-					closable="true" />
+				
 			</p:layoutUnit>
 		</p:layout>
 	</h:body>

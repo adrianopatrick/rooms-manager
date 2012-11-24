@@ -46,7 +46,7 @@
 										requiredMessage="Campo obrigatório" />
 
 									<h:outputText value="Data: " />
-									<p:calendar value="#{professorManager.solicitacao.data}"
+									<p:calendar value="#{professorManager.data}"
 										pattern="dd/MM/yyyy" required="true" 
 										requiredMessage="Campo obrigatório" />
 
@@ -88,7 +88,7 @@
 										update="formSolicitacao">
 									</p:commandButton>
 									<p:messages id="mensagem" showDetail="true" autoUpdate="true"
-										closable="true" />
+										closable="true" redisplay="false" />
 								</h:panelGrid>
 							</p:panel>
 
