@@ -28,6 +28,8 @@ public class UsuarioManager extends AbstractMB implements Serializable{
 	private String msgEmailException;
 	private Solicitacao solicitacao = new Solicitacao();
 	private Usuario usuario = new Usuario();
+	private String nomeUsuario;
+	
 	private List<Usuario> listAdmin;
 	private Long tipoUsuario = 0l;
 	
@@ -40,21 +42,21 @@ public class UsuarioManager extends AbstractMB implements Serializable{
 		FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
 		
 		try {
-			usuario.setPerfil(tipoUsuario);
+//			usuario.setPerfil(perfil);
 			usuarioService.save(usuario);
 
 			displayInfoMessageToUser("Usuário "+usuario.getNome()+" salvo com sucesso.");
-			FacesContext.getCurrentInstance().getExternalContext().redirect("/SOS-Web/paginas/admin/homeAdmin.jsf");
+			FacesContext.getCurrentInstance().getExternalContext().redirect("/SOS-Web/paginas/admin/listaUsuarios.jsf");
 			
 		}catch (Exception e) {
 			displayErrorMessageToUser("Não foi possivel salvar o usuário, verifique os dados informados ou tente mais tarde.");
 		}
+		listaUsuariosPorNome();
 		usuario = null;
 		
 	}
 	
 	public void editar() throws ValidacaoException, IOException{
-		deletarEdit(usuario);
 		if (tipoUsuario == 1 || tipoUsuario == 2) {
 			usuario = new Administrador(usuario);
 		}else {
@@ -63,16 +65,15 @@ public class UsuarioManager extends AbstractMB implements Serializable{
 		FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
 		
 		try {
-			usuario.setPerfil(tipoUsuario);
+//			usuario.setPerfil(tipoUsuario);
 			usuarioService.saveOrUpdate(usuario);
 			displayInfoMessageToUser("Usuário "+usuario.getNome()+" atualizado com sucesso.");
+			FacesContext.getCurrentInstance().getExternalContext().redirect("/SOS-Web/paginas/admin/listaUsuarios.jsf");
+			usuario = null;
 		}catch (Exception e) {
 			displayErrorMessageToUser("Não foi possivel salvar o usuário, verifique os dados informados ou tente mais tarde.");
-		}finally{
-			FacesContext.getCurrentInstance().getExternalContext().redirect("/SOS-Web/paginas/admin/listaUsuarios.jsf");
 		}
-		
-		usuario = null;
+		listaUsuariosPorNome();
 	}
 	
 	public void deletar(Usuario usuario){
@@ -92,7 +93,7 @@ public class UsuarioManager extends AbstractMB implements Serializable{
 	}
 	
 	public String pegar(Usuario user){
-		tipoUsuario = user.getPerfil();
+//		tipoUsuario = user.getPerfil();
 		setUsuario(user);
 		return "editarFuncionario";
 	}
@@ -121,7 +122,7 @@ public class UsuarioManager extends AbstractMB implements Serializable{
 	}
 	
 	public void listaUsuariosPorNome(){
-		listAdmin = usuarioService.pesquisaUsuario(usuario.getNome());
+		listAdmin = usuarioService.pesquisaUsuario(getNomeUsuario());
 	}
 	
 	public void findAllUsuario(){
@@ -148,12 +149,13 @@ public class UsuarioManager extends AbstractMB implements Serializable{
 	}
 
 	public void setUsuario(Usuario usuario) {
-		if (usuario instanceof Professor	) {
+		if (usuario instanceof Professor) {
 			tipoUsuario = 3l;
 		}
-		if (usuario instanceof Administrador && usuario.getPerfil() == 1) {
+		if (usuario instanceof Administrador) {
 			tipoUsuario = 1l;
-		} else {
+		}
+		else {
 			tipoUsuario = 2l;
 		}
 		this.usuario = usuario;
@@ -197,6 +199,17 @@ public class UsuarioManager extends AbstractMB implements Serializable{
 
 	public void setSolicitacao(Solicitacao solicitacao) {
 		this.solicitacao = solicitacao;
+	}
+	
+	public String getNomeUsuario() {
+		if (nomeUsuario == null){
+			return "";
+		} 
+		return nomeUsuario;
+	}
+
+	public void setNomeUsuario(String nomeUsuario) {
+		this.nomeUsuario = nomeUsuario;
 	}
 
 }

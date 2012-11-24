@@ -33,19 +33,14 @@ public class ProfessorManager extends AbstractMB implements Serializable{
 	
 	public String salvarSolicitacao(){
 		//TODO: usar uma variavel statica para saber qual o nome do objeto do usuario na sessao
-//		solicitacao.setProfessor((Professor)FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario"));
-//		Professor professor = new Professor();
-//		professor = (Professor) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
-		solicitacao.setId_professor(profLogado().getId());
-//		solicitacao.setData(new Date());
+		solicitacao.setProfessor((Professor)FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario"));
+		solicitacao.setData(new Date());
 		solicitacao.setDataInicial(synchronizeDate(solicitacao.getDataInicial(), data));
 		solicitacao.setDataFinal(synchronizeDate(solicitacao.getDataFinal(), data));
 		
-		
 		solicitacaoService.salvaSolicitacao(solicitacao);
 		solicitacao = new Solicitacao();
-//		data = null;
-//		listaSolicitacao = solicitacaoService.listSolicitacaoProf(profLogado().getId());
+		data = null; 
 		infoOk();
 		return "homeProfessor";
 	}
@@ -56,11 +51,10 @@ public class ProfessorManager extends AbstractMB implements Serializable{
 		return professor;
 	}
 	
-
-	
 	public void infoOk() {  
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Mensagem:", "Solicitação enviada com sucesso."));  
 	}
+	
 	public void error() {  
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Mensagem:", "Erro ao enviar solicitação, por favor tente mais tarde."));
 	}
@@ -74,8 +68,6 @@ public class ProfessorManager extends AbstractMB implements Serializable{
 	}
 
 	public List<Solicitacao> getListaSolicitacao() {
-//		Professor professor = new Professor();
-//		professor = (Professor) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
 		listaSolicitacao = solicitacaoService.listSolicitacaoProf(profLogado().getId());
 		return listaSolicitacao;
 	}

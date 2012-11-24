@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.NotNull;
@@ -52,19 +53,21 @@ public class Solicitacao {
 	@Column(name="data_final")
 	private Date dataFinal;
 	
-	//TODO: (Herbeth) isso está errado.... nao existe relacionamento aki.... sem contar o nome da variavel com "_"
-	//      por favor ne vamos seguir as boa praticas né
-	@NotNull
-	private Long id_professor;
+	//TODO: (Herbeth) isso esta errado.... nao existe relacionamento aki.... sem contar o nome da variavel com "_"
+	//      por favor ne vamos seguir as boa praticas nï¿½
+	
+//	@NotNull
+//	private Long id_professor;
+	
 	// mudar para isso... 
-	//
-	// @ManyToOne(optional=false)
-	// private Professor professor;
-	//
+	
+	 @ManyToOne(optional=false)
+	 private Professor professor;
+	
 	// nao vai gerar outra tabela da mesma forma... 
 	// masta deixar sem o jointable e ele vai apenas criar o campo do id_professor 
 	// com o relacionamento existindo, assim como a reserva tem Administrador...
-	// se vc verificar ele nao gera a tabela .... mas o relacionamento é kuase igual
+	// se vc verificar ele nao gera a tabela .... mas o relacionamento ï¿½ kuase igual
 	
 	
 //	@ManyToOne(optional=false)
@@ -75,6 +78,14 @@ public class Solicitacao {
 	
 	
 	
+	public Professor getProfessor() {
+		return professor;
+	}
+
+	public void setProfessor(Professor professor) {
+		this.professor = professor;
+	}
+
 	@ManyToMany
 	@JoinTable ( name ="acessorios_solicitacoes",
 	inverseJoinColumns = @JoinColumn ( name ="id_acessorio"),
@@ -172,12 +183,12 @@ public class Solicitacao {
 		this.tipoSala = tipoSala;
 	}
 
-	public Long getId_professor() {
-		return id_professor;
-	}
-
-	public void setId_professor(Long id_professor) {
-		this.id_professor = id_professor;
-	}
+//	public Long getId_professor() {
+//		return id_professor;
+//	}
+//
+//	public void setId_professor(Long id_professor) {
+//		this.id_professor = id_professor;
+//	}
 
 }

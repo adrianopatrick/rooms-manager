@@ -9,6 +9,7 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.NotNull;
@@ -34,9 +35,6 @@ public class Usuario {
 	@NotNull
 	private String senha;
 	
-	@NotNull
-	private Long perfil;
-
 	public Usuario() {
 		super();
 	}
@@ -80,12 +78,4 @@ public class Usuario {
 		this.senha = senha;
 	}
 
-	public Long getPerfil() {
-		return perfil;
-	}
-
-	public void setPerfil(Long perfil) {
-		this.perfil = perfil;
-	}
-	
 }

@@ -16,17 +16,16 @@ public class SolicitacaoService extends GenericService<Usuario>{
 
 	@EJB
 	SolicitacaoDAO solicitacaoDAO;
-
-	public void salvaSolicitacao(Solicitacao solicitacao) {
-		solicitacaoDAO.insert(solicitacao);
-	}
 	
+	public void salvaSolicitacao(Solicitacao solicitacao) {
+//		Professor professor;
+//		professor = (Professor) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
+		
+//		solicitacao.setProfessor(professor);
+		solicitacaoDAO.insert(solicitacao);
 
-	/*
-	 * TODO: pra quem fez esse m�todo..... listar solicita��o professor.... 
-	 * tem q passar o professor como parametro... e listar apenas as solicita��es
-	 * do respectivo professor passado.
-	 */
+	}
+
 	public List<Solicitacao> listSolicitacaoProf(Long id){
 		List<Solicitacao> list = solicitacaoDAO.findAllProf(id);
 		return list;
