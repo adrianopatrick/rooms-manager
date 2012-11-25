@@ -16,15 +16,14 @@ public class SolicitacaoDAO extends GenericDAO<Solicitacao>{
 	public List<Solicitacao> findAllProf(Long id) {
 		List<Solicitacao> list = new ArrayList<Solicitacao>();
 		Query query = getEntityManager().createQuery("from solicitacoes");
-//		query.setParameter("id", id);
 		list = query.getResultList();
 		return list;
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Solicitacao> findAllPendente() {
+	public List<Solicitacao> findSolicitacoesPendentes(){
 		List<Solicitacao> list = new ArrayList<Solicitacao>();
-		Query query = getEntityManager().createQuery("from solicitacoes where estado = 'PENDENTE'");
+		Query query = getEntityManager().createQuery("from solicitacoes s where s.id not in (select r.solicitacao.id from reservas r where r.solicitacao.id = s.id)");
 		list = query.getResultList();
 		return list;
 	}

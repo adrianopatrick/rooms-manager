@@ -18,12 +18,7 @@ public class SolicitacaoService extends GenericService<Usuario>{
 	SolicitacaoDAO solicitacaoDAO;
 	
 	public void salvaSolicitacao(Solicitacao solicitacao) {
-//		Professor professor;
-//		professor = (Professor) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
-		
-//		solicitacao.setProfessor(professor);
 		solicitacaoDAO.insert(solicitacao);
-
 	}
 
 	public List<Solicitacao> listSolicitacaoProf(Long id){
@@ -32,7 +27,7 @@ public class SolicitacaoService extends GenericService<Usuario>{
 	}
 	
 	public List<Solicitacao> listSolicitacaoPendente(){
-		List<Solicitacao> list = solicitacaoDAO.findAllPendente();
+		List<Solicitacao> list = solicitacaoDAO.findSolicitacoesPendentes();
 		return list;
 	}
 

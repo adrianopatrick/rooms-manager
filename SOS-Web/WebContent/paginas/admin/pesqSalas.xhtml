@@ -12,20 +12,20 @@
 		draggable="false" resizable="false">
 		<h:form id="pesqSalaDialogForm" title="Pesquisar">
 			<h:panelGrid columns="9">
-			
-				<h:outputText value="Dia: " />
-				<p:calendar value="#{salaManager.dia}" pattern="MM/dd/yyyy"
+					
+				<h:outputText value=" Dia: " />
+				<p:calendar value="#{salaManager.dia}" pattern="MM/dd/yyyy" 
 					mindate="#{salaManager.currentDate()}" required="true" size="12" />
-
+					
 				<h:outputText value="Hora Inicial: " />
-				<p:calendar value="#{salaManager.dataInicio}" size="5"
+				<p:calendar value="#{salaManager.dataInicio}" size="5" 
 					pattern="HH:mm" timeOnly="true" />
-
-				<h:outputText value="Hora Final: " />
-				<p:calendar value="#{salaManager.dataFim}" size="5" pattern="HH:mm"
+ 
+				<h:outputText value=" Hora Final: " />
+				<p:calendar value="#{salaManager.dataFim}" size="5" pattern="HH:mm" 
 					timeOnly="true" />
 
-				<p:commandButton value="Pesquisar"
+				<p:commandButton value="Pesquisar" id="pesquisa" 
 					actionListener="#{salaManager.listarSalasDisponiveis}"
 					update=":salas" />
 
