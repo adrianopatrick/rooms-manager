@@ -51,24 +51,34 @@ public class ReservaManager extends AbstractMB implements Serializable {
 
 	public String reservarSala(){
 		
+		FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
+		
 		try {
 			reserva.setAdministrador((Administrador)FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario"));
-//			reserva.setDataIncial(synchronizeDate(reserva.getDataIncial(), dia));
-//			reserva.setDataFinal(synchronizeDate(reserva.getDataFinal(), dia));
+			
 			if (reserva.getSolicitacao() == null) {
 				reserva.setEstadoReserva(EstadoReserva.RESERVADO);
 				reservaService.save(reserva);
+				displayInfoMessageToUser("Reservado com sucesso");
 			}else {
 				reserva.setEstadoReserva(EstadoReserva.PENDENTEDEAVISO);
 				reservaService.save(reserva);
+				displayInfoMessageToUser("Reservado com sucesso, aguandando confirmação");
 				//TODO: implementar envio de email
 			}
 		} catch (ValidacaoException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			displayErrorMessageToUser("ERRO impossivel realizar reserva, tente mais tarde");
 		}
 		return "homeAdmin";
 		
+	}
+	
+	public String pegaSolicitacao(Solicitacao lista){
+		this.reserva.setSolicitacao(lista);
+		this.solicitacao = lista; 
+		return "reservaSala";
 	}
 	
 //	private void synchronizeDates() {
@@ -87,6 +97,11 @@ public class ReservaManager extends AbstractMB implements Serializable {
 //	}
 	
 	public void carregaPesquisa(ActionEvent event){
+		if (solicitacao != null) {
+			salaManager.setDataInicio(solicitacao.getDataInicial());
+			salaManager.setDataFim(solicitacao.getDataFinal());
+			salaManager.setDia(solicitacao.getDataFinal());
+		}
 		salaManager.setSalaListener(new SalaListener() {
 			
 			@Override
