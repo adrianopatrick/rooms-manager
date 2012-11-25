@@ -21,124 +21,122 @@
 		<h:outputStylesheet name="css/estilo.css" />
 	</h:head>
 	<h:body id="bodyy">
-		<form id="tudo">
-			<p:layout fullPage="true">
-				<p:layoutUnit id="bottom" position="south" size="60">
-					<ui:include src="../rodape.xhtml" />
-				</p:layoutUnit>
-				<p:layoutUnit id="center" position="center">
-					<h:form id="formMenu">
-						<p:menubar autoSubmenuDisplay="true">
-							<p:menuitem value="Minhas Reservas" url="#" />
-							<p:menuitem value="Reservas pendente" url="#" />
-							<p:menuitem value="Sair" actionListener="#{loginManager.logOut}"
-								helpText="CTRL+p" />
-						</p:menubar>
+		<p:layout fullPage="true">
+			<p:layoutUnit id="bottom" position="south" size="60">
+				<ui:include src="../rodape.xhtml" />
+			</p:layoutUnit>
+			<p:layoutUnit id="center" position="center">
+				<h:form id="formMenu">
+					<p:menubar autoSubmenuDisplay="true">
+						<p:menuitem value="Minhas Reservas" url="#" />
+						<p:menuitem value="Reservas pendente" url="#" />
+						<p:menuitem value="Sair" actionListener="#{loginManager.logOut}"
+							helpText="CTRL+p" />
+					</p:menubar>
+				</h:form>
+				<div id="corpo">
+					<h:form id="formSolicitacao">
+						<p:panel header="Solicitação de Reserva de Sala">
+							<h:panelGrid columns="2">
+								<h:outputText value="Capacidade: " />
+								<p:inputText id="nrAluno"
+									value="#{professorManager.solicitacao.nrAlunos}" size="5"
+									maxlength="3" required="true"
+									requiredMessage="Campo obrigatório" />
+
+								<h:outputText value="Data: " />
+								<p:calendar value="#{professorManager.data}"
+									pattern="dd/MM/yyyy" required="true"
+									requiredMessage="Campo obrigatório" />
+
+								<h:outputText value="Horário Inicial: " />
+								<p:calendar value="#{professorManager.solicitacao.dataInicial}"
+									pattern="HH:mm" timeOnly="true" required="true"
+									requiredMessage="Campo obrigatório" />
+
+								<h:outputText value="Horário Final: " />
+								<p:calendar value="#{professorManager.solicitacao.dataFinal}"
+									pattern="HH:mm" timeOnly="true" required="true"
+									requiredMessage="Campo obrigatório" />
+
+								<h:outputText value="Tipo de sala: " />
+								<p:selectOneMenu id="tipo"
+									value="#{professorManager.solicitacao.tipoSala}" effect="fade">
+									<f:selectItem itemLabel="Sala" itemValue="Sala" />
+									<f:selectItem itemLabel="Laboratório" itemValue="Laboratorio" />
+									<f:selectItem itemLabel="Auditório" itemValue="Auditorio" />
+									<f:selectItem itemLabel="Ateliê" itemValue="Atelie" />
+								</p:selectOneMenu>
+
+								<h:outputText value="Acessorios: " />
+								<p:selectCheckboxMenu
+									value="#{professorManager.solicitacao.acessorios}"
+									label="Acessorio" filter="true" filterText="Filter"
+									filterMatchMode="startsWith" panelStyle="width:220px"
+									converter="acessorio">
+									<f:selectItems value="#{acessorioManager.mapListAcessorios}" />
+								</p:selectCheckboxMenu>
+
+								<h:outputText value="Observações: " />
+								<p:inputTextarea id="obs"
+									value="#{professorManager.solicitacao.observacao}" rows="6"
+									cols="33" />
+								<p:commandButton id="btSalvar" value="Reservar"
+									action="#{professorManager.salvarSolicitacao}"
+									update="formSolicitacao">
+								</p:commandButton>
+								<p:messages id="mensagem" showDetail="true" autoUpdate="true"
+									closable="true" redisplay="false" />
+							</h:panelGrid>
+						</p:panel>
+
 					</h:form>
-					<div id="corpo">
-						<h:form id="formSolicitacao">
-							<p:panel header="Solicitação de Reserva de Sala">
-								<h:panelGrid columns="2">
-									<h:outputText value="Capacidade: " />
-									<p:inputText id="nrAluno"
-										value="#{professorManager.solicitacao.nrAlunos}" size="5"
-										maxlength="3" required="true"
-										requiredMessage="Campo obrigatório" />
+				</div>
+			</p:layoutUnit>
 
-									<h:outputText value="Data: " />
-									<p:calendar value="#{professorManager.data}"
-										pattern="dd/MM/yyyy" required="true" 
-										requiredMessage="Campo obrigatório" />
+			<p:layoutUnit position="east" size="500px">
+				<h:form id="tabelaSolicitacao">
 
-									<h:outputText value="Horário Inicial: " />
-									<p:calendar value="#{professorManager.solicitacao.dataInicial}"
-										pattern="HH:mm" timeOnly="true" required="true"
-										requiredMessage="Campo obrigatório" />
-
-									<h:outputText value="Horário Final: " />
-									<p:calendar value="#{professorManager.solicitacao.dataFinal}"
-										pattern="HH:mm" timeOnly="true" required="true"
-										requiredMessage="Campo obrigatório" />
-
-									<h:outputText value="Tipo de sala: " />
-									<p:selectOneMenu id="tipo"
-										value="#{professorManager.solicitacao.tipoSala}"
-										effect="fade">
-										<f:selectItem itemLabel="Sala" itemValue="Sala" />
-										<f:selectItem itemLabel="Laboratório" itemValue="Laboratorio" />
-										<f:selectItem itemLabel="Auditório" itemValue="Auditorio" />
-										<f:selectItem itemLabel="Ateliê" itemValue="Atelie" />
-									</p:selectOneMenu>
-
-									<h:outputText value="Acessorios: " />
-									<p:selectCheckboxMenu
-										value="#{professorManager.solicitacao.acessorios}"
-										label="Acessorio" filter="true" filterText="Filter"
-										filterMatchMode="startsWith" panelStyle="width:220px"
-										converter="acessorio">
-										<f:selectItems value="#{acessorioManager.mapListAcessorios}" />
-									</p:selectCheckboxMenu>
-
-									<h:outputText value="Observações: " />
-									<p:inputTextarea id="obs"
-										value="#{professorManager.solicitacao.observacao}" rows="6"
-										cols="33" />
-									<p:commandButton id="btSalvar" value="Reservar"
-										action="#{professorManager.salvarSolicitacao}"
-										update="formSolicitacao">
-									</p:commandButton>
-									<p:messages id="mensagem" showDetail="true" autoUpdate="true"
-										closable="true" redisplay="false" />
-								</h:panelGrid>
-							</p:panel>
-
-						</h:form>
-					</div>
-				</p:layoutUnit>
-
-				<p:layoutUnit position="east" size="500px">
-					<h:form id="tabelaSolicitacao">
-
-						<p:dataTable id="dataTable" var="lista"
-							value="#{professorManager.listaSolicitacao}"
-							style="max-width: 500px; min-width:500px" paginator="true"
-							rows="10"
-							paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-							rowsPerPageTemplate="5,10,15">
-							<f:facet name="header">  
+					<p:dataTable id="dataTable" var="lista"
+						value="#{professorManager.listaSolicitacao}"
+						style="max-width: 500px; min-width:500px" paginator="true"
+						rows="10"
+						paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+						rowsPerPageTemplate="5,10,15">
+						<f:facet name="header">  
 				           Solicitações
 				        </f:facet>
 
-							<p:column>
-								<f:facet name="header">
-									<h:outputText value="Qtd. Alunos" />
-								</f:facet>
-								<h:outputText value="#{lista.nrAlunos} alunos" />
-							</p:column>
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Qtd. Alunos" />
+							</f:facet>
+							<h:outputText value="#{lista.nrAlunos} alunos" />
+						</p:column>
 
-							<p:column>
-								<f:facet name="header">
-									<h:outputText value="Data" />
-								</f:facet>
-								<h:outputText value="#{lista.data}">
-									<f:convertDateTime pattern="dd/MM/yyyy" />
-								</h:outputText>
-							</p:column>
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Data" />
+							</f:facet>
+							<h:outputText value="#{lista.data}">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</h:outputText>
+						</p:column>
 
-							<p:column>
-								<f:facet name="header">
-									<h:outputText value="Status" />
-								</f:facet>
-								<h:outputText value="#{lista.estado}" />
-							</p:column>
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Status" />
+							</f:facet>
+							<h:outputText value="#{lista.estado}" />
+						</p:column>
 
-						</p:dataTable>
+					</p:dataTable>
 
-					</h:form>
-				</p:layoutUnit>
+				</h:form>
+			</p:layoutUnit>
 
-			</p:layout>
-		</form>
+		</p:layout>
+
 	</h:body>
 
 </f:view>
