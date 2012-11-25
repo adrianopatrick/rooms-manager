@@ -83,7 +83,7 @@
 									cols="33" />
 								<p:commandButton id="btSalvar" value="Reservar"
 									action="#{professorManager.salvarSolicitacao}"
-									update="formSolicitacao">
+									update="formSolicitacao ,:dataTable">
 								</p:commandButton>
 								<p:messages id="mensagem" showDetail="true" autoUpdate="true"
 									closable="true" redisplay="false" />
@@ -95,44 +95,42 @@
 			</p:layoutUnit>
 
 			<p:layoutUnit position="east" size="500px">
-				<h:form id="tabelaSolicitacao">
 
-					<p:dataTable id="dataTable" var="lista"
-						value="#{professorManager.listaSolicitacao}"
-						style="max-width: 500px; min-width:500px" paginator="true"
-						rows="10"
-						paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-						rowsPerPageTemplate="5,10,15">
-						<f:facet name="header">  
+				<p:dataTable id="dataTable" var="lista"
+					value="#{professorManager.listaSolicitacao}"
+					style="max-width: 500px; min-width:500px" paginator="true"
+					rows="10"
+					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					rowsPerPageTemplate="5,10,15">
+					<f:facet name="header">  
 				           Solicitações
 				        </f:facet>
 
-						<p:column>
-							<f:facet name="header">
-								<h:outputText value="Qtd. Alunos" />
-							</f:facet>
-							<h:outputText value="#{lista.nrAlunos} alunos" />
-						</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="Qtd. Alunos" />
+						</f:facet>
+						<h:outputText value="#{lista.nrAlunos} alunos" />
+					</p:column>
 
-						<p:column>
-							<f:facet name="header">
-								<h:outputText value="Data" />
-							</f:facet>
-							<h:outputText value="#{lista.data}">
-								<f:convertDateTime pattern="dd/MM/yyyy" />
-							</h:outputText>
-						</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="Data" />
+						</f:facet>
+						<h:outputText value="#{lista.dataInicial}">
+							<f:convertDateTime pattern="dd/MM/yyyy" />
+						</h:outputText>
+					</p:column>
 
-						<p:column>
-							<f:facet name="header">
-								<h:outputText value="Status" />
-							</f:facet>
-							<h:outputText value="#{lista.estado}" />
-						</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="Status" />
+						</f:facet>
+						<h:outputText value="#{lista.estado}" />
+					</p:column>
 
-					</p:dataTable>
+				</p:dataTable>
 
-				</h:form>
 			</p:layoutUnit>
 
 		</p:layout>
