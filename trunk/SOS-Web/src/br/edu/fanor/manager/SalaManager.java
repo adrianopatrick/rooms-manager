@@ -15,6 +15,7 @@ import org.primefaces.event.SelectEvent;
 
 import br.edu.fanor.entity.Acessorio;
 import br.edu.fanor.entity.Sala;
+import br.edu.fanor.entity.Usuario;
 import br.edu.fanor.exceptions.ValidacaoException;
 import br.edu.fanor.service.SalaService;
 import br.edu.fanor.util.SalaDataModel;
@@ -46,16 +47,31 @@ public class SalaManager extends AbstractMB implements Serializable{
 	public void salvaSala() throws IOException{
 		FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
 		try {
-			salaService.save(sala);
+			salaService.saveOrUpdate(sala);
 			
 			displayInfoMessageToUser("Sala " + sala.getNome() + " salvo com sucesso.");
-			FacesContext.getCurrentInstance().getExternalContext().redirect("/SOS-Web/paginas/admin/homeAdmin.jsf");
+			FacesContext.getCurrentInstance().getExternalContext().redirect("/SOS-Web/paginas/admin/listaSalas.jsf");
 			
 			sala = null;
 			
 		} catch (ValidacaoException e) {
 			displayErrorMessageToUser("Erro ao tentar salvar ");
 		}
+	}
+	
+	public String preparaEdicao(Sala sala){
+		this.sala = sala;
+		return "cadastroSala";
+	}
+	
+	public void deletar(Sala sala){
+		try {
+			salaService.delete(sala);
+			displayInfoMessageToUser("Sala"+ sala.getNome()+ " excluida com sucesso.");
+		} catch (Exception e) {
+			displayErrorMessageToUser("Nao foi possivel excluir a sala");
+		}
+		listarTodasSalas();
 	}
 	
 	
