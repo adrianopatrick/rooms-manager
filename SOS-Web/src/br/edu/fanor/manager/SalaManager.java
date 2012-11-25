@@ -43,7 +43,6 @@ public class SalaManager extends AbstractMB implements Serializable{
 	
 	private SalaListener salaListener;
 
-	//TODO Tratar Exception
 	public void salvaSala() throws IOException{
 		FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
 		try {
@@ -52,18 +51,15 @@ public class SalaManager extends AbstractMB implements Serializable{
 			displayInfoMessageToUser("Sala " + sala.getNome() + " salvo com sucesso.");
 			FacesContext.getCurrentInstance().getExternalContext().redirect("/SOS-Web/paginas/admin/homeAdmin.jsf");
 			
+			sala = null;
+			
 		} catch (ValidacaoException e) {
 			displayErrorMessageToUser("Erro ao tentar salvar ");
 		}
 	}
 	
-	//TODO criar tela de edição de sala
-	public String pegarSala(Sala sala){
-		setSala(sala);
-		return "";
-	}
 	
-	//TODO implementar métodos para checagem de nova entidade.
+	//TODO Verificar necessidades desses métodos.
 	public Boolean checarNovo(){
 		return true;		 
 	}
@@ -108,7 +104,11 @@ public class SalaManager extends AbstractMB implements Serializable{
 	}
 	
 	public Sala getSala() {
-		return sala;
+		if(sala == null){
+			return new Sala();
+		}else{
+			return sala;
+		}
 	}
 
 	public void setSala(Sala sala) {
