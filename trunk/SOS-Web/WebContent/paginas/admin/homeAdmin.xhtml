@@ -46,12 +46,12 @@
 							            <h:outputText value="#{lista.nrAlunos} alunos" />  
 							        </p:column>
 							        
-							        <p:column headerText="Para dia">
+							        <p:column headerText="Dia da Solicitação">
 							            <h:outputText value="#{lista.data}" > <f:convertDateTime pattern="dd/MM/yyyy" /> </h:outputText>  
 							        </p:column>
 									
 									<p:column style="width:4%">
-							                <p:commandButton id="verificaReserva" ajax="false" action="#{solicitacaoManager.pegaSolicitacao(lista)}" value="Reservar" />
+										<p:commandButton id="verificaReserva" ajax="false" action="#{reservaManager.pegaSolicitacao(lista)}" value="Reservar" />
 							        </p:column>
 							        
 							    </p:dataTable>

@@ -37,7 +37,7 @@
 							<p:panel header="Reserva de Sala" id="panelcorpo">
 								<h:panelGrid>
 									<h:outputText value="Responsavel: " />
-									<p:autoComplete value="#{reservaManager.usuario}" id="prof"
+									<p:autoComplete value="#{reservaManager.usuario}" id="prof" required="true"
 										completeMethod="#{reservaManager.buscaPorNome}" var="p"
 										itemLabel="#{p.nome}" itemValue="#{p}" forceSelection="true"
 										minQueryLength="3" />
@@ -53,7 +53,7 @@
 										<p:commandButton value="Selecionar"
 											actionListener="#{reservaManager.carregaPesquisa}"
 											update=":pesqSalaDialogForm"
-											onclick="pesqSalaDialogWidget.show();" />
+											oncomplete="pesqSalaDialogWidget.show();" />
 									</h:panelGroup>
 
 									<h:outputText value="Dia: " />
@@ -76,6 +76,7 @@
 										action="#{reservaManager.reservarSala}" ajax="false" />
 								</h:panelGrid>
 							</p:panel>
+							<p:messages id="mensagemReserva" ></p:messages>
 						</h:form>
 					</div>
 				</p:layoutUnit>
