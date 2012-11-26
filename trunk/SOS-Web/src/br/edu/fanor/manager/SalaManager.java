@@ -2,20 +2,24 @@ package br.edu.fanor.manager;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+import javax.faces.validator.ValidatorException;
 
+import org.primefaces.component.calendar.Calendar;
 import org.primefaces.event.SelectEvent;
 
 import br.edu.fanor.entity.Acessorio;
 import br.edu.fanor.entity.Sala;
-import br.edu.fanor.entity.Usuario;
 import br.edu.fanor.exceptions.ValidacaoException;
 import br.edu.fanor.service.SalaService;
 import br.edu.fanor.util.SalaDataModel;
@@ -64,6 +68,13 @@ public class SalaManager extends AbstractMB implements Serializable{
 		return "cadastroSala";
 	}
 	
+	public void configurarBusca(Date inicio, Date fim){
+		setDataInicio(inicio);
+		setDataFim(fim);
+		setDia(dataInicio);
+		listarSalasDisponiveis();
+	}
+	
 	public void deletar(Sala sala){
 		try {
 			salaService.delete(sala);
@@ -74,7 +85,22 @@ public class SalaManager extends AbstractMB implements Serializable{
 		listarTodasSalas();
 	}
 	
-	
+	public void validarHora(FacesContext context, UIComponent component, Object value) throws ValidatorException {
+	    
+		Date inicio = (Date) ((Calendar) component.findComponent("inicio")).getValue();
+		Date fim = (Date) value;
+		
+		
+        if(inicio.after(fim)) {
+            FacesMessage message = new FacesMessage();	
+            message.setSeverity(FacesMessage.SEVERITY_ERROR);
+            message.setSummary("Time Error.");
+            message.setDetail("A hora inicial tem que ser anterior a hora final");
+            context.addMessage("pesqSalaDialogForm:inicio", message);
+            throw new ValidatorException(message);
+        }
+    
+	}
 	//TODO Verificar necessidades desses métodos.
 	public Boolean checarNovo(){
 		return true;		 
@@ -94,9 +120,18 @@ public class SalaManager extends AbstractMB implements Serializable{
 	}
 	
 	public void listarSalasDisponiveis(ActionEvent event){
-		dataInicio = synchronizeDate(dataInicio, dia);
-		dataFim = synchronizeDate(dataFim, dia);
-		salasDisponiveis = new SalaDataModel(salaService.listarSalasDisponiveis(dataInicio, dataFim));
+		listarSalasDisponiveis();
+	}
+	
+	public void listarSalasDisponiveis(){
+		if (dataInicio == null || dataFim == null || dia == null) {
+			salasDisponiveis = new SalaDataModel(new ArrayList<Sala>());
+		}else {
+			dataInicio = synchronizeDate(dataInicio, dia);
+			dataFim = synchronizeDate(dataFim, dia);
+			salasDisponiveis = new SalaDataModel(salaService.listarSalasDisponiveis(dataInicio, dataFim));
+		}
+		
 	}
 	
 	public void onRowSelect(SelectEvent event) {

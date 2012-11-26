@@ -9,6 +9,8 @@
 	<p:menubar autoSubmenuDisplay="true">
 	
 		<p:menuitem value="Home" url="homeAdmin.jsf" />
+		
+		<p:menuitem value="Reserva" action="#{reservaManager.limparReserva}" ajax="false" />
 
 		<p:submenu label="Cadastro" icon="ui-icon-document">
 			<p:menuitem value="Sala" url="cadastroSala.jsf" />

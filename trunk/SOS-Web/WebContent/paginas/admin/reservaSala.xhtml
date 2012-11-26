@@ -50,9 +50,9 @@
 											required="true" requiredMessage="Selecione uma sala"
 											disabled="true" />
 
-										<p:commandButton value="Selecionar"
+										<p:commandButton value="Selecionar" 
 											actionListener="#{reservaManager.carregaPesquisa}"
-											update=":pesqSalaDialogForm"
+											update=":pesqSalaDialogForm :salas"
 											oncomplete="pesqSalaDialogWidget.show();" />
 									</h:panelGroup>
 
@@ -76,7 +76,7 @@
 										action="#{reservaManager.reservarSala}" ajax="false" />
 								</h:panelGrid>
 							</p:panel>
-							<p:messages id="mensagemReserva" ></p:messages>
+							<p:messages id="mensagemReserva" redisplay="false" ></p:messages>
 						</h:form>
 					</div>
 				</p:layoutUnit>
