@@ -8,8 +8,10 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+import javax.faces.validator.ValidatorException;
 
 import br.edu.fanor.entity.Administrador;
 import br.edu.fanor.entity.Reserva;
@@ -66,6 +68,7 @@ public class ReservaManager extends AbstractMB implements Serializable {
 				displayInfoMessageToUser("Reservado com sucesso, aguandando confirmação");
 				//TODO: implementar envio de email
 			}
+			reserva = new Reserva();
 		} catch (ValidacaoException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -77,9 +80,20 @@ public class ReservaManager extends AbstractMB implements Serializable {
 	
 	public String pegaSolicitacao(Solicitacao lista){
 		this.reserva.setSolicitacao(lista);
-		this.solicitacao = lista; 
+		this.solicitacao = lista;
+		this.usuario = solicitacao.getProfessor();
+		this.dia = null;
 		return "reservaSala";
 	}
+	
+	public String limparReserva(){
+		usuario = null;
+		solicitacao = null;
+		reserva = new Reserva();
+		salaManager.configurarBusca(null, null);
+		dia = null;
+		return "reservaSala";
+	} 
 	
 //	private void synchronizeDates() {
 //		Calendar d = Calendar.getInstance();
@@ -98,9 +112,7 @@ public class ReservaManager extends AbstractMB implements Serializable {
 	
 	public void carregaPesquisa(ActionEvent event){
 		if (solicitacao != null) {
-			salaManager.setDataInicio(solicitacao.getDataInicial());
-			salaManager.setDataFim(solicitacao.getDataFinal());
-			salaManager.setDia(solicitacao.getDataFinal());
+			salaManager.configurarBusca(solicitacao.getDataInicial(), solicitacao.getDataFinal());
 		}
 		salaManager.setSalaListener(new SalaListener() {
 			
