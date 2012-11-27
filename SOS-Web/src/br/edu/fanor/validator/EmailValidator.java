@@ -10,15 +10,6 @@ import javax.faces.validator.ValidatorException;
 @FacesValidator(value = "emailValidator")
 public class EmailValidator implements Validator {
 	
-	//TODO Tratar ValidatorException... 
-	/*
-	 * o validador Exception não precisa ser tratado 
-	 * como vc pode ver o metodo validate ja lança essa exeption pois
-	 * é quando ela for lancada que o campo nao vai ter passado na validacao,
-	 * quem faz o tratamento desse exception é o jsf.
-	 * 
-	 * obj: retirar TODO_ e comentario ao ver esse isso.
-	 */
 	@Override 
 	public void validate(FacesContext context, UIComponent component,
 		Object value) throws ValidatorException {
