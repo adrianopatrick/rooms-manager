@@ -19,6 +19,7 @@
 
 		<h:outputStylesheet name="css/default.css" />
 		<h:outputStylesheet name="css/estilo.css" />
+		<h:outputScript name="locale-primefaces.js" library="js" />
 	</h:head>
 	<h:body id="bodyy">
 		<p:layout fullPage="true">
@@ -46,17 +47,17 @@
 
 								<h:outputText value="Data: " />
 								<p:calendar value="#{professorManager.data}"
-									pattern="dd/MM/yyyy" required="true"
+									pattern="dd/MM/yyyy" required="true" locale="pt"
 									requiredMessage="Campo obrigatório" />
 
 								<h:outputText value="Horário Inicial: " />
 								<p:calendar value="#{professorManager.solicitacao.dataInicial}"
 									pattern="HH:mm" timeOnly="true" required="true"
-									requiredMessage="Campo obrigatório" />
+									requiredMessage="Campo obrigatório" locale="pt"/>
 
 								<h:outputText value="Horário Final: " />
 								<p:calendar value="#{professorManager.solicitacao.dataFinal}"
-									pattern="HH:mm" timeOnly="true" required="true"
+									pattern="HH:mm" timeOnly="true" required="true" locale="pt"
 									requiredMessage="Campo obrigatório" />
 
 								<h:outputText value="Tipo de sala: " />
