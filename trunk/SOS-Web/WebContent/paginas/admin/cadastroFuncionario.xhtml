@@ -42,6 +42,7 @@
 									
 									<h:outputText value="E-mail: " />
 									<p:inputText value="#{usuarioManager.usuario.email}" required="true" requiredMessage="Campo Obrigatório.">
+										<f:validator validatorId="emailValidator" />
 									</p:inputText>
 									<h:outputText id="emailException" value="#{usuarioManager.msgEmailException}" />
 									
