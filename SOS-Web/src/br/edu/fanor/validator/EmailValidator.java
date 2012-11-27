@@ -9,20 +9,19 @@ import javax.faces.validator.ValidatorException;
 
 @FacesValidator(value = "emailValidator")
 public class EmailValidator implements Validator {
-
+	
 	//TODO Tratar ValidatorException
-
 	@Override 
 	public void validate(FacesContext context, UIComponent component,
 		Object value) throws ValidatorException {
-		
+	
 		String email = (String) value;
-		 
-		 if(!email.contains("@") || !email.contains(".")) {
-			FacesMessage msg =
-					new FacesMessage("Formato de Email inválido", "Exemplo: user@exemplo.com");		
-			msg.setSeverity(FacesMessage.SEVERITY_ERROR);
-			throw new ValidatorException(msg);
+		
+		if(!email.contains("@") || !email.substring(email.indexOf("@")).contains(".") ) {
+			 FacesMessage msg =
+						new FacesMessage("Formato de Email inválido", "Exemplo: user@exemplo.com");		
+				msg.setSeverity(FacesMessage.SEVERITY_ERROR);
+				throw new ValidatorException(msg); 
 	     }
 
 	}
