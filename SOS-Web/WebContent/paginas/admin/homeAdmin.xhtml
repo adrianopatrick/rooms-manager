@@ -32,7 +32,8 @@
 					
 					<div id="corpo">
 							<h:form>  
-								<p:dataTable var="lista" paginator="true" rows="10" value="#{solicitacaoManager.listaSolicitacaoPendente}">
+								<p:dataTable var="lista" paginator="true" rows="10" value="#{solicitacaoManager.listaSolicitacaoPendente}"
+									emptyMessage="Nenhum registro encontrado.">
 								  
 							        <f:facet name="header">
 							        	Lista de solicitações de reservas

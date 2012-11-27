@@ -15,6 +15,7 @@
 		</f:facet>
 		<h:outputStylesheet name="css/default.css" />
 		<h:outputStylesheet name="css/estilo.css" />
+		<h:outputScript name="locale-primefaces.js" library="js" />
 	</h:head>
 	<h:body>
 		<div id="global">
@@ -58,15 +59,15 @@
 
 									<h:outputText value="Dia: " />
 									<p:calendar value="#{reservaManager.dia}" pattern="MM/dd/yyyy"
-										disabled="true" />
+										disabled="true" locale="pt" />
 
 									<h:outputText value="Hora Inicial: " />
 									<p:calendar value="#{reservaManager.reserva.dataIncial}"
-										pattern="HH:mm" timeOnly="true" disabled="true" />
+										pattern="HH:mm" timeOnly="true" disabled="true" locale="pt"/>
 
 									<h:outputText value="Hora Final: " />
 									<p:calendar value="#{reservaManager.reserva.dataFinal}"
-										pattern="HH:mm" timeOnly="true" disabled="true" />
+										pattern="HH:mm" timeOnly="true" disabled="true" locale="pt"/>
 
 									<h:outputText value="Observação: " />
 									<h:inputTextarea value="#{reservaManager.reserva.observacao}"
