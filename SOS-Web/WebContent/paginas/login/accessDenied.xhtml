@@ -16,8 +16,10 @@
 </h:head>
 
 <h:body>
-<ui:insert>"Acesso negado"</ui:insert>
-  
+
+	<p:dialog id="modalDialog" header="Acesso negado" widgetVar="dlg2" modal="true" visible="true" height="100" resizable="false" draggable="false" closable="false">
+    	<p style="color: red; size: 12px;" >Erro: Você não tem permissão para acessa conteúdo deste diretório, clique <a href="http://localhost:8080/SOS-Web/paginas/login/login.jsf" style="text-decoration: none; color: blue;" >aqui</a> para retornar à página inicial.</p>
+	</p:dialog>  
 </h:body>
 
 </html>
