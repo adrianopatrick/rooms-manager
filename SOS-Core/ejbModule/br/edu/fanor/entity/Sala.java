@@ -99,6 +99,5 @@ public class Sala {
 		} else {
 			this.tipoSala = tipoSala.getKey();
 		}
-
 	}
 }

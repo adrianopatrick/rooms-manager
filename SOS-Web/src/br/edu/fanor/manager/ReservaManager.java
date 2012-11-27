@@ -1,6 +1,8 @@
 package br.edu.fanor.manager;
 
 import java.io.Serializable;
+import java.text.Format;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -20,6 +22,7 @@ import br.edu.fanor.enums.EstadoReserva;
 import br.edu.fanor.exceptions.ValidacaoException;
 import br.edu.fanor.service.ReservaService;
 import br.edu.fanor.service.UsuarioService;
+import br.edu.fanor.util.MailUtils;
 import br.edu.fanor.util.SalaListener;
 
 @SessionScoped
@@ -65,6 +68,8 @@ public class ReservaManager extends AbstractMB implements Serializable {
 				reservaService.save(reserva);
 				displayInfoMessageToUser("Reservado com sucesso, aguandando confirmação");
 				//TODO: implementar envio de email
+				enviarEmailDeComfirmacao(reserva);
+				
 			}
 			reserva = new Reserva();
 		} catch (ValidacaoException e) {
@@ -74,6 +79,48 @@ public class ReservaManager extends AbstractMB implements Serializable {
 		}
 		return "homeAdmin";
 		
+	}
+	
+	private void enviarEmailDeComfirmacao(final Reserva reserva){
+		Thread thread = new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+				int count = 0;
+				boolean enviado = false;
+				
+				while (count < 3 && !enviado) {
+					try {
+						System.out.println((count+1)+"� tentativa de envio do email.");
+						
+						MailUtils.sendMail(reserva.getSolicitacao().getProfessor(), 
+								"Comfirmacao de Sala", 
+								"Este e apenas um email de comfirmacao.\n\n" +
+								"Reserva\n\n" +
+								"Sala: "+ reserva.getSala().getNome() + "\n" +
+								"Dia: " + formatarData("dd/MM/yyyy", reserva.getDataIncial())+ "\n" +
+								"Periodo: "+ formatarData("HH:mm", reserva.getDataIncial()) + " - " + formatarData("HH:mm", reserva.getDataFinal()));
+						
+						enviado = true;
+						
+						System.out.println("Email enviado com sucesso!");
+						
+					} catch (Exception e) {
+						count++;
+					}
+				}
+				
+				if (enviado) {
+					reservaService.comfirmarReserva(reserva);
+				}
+			}
+		});
+		thread.run();
+	}
+	
+	public String formatarData(String pattern, Date date){
+		Format formatter = new SimpleDateFormat(pattern);
+		return formatter.format(date);
 	}
 	
 	public String pegaSolicitacao(Solicitacao lista){

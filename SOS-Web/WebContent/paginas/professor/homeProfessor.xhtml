@@ -32,7 +32,7 @@
 						<p:menuitem value="Minhas Reservas" url="#" />
 						<p:menuitem value="Reservas pendente" url="#" />
 						<p:menuitem value="Sair" actionListener="#{loginManager.logOut}"
-							helpText="CTRL+p" />
+							helpText="CTRL+p" style="float:right;" />
 					</p:menubar>
 				</h:form>
 				<div id="corpo">
@@ -48,12 +48,12 @@
 								<h:outputText value="Data: " />
 								<p:calendar value="#{professorManager.data}"
 									pattern="dd/MM/yyyy" required="true"
-									requiredMessage="Campo obrigatório" locale="pt"/>
+									requiredMessage="Campo obrigatório" locale="pt" />
 
 								<h:outputText value="Horário Inicial: " />
 								<p:calendar value="#{professorManager.solicitacao.dataInicial}"
 									pattern="HH:mm" timeOnly="true" required="true"
-									requiredMessage="Campo obrigatório" locale="pt"/>
+									requiredMessage="Campo obrigatório" locale="pt" />
 
 								<h:outputText value="Horário Final: " />
 								<p:calendar value="#{professorManager.solicitacao.dataFinal}"
@@ -63,10 +63,9 @@
 								<h:outputText value="Tipo de sala: " />
 								<p:selectOneMenu id="tipo"
 									value="#{professorManager.solicitacao.tipoSala}" effect="fade">
-									<f:selectItem itemLabel="Sala" itemValue="Sala" />
-									<f:selectItem itemLabel="Laboratório" itemValue="Laboratorio" />
-									<f:selectItem itemLabel="Auditório" itemValue="Auditorio" />
-									<f:selectItem itemLabel="Ateliê" itemValue="Atelie" />
+									<f:selectItem itemLabel="Selecione" itemValue="" />
+									<f:selectItems value="#{salaManager.tiposSala}" var="tipo"
+										itemLabel="#{tipo.label}" itemValue="#{tipo}" />
 								</p:selectOneMenu>
 
 								<h:outputText value="Acessorios: " />
@@ -102,7 +101,8 @@
 					style="max-width: 500px; min-width:500px" paginator="true"
 					rows="10"
 					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-					rowsPerPageTemplate="5,10,15" emptyMessage="Nenhum registro encontrado." >
+					rowsPerPageTemplate="5,10,15"
+					emptyMessage="Nenhum registro encontrado.">
 					<f:facet name="header">  
 				           Solicitações
 				    </f:facet>
