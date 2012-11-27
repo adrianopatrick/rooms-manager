@@ -63,6 +63,7 @@ public class SalaManager extends AbstractMB implements Serializable{
 		} catch (ValidacaoException e) {
 			displayErrorMessageToUser("Erro ao tentar salvar ");
 		}
+		listarTodasSalas();
 	}
 	
 	public String preparaEdicao(Sala sala){
@@ -107,15 +108,6 @@ public class SalaManager extends AbstractMB implements Serializable{
             throw new ValidatorException(message);
         }
     
-	}
-	//TODO Verificar necessidades desses métodos.
-	public Boolean checarNovo(){
-		return true;		 
-	}
-	
-	//TODO implementar método de checagem de edição
-	public Boolean checarEdit(){
-		return !checarNovo();
 	}
 	
 	public Date currentDate(){
