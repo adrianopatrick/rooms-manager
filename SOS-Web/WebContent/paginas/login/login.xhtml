@@ -44,9 +44,13 @@
 			<h:panelGrid columns="2" cellpadding="5">
 
 				<h:outputLabel for="email" value="Email:" />
-				<h:inputText value="#{loginManager.email}" id="email"
+				<h:inputText value="#{loginManager.email}"  id="email"
 					required="true" requiredMessage="Campo Email Obrigatório."
-					label="email" />
+					label="email">
+					
+					<f:validator validatorId="emailValidator" />
+					
+				</h:inputText>
 
 				<h:outputLabel for="senha" value="Senha:" />
 				<h:inputSecret value="#{loginManager.senha}" id="senha"
