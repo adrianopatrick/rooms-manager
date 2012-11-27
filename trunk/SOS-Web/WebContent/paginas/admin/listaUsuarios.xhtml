@@ -47,7 +47,7 @@
 				<p:messages id="mensagem" showDetail="true" redisplay="false" autoUpdate="true" closable="true" />
 					<h:form id="teste">
 						<p:dataTable id="tabelaFunc" var="user" paginator="true" rows="10"
-							value="#{usuarioManager.listAdmin}">
+							value="#{usuarioManager.listAdmin}" emptyMessage="Nenhum registro encontrado." >
 							
 							<f:facet name="header">
 					        	Lista de Usuários

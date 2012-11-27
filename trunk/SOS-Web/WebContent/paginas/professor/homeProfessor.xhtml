@@ -47,8 +47,8 @@
 
 								<h:outputText value="Data: " />
 								<p:calendar value="#{professorManager.data}"
-									pattern="dd/MM/yyyy" required="true" locale="pt"
-									requiredMessage="Campo obrigatório" />
+									pattern="dd/MM/yyyy" required="true"
+									requiredMessage="Campo obrigatório" locale="pt"/>
 
 								<h:outputText value="Horário Inicial: " />
 								<p:calendar value="#{professorManager.solicitacao.dataInicial}"
@@ -102,10 +102,10 @@
 					style="max-width: 500px; min-width:500px" paginator="true"
 					rows="10"
 					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-					rowsPerPageTemplate="5,10,15">
+					rowsPerPageTemplate="5,10,15" emptyMessage="Nenhum registro encontrado." >
 					<f:facet name="header">  
 				           Solicitações
-				        </f:facet>
+				    </f:facet>
 
 					<p:column>
 						<f:facet name="header">

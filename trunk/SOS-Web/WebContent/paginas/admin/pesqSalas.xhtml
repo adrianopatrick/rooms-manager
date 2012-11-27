@@ -19,16 +19,16 @@
 				
 				<h:outputText value=" Dia: " />
 				<p:calendar id="dia" value="#{salaManager.dia}" pattern="MM/dd/yyyy"
-					mindate="#{salaManager.currentDate()}" required="true" size="12" />
+					mindate="#{salaManager.currentDate()}" required="true" size="12" locale="pt"/>
 
 				<h:outputText value="Hora Inicial: " />
 				<p:calendar id="inicio" value="#{salaManager.dataInicio}" size="5"
-					pattern="HH:mm" timeOnly="true" />
+					pattern="HH:mm" timeOnly="true" locale="pt"/>
 
 				<h:outputText value=" Hora Final: " />
 				<p:calendar id="fim" value="#{salaManager.dataFim}" size="5"
 					pattern="HH:mm" validator="#{salaManager.validarHora}"
-					timeOnly="true" />
+					timeOnly="true" locale="pt"/>
 
 				<p:commandButton value="Pesquisar" id="pesquisa"
 					actionListener="#{salaManager.listarSalasDisponiveis}"
