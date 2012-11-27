@@ -43,12 +43,12 @@ public class LoginManager {
 		try {
 			
 			loggedIn = false;
-			usuario = loginService.validaLogin(email, senha);
-			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", usuario);
+			setUsuario(loginService.validaLogin(email, senha));
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", getUsuario());
 			loggedIn = true;
 			
 			if (url == null || url.contains("SOS-Web/paginas/login/login.jsf")) {
-				if (usuario instanceof Administrador) {
+				if (getUsuario() instanceof Administrador) {
 					FacesContext.getCurrentInstance().getExternalContext().redirect("/SOS-Web/paginas/admin/homeAdmin.jsf");
 				}else {
 					FacesContext.getCurrentInstance().getExternalContext().redirect("/SOS-Web/paginas/professor/homeProfessor.jsf");
@@ -110,6 +110,14 @@ public class LoginManager {
 
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 }

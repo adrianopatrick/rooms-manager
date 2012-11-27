@@ -20,6 +20,7 @@ import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.NotNull;
 
 import br.edu.fanor.enums.EstadoSolicitacao;
+import br.edu.fanor.enums.TipoSala;
 
 @Entity(name="solicitacoes")
 public class Solicitacao {
@@ -32,7 +33,7 @@ public class Solicitacao {
 	@NotNull
 	@Column(name="nr_alunos")
 	private Integer nrAlunos;
-	private String tipoSala;
+	private Integer tipoSala;
 	private String observacao;
 	
 	@Enumerated(EnumType.STRING)
@@ -175,12 +176,19 @@ public class Solicitacao {
 		this.dataFinal = dataFinal;
 	}
 
-	public String getTipoSala() {
-		return tipoSala;
+	public TipoSala getTipoSala() {
+		if (tipoSala != null) {
+			return TipoSala.get(tipoSala);
+		}
+		return null;
 	}
 
-	public void setTipoSala(String tipoSala) {
-		this.tipoSala = tipoSala;
+	public void setTipoSala(TipoSala tipoSala) {
+		if (tipoSala == null) {
+			this.tipoSala = null;
+		} else {
+			this.tipoSala = tipoSala.getKey();
+		}
 	}
 
 //	public Long getId_professor() {
