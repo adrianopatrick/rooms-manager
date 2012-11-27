@@ -93,7 +93,7 @@ public class ReservaManager extends AbstractMB implements Serializable {
 					try {
 						System.out.println((count+1)+"ª tentativa de envio do email.");
 						
-						MailUtils.sendMail(reserva.getSolicitacao().getProfessor(), 
+						MailUtils.sendMail(reserva.getSolicitacao().getProfessor().getEmail(), 
 								"Comfirmacao de Sala", 
 								"Este e apenas um email de comfirmacao.\n\n" +
 								"Reserva\n\n" +
@@ -115,7 +115,7 @@ public class ReservaManager extends AbstractMB implements Serializable {
 				}
 			}
 		});
-		thread.run();
+		thread.start();
 	}
 	
 	public String formatarData(String pattern, Date date){

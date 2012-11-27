@@ -11,13 +11,11 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-import br.edu.fanor.entity.Usuario;
-
 public class MailUtils {
 
 	private static Session session;
 	
-	public static void sendMail(Usuario usuario, String assunto, String texto) throws MessagingException
+	public static void sendMail(String email, String assunto, String texto) throws MessagingException
 	{
 		try {
 			Message message = new MimeMessage(getSession());
@@ -25,7 +23,7 @@ public class MailUtils {
 			message.setFrom(new InternetAddress("javatar.system@gmail.com"));
 			// Define o destinatario
 			message.setRecipients(Message.RecipientType.TO,
-					InternetAddress.parse(usuario.getEmail()));
+					InternetAddress.parse(email));
 			// Define o assunto
 			message.setSubject(assunto);
 			// Mensagem do email
