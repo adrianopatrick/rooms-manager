@@ -13,7 +13,7 @@
 		<p:menuitem value="Reserva" action="#{reservaManager.limparReserva}" ajax="false" />
 
 		<p:submenu label="Cadastro" icon="ui-icon-document">
-			<p:menuitem value="Sala" url="cadastroSala.jsf" />
+			<p:menuitem value="Sala" action="#{salaManager.preparaCadastro}" ajax="false" />
 			<p:menuitem value="Usuário" url="cadastroFuncionario.jsf" />
 		</p:submenu>
 		<p:submenu label="Pesquisar" icon="ui-icon-search">

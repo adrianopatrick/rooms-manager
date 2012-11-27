@@ -35,22 +35,21 @@
 	                    	<p:panel header="Cadastro de salas">
 								<h:panelGrid columns="2">
 								
-									<h:outputText value="Numero sala: " />
+									<h:outputText value="Nome da sala: " />
 									<p:inputText value="#{salaManager.sala.nome}" size="5" />
 									
 									<h:outputText value="Capacidade: " />
 									<p:inputText value="#{salaManager.sala.capacidade}" maxlength="3" size="5" /> 
 									
 									<h:outputText value="Tipo de sala: " /> 
-							        <p:selectOneMenu value="#{salaManager.sala.tipoSala}" effect="fade">
-							            <f:selectItem itemLabel="selecione" itemValue="" />
-							            <f:selectItem itemLabel="Sala" itemValue="Sala de Aula" /> 
-							            <f:selectItem itemLabel="Laboratório" itemValue="Laboratório" />
-							            <f:selectItem itemLabel="Auditório" itemValue="Auditório" />
+							        <p:selectOneMenu value="#{salaManager.sala.tipoSala}" effect="fade" converter="tipoSala"  >
+								        <f:selectItem itemLabel="Selecione" itemValue="" />  
+						    	        <f:selectItems value="#{salaManager.tiposSala}" var="tipo" itemLabel="#{tipo.label}" itemValue="#{tipo}"/>  
 							        </p:selectOneMenu>
 							        
+							        
 							        <h:outputText value="Acessorios: " />
-							        <p:selectCheckboxMenu value="#{salaManager.acessoriosList}" label="Acessorio" filter="true" filterText="Filter" filterMatchMode="startsWith" panelStyle="width:220px">
+							        <p:selectCheckboxMenu value="#{salaManager.sala.acessorios}" label="Acessorio" filter="true" filterText="Filter" filterMatchMode="startsWith" panelStyle="width:220px" converter="acessorio" >
 								        <f:selectItems value="#{acessorioManager.mapListAcessorios}" />
     								</p:selectCheckboxMenu>
 							       
