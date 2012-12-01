@@ -39,7 +39,9 @@
 									<p:inputText value="#{salaManager.sala.nome}" size="5" />
 									
 									<h:outputText value="Capacidade: " />
-									<p:inputText value="#{salaManager.sala.capacidade}" maxlength="3" size="5" /> 
+									<p:inputText id="capacidade" value="#{salaManager.sala.capacidade}" maxlength="3" size="5" >
+										<f:validateLength minimum="1"/>
+									</p:inputText> 
 									
 									<h:outputText value="Tipo de sala: " /> 
 							        <p:selectOneMenu value="#{salaManager.sala.tipoSala}" effect="fade" converter="tipoSala"  >
