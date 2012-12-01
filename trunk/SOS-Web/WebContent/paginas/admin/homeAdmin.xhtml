@@ -7,64 +7,110 @@
 	xmlns:p="http://primefaces.org/ui" xml:lang="pt" lang="pt-br">
 
 <f:view contentType="text/html">
-        <h:head>
-            <f:facet name="first">
-                <meta http-equiv="X-UA-Compatible" content="EmulateIE8" />
-                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
-                <title>Sos:Bem Vindo</title>
-            </f:facet>
-            <h:outputStylesheet name="css/default.css" />
-            <h:outputStylesheet name="css/estilo.css" />
-        </h:head>
-        <h:body>
+	<h:head>
+		<f:facet name="first">
+			<meta http-equiv="X-UA-Compatible" content="EmulateIE8" />
+			<meta content='text/html; charset=UTF-8' http-equiv="Content-Type" />
+			<title>Sos:Bem Vindo</title>
+		</f:facet>
+		<h:outputStylesheet name="css/default.css" />
+		<h:outputStylesheet name="css/estilo.css" />
+	</h:head>
+	<h:body>
 
-            <p:layout fullPage="true" >
-            
-                <p:layoutUnit id="bottom" position="south" size="30" >
-                     <ui:include src="../rodape.xhtml" />
-                </p:layoutUnit>
-                
-                <p:layoutUnit id="center" position="center">
-					
-					<div id="menu" >
-						<ui:include src="../menu.xhtml" />						
-					</div>
-					
-					<div id="corpo">
-							<h:form>  
-								<p:dataTable var="lista" paginator="true" rows="10" value="#{solicitacaoManager.listaSolicitacaoPendente}"
-									emptyMessage="Nenhum registro encontrado.">
-								  
-							        <f:facet name="header">
-							        	Lista de solicitações de reservas
-							        </f:facet>
-							        
-							        <p:column headerText="Professor">  
-							            <h:outputText value="#{lista.professor.nome}" />  
-							        </p:column> 
-							        
-							        <p:column headerText="Reservar">  
-							            <h:outputText value="#{lista.tipoSala}" />  
-							        </p:column>  
-							  
-							        <p:column headerText="Capacidade para" >  
-							            <h:outputText value="#{lista.nrAlunos} alunos" />  
-							        </p:column>
-							        
-							        <p:column headerText="Dia da Solicitação">
-							            <h:outputText value="#{lista.data}" > <f:convertDateTime pattern="dd/MM/yyyy" /> </h:outputText>  
-							        </p:column>
-									
-									<p:column style="width:4%">
-										<p:commandButton id="verificaReserva" ajax="false" action="#{reservaManager.pegaSolicitacao(lista)}" value="Reservar" />
-							        </p:column>
-							        
-							    </p:dataTable>
-							</h:form>
-					</div>
-                <p:messages id="mensagem" showDetail="true" autoUpdate="true" closable="true"  redisplay="false"/>
-                </p:layoutUnit>
-            </p:layout>
-        </h:body>
-    </f:view>
+		<p:layout fullPage="true">
+
+			<p:layoutUnit id="bottom" position="south" size="30">
+				<ui:include src="../rodape.xhtml" />
+			</p:layoutUnit>
+
+			<p:layoutUnit id="center" position="center">
+
+				<div id="menu">
+					<ui:include src="../menu.xhtml" />
+				</div>
+
+				<div id="corpo">
+					<h:form>
+						<p:dataTable var="lista" paginator="true" rows="10"
+							value="#{solicitacaoManager.listaSolicitacaoPendente}"
+							emptyMessage="Nenhum registro encontrado.">
+
+							<f:facet name="header">
+								Lista de solicitações de reservas
+							</f:facet>
+
+							<p:column headerText="Professor">
+								<h:outputText value="#{lista.professor.nome}" />
+							</p:column>
+
+							<p:column headerText="Reservar">
+								<h:outputText value="#{lista.tipoSala}" />
+							</p:column>
+
+							<p:column headerText="Capacidade para">
+								<h:outputText value="#{lista.nrAlunos} alunos" />
+							</p:column>
+
+							<p:column headerText="Dia da Solicitação">
+								<h:outputText value="#{lista.data}">
+									<f:convertDateTime pattern="dd/MM/yyyy" />
+								</h:outputText>
+							</p:column>
+
+							<p:column style="width:4%">
+								<p:commandButton id="verificaReserva" ajax="false"
+									action="#{reservaManager.pegaSolicitacao(lista)}"
+									value="Reservar" />
+							</p:column>
+
+						</p:dataTable>
+					</h:form>
+				</div>
+				<p:messages id="mensagem" showDetail="true" autoUpdate="true"
+					closable="true" redisplay="false" />
+			</p:layoutUnit>
+			
+			<p:layoutUnit position="east" size="500px">
+
+				<p:dataTable id="reservados" var="lista"
+					value="#{solicitacaoManager.listaSolicitacaoDoDia}"
+					style="max-width: 500px; min-width:500px" paginator="true"
+					rows="10"
+					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					rowsPerPageTemplate="5,10,15"
+					emptyMessage="Nenhum registro encontrado.">
+					<f:facet name="header">  
+				           Reservas para o dia
+				    </f:facet>
+
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="Qtd. Alunos" />
+						</f:facet>
+						<h:outputText value="#{lista.nrAlunos}" />
+					</p:column>
+
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="Data" />
+						</f:facet>
+						<h:outputText value="#{lista.dataInicial}">
+							<f:convertDateTime pattern="dd/MM/yyyy" />
+						</h:outputText>
+					</p:column>
+
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="Status" />
+						</f:facet>
+						<h:outputText value="#{lista.estado}" />
+					</p:column>
+
+				</p:dataTable>
+
+			</p:layoutUnit>
+		</p:layout>
+	</h:body>
+</f:view>
 </html>
