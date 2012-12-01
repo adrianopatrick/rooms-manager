@@ -39,13 +39,14 @@
 					<h:form id="formSolicitacao">
 						<p:panel header="Solicitação de Reserva de Sala">
 							<h:panelGrid columns="2">
-								<h:outputText value="Capacidade: " >
-									<f:convertNumber integerOnly="true" minIntegerDigits="1"  />
-								</h:outputText>
+								<h:outputText value="Capacidade: " />
 								<p:inputText id="nrAluno"
 									value="#{professorManager.solicitacao.nrAlunos}" size="5"
 									maxlength="3" required="true"
-									requiredMessage="Campo obrigatório" />
+									requiredMessage="Campo obrigatório">
+									
+									<f:convertNumber integerOnly="true" minIntegerDigits="1"  />
+								</p:inputText>
 
 								<h:outputText value="Data: " />
 								<p:calendar value="#{professorManager.data}"
