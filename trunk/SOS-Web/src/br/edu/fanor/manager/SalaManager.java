@@ -16,9 +16,11 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.faces.validator.ValidatorException;
 
+import org.hibernate.collection.internal.PersistentBag;
 import org.primefaces.component.calendar.Calendar;
 import org.primefaces.event.SelectEvent;
 
+import br.edu.fanor.entity.Acessorio;
 import br.edu.fanor.entity.Sala;
 import br.edu.fanor.enums.TipoSala;
 import br.edu.fanor.exceptions.ValidacaoException;
@@ -67,7 +69,10 @@ public class SalaManager extends AbstractMB implements Serializable{
 	}
 	
 	public String preparaEdicao(Sala sala){
-		this.sala = salaService.findById(Sala.class, sala.getId(), true);
+		if (sala.getAcessorios() instanceof PersistentBag) {
+			sala.setAcessorios(Arrays.asList(sala.getAcessorios().toArray(new Acessorio[sala.getAcessorios().size()])));
+		}
+		this.sala = sala;
 		return "cadastroSala";
 	}
 	
