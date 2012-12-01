@@ -42,10 +42,10 @@
 								<h:outputText value="Capacidade: " />
 								<p:inputText id="nrAluno"
 									value="#{professorManager.solicitacao.nrAlunos}" size="5"
-									maxlength="3" required="true"
-									requiredMessage="Campo obrigatório">
+									maxlength="3" required="true" label="capacidade"
+									requiredMessage="Campo obrigatório" validatorMessage="campo invalido, este campo deve conter números">
 									
-									<f:convertNumber integerOnly="true" minIntegerDigits="1"  />
+									<f:validateLongRange minimum="1"/>
 								</p:inputText>
 
 								<h:outputText value="Data: " />
