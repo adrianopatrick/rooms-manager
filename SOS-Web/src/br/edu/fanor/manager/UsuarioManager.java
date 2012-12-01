@@ -42,21 +42,23 @@ public class UsuarioManager extends AbstractMB implements Serializable{
 	private String nomeUsuario;
 	
 	private List<Usuario> listAdmin;
-	private Integer tipoUsuario;
+	private Long tipoUsuario;
 	
-	private Map<Long,String> perfis;
+	private Map<String, Long> perfis;
 	
 	public void salvar() throws ValidacaoException, IOException{
-		if (tipoUsuario == 0) {
+		if (tipoUsuario == -1L) {
 			usuario = new Professor(usuario);
 		}else {
 			usuario = new Administrador(usuario);
+			((Administrador) usuario).setPerfil(perfilAdminService.findById(PerfilAdmin.class, tipoUsuario));
 		}
 		
 		FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
 		
 		try {
-			usuarioService.save(usuario);	
+			
+			usuarioService.saveOrUpdate(usuario);	
 
 			displayInfoMessageToUser("Usuário "+usuario.getNome()+" salvo com sucesso.");
 			FacesContext.getCurrentInstance().getExternalContext().redirect("/SOS-Web/paginas/admin/listaUsuarios.jsf");
@@ -66,23 +68,25 @@ public class UsuarioManager extends AbstractMB implements Serializable{
 		}
 		listaUsuariosPorNome();
 		usuario = null;
+		tipoUsuario = null;
 		
 	}
 	
-	public void editar() throws ValidacaoException, IOException{
-		
-		FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
-		
-		try {
-			usuarioService.saveOrUpdate(usuario);
-			displayInfoMessageToUser("Usuário "+usuario.getNome()+" atualizado com sucesso.");
-			FacesContext.getCurrentInstance().getExternalContext().redirect("/SOS-Web/paginas/admin/listaUsuarios.jsf");
-			usuario = null;
-		}catch (Exception e) {
-			displayErrorMessageToUser("Não foi possivel salvar o usuário, verifique os dados informados ou tente mais tarde.");
-		}
-		listaUsuariosPorNome();
-	}
+//	public void editar() throws ValidacaoException, IOException{
+//		
+//		FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
+//		
+//		try {
+//			usuarioService.saveOrUpdate(usuario);
+//			displayInfoMessageToUser("Usuário "+usuario.getNome()+" atualizado com sucesso.");
+//			FacesContext.getCurrentInstance().getExternalContext().redirect("/SOS-Web/paginas/admin/listaUsuarios.jsf");
+//			usuario = null;
+//			tipoUsuario= null;
+//		}catch (Exception e) {
+//			displayErrorMessageToUser("Não foi possivel salvar o usuário, verifique os dados informados ou tente mais tarde.");
+//		}
+//		listaUsuariosPorNome();
+//	}
 	
 	public void deletar(Usuario usuario){
 		try {
@@ -101,9 +105,8 @@ public class UsuarioManager extends AbstractMB implements Serializable{
 	}
 	
 	public String pegar(Usuario user){
-//		tipoUsuario = user.getPerfil();
 		setUsuario(user);
-		return "editarFuncionario";
+		return "cadastroFuncionario";
 	}
 	
 	public String pegaSolicitacao(Solicitacao lista){
@@ -157,34 +160,27 @@ public class UsuarioManager extends AbstractMB implements Serializable{
 	}
 
 	public void setUsuario(Usuario usuario) {
-		if (usuario instanceof Professor) {
-			this.usuario = usuario;
-			tipoUsuario = 1;
-		}
-		
-		
-		if (usuario instanceof Administrador) {
-			usuario = administradorService.findById(Administrador.class, usuario.getId(), true);
-			if (((Administrador) usuario).getPerfil().getNome().equals(PerfilAdmin.PERFIL_ADMINISTRADOR)) {
-				tipoUsuario = 3;
-			}else if (((Administrador) usuario).getPerfil().getNome().equals(PerfilAdmin.PERFIL_FUNCIONARIO)) {
-				tipoUsuario = 2;
+		this.usuario = usuario;		
+		if (usuario != null) {
+			if (usuario instanceof Professor) {
+				tipoUsuario = -1L;
+			}else if (usuario instanceof Administrador) {
+				tipoUsuario = ((Administrador) usuario).getPerfil().getId();
 			}
 		}
-		
 	}
 	
 	public List<Usuario> getUsuariosList() {
 		return usuarioService.getUsuariosList();
 	}
 
-	public Integer getTipoUsuario() {
+	public Long getTipoUsuario() {
 		return tipoUsuario;
 	}
 
-	public void setTipoUsuario(Integer tipoUsuario) {
+	public void setTipoUsuario(Long tipoUsuario) {
 		if (usuario instanceof Administrador) {
-			((Administrador) usuario).setPerfil(perfilAdminService.findById(PerfilAdmin.class, Long.parseLong(tipoUsuario.toString())));
+			((Administrador) usuario).setPerfil(perfilAdminService.findById(PerfilAdmin.class, tipoUsuario));
 		}
 		this.tipoUsuario = tipoUsuario;
 	}
@@ -228,25 +224,30 @@ public class UsuarioManager extends AbstractMB implements Serializable{
 		this.nomeUsuario = nomeUsuario;
 	}
 
-	public Map<Long,String> getPerfis() {
-		if (perfis == null) {
-			perfis = new HashMap<Long, String>();
-			
-			List<PerfilAdmin> list = perfilAdminService.findAll(PerfilAdmin.class);
-			
-			if (!(usuario != null && usuario instanceof Administrador)) {
-				perfis.put(0L, "Professor");
-			}
-			
-			for (PerfilAdmin perfilAdmin : list) {
-				perfis.put(perfilAdmin.getId(), perfilAdmin.getNome());
-			}
-			
+	public Map<String, Long> getPerfis() {
+		perfis = new HashMap<String	, Long>();
+		
+		if (!(usuario != null && usuario instanceof Administrador)) {
+			perfis.put("Professor", -1L);
 		}
+		
+		if (!(usuario != null && usuario instanceof Professor)) {
+			List<PerfilAdmin> list = perfilAdminService.findAll(PerfilAdmin.class);
+			for (PerfilAdmin perfilAdmin : list) {
+				perfis.put(perfilAdmin.getNome(), perfilAdmin.getId());
+			}
+		}
+		
 		return perfis;
 	}
 
-	public void setPerfis(Map<Long,String> perfis) {
+	public String limparUsuario(){
+		usuario = null;
+		tipoUsuario = null;
+		return "";
+	}
+	
+	public void setPerfis(Map<String, Long> perfis) {
 		this.perfis = perfis;
 	}
 

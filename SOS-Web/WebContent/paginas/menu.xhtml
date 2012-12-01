@@ -14,7 +14,8 @@
 
 		<p:submenu label="Cadastro" icon="ui-icon-document">
 			<p:menuitem value="Sala" action="#{salaManager.preparaCadastro}" ajax="false" />
-			<p:menuitem value="Usuário" url="cadastroFuncionario.jsf" />
+			<p:menuitem value="Usuário" action="#{usuarioManager.limparUsuario}" ajax="false" />
+			
 		</p:submenu>
 		<p:submenu label="Pesquisar" icon="ui-icon-search">
 			<p:menuitem value="Sala" url="listaSalas.jsf" />
