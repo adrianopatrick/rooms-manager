@@ -61,14 +61,14 @@
 								<h:outputText value="#{user.email}" />
 							</p:column>
 
-							<p:column style="width: 5%">
+							<p:column style="width: 5%" rendered="#{permissaoManager.canEdit()}" >
 								<f:facet name="header">Editar</f:facet>
 								<p:commandButton ajax="false"
 									action="#{usuarioManager.pegar(user)}" id="editButton"
 									icon="ui-icon-pencil" title="Editar" />
 							</p:column>
 
-							<p:column style="width: 5%">
+							<p:column style="width: 5%" rendered="#{permissaoManager.canDelete()}" >
 								<f:facet name="header">Excluir</f:facet>
 								<p:commandButton update="corpo" ajax="false"
 									action="#{usuarioManager.deletar(user)}" id="deleteButton"

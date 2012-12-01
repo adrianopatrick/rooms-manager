@@ -244,7 +244,7 @@ public class UsuarioManager extends AbstractMB implements Serializable{
 	public String limparUsuario(){
 		usuario = null;
 		tipoUsuario = null;
-		return "";
+		return "cadastroFuncionario";
 	}
 	
 	public void setPerfis(Map<String, Long> perfis) {

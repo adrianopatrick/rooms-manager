@@ -25,6 +25,6 @@ public class Administrador extends Usuario{
 	public Administrador(Usuario usuario) {
 		super(usuario);
 	}
-
+	
 	
 }
