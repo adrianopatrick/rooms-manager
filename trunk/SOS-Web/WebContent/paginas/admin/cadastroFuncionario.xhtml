@@ -47,7 +47,7 @@
 									<h:outputText id="emailException" value="#{usuarioManager.msgEmailException}" />
 									
 									<h:outputText value="Cargo: " />  
-									<h:selectOneMenu effect="fade" required="true" requiredMessage="Campo Obrigatório." value="#{usuarioManager.tipoUsuario}" >  
+									<h:selectOneMenu effect="fade" required="true" requiredMessage="Selecione um Cargo." value="#{usuarioManager.tipoUsuario}" >  
 							            <f:selectItem itemLabel="Selecione" itemValue="" noSelectionOption="true" />
 							            <f:selectItems value="#{usuarioManager.perfis}" />
 							        </h:selectOneMenu>
