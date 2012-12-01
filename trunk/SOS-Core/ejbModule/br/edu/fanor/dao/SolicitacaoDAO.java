@@ -28,4 +28,12 @@ public class SolicitacaoDAO extends GenericDAO<Solicitacao>{
 		return list;
 	}
 
+	@SuppressWarnings("unchecked")
+	public List<Solicitacao> findSolicitacoesDoDia() {
+		List<Solicitacao> list = new ArrayList<Solicitacao>();
+		Query query = getEntityManager().createQuery("from solicitacoes ");
+		list = query.getResultList();
+		return list;
+	}
+
 }
