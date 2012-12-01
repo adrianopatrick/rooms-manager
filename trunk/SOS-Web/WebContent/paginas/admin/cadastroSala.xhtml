@@ -40,7 +40,7 @@
 									
 									<h:outputText value="Capacidade: " />
 									<p:inputText id="capacidade" value="#{salaManager.sala.capacidade}" maxlength="3" size="5" >
-										<f:validateLength minimum="1"/>
+										<f:convertNumber integerOnly="true" minIntegerDigits="1"  />
 									</p:inputText> 
 									
 									<h:outputText value="Tipo de sala: " /> 
