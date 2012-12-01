@@ -49,18 +49,18 @@
 									<h:outputText value="Cargo: " />  
 									<h:selectOneMenu effect="fade" required="true" requiredMessage="Campo Obrigatório." value="#{usuarioManager.tipoUsuario}" >  
 							            <f:selectItem itemLabel="Selecione" itemValue="" noSelectionOption="true" />
-							            <f:selectItems value="#{usuarioManager.perfis}" var="user" itemLabel="#{user.key}" itemValue="#{user.value}" />
+							            <f:selectItems value="#{usuarioManager.perfis}" />
 							        </h:selectOneMenu>
 							        
 							        <h:outputText value="Senha: " />
-									<p:password value="#{usuarioManager.usuario.senha}"
+									<p:password  redisplay="true" value="#{usuarioManager.usuario.senha}"
 									required="true" promptLabel="Digite uma senha segura" weakLabel="Razoável" goodLabel="Boa" 
 									strongLabel="Ótima" feedback="true"  minLength="6" maxlength="15"
 									requiredMessage="O campo senha deve conter no minimo 6 caracteres."
 									match="pwd2" validatorMessage="senha digitada incorretamente"/>
 									
 									<h:outputText value="Confirmar Senha: " />
-									<p:password id="pwd2" value="#{usuarioManager.usuario.senha}" feedback="false"
+									<p:password  redisplay="true" id="pwd2" value="#{usuarioManager.usuario.senha}" feedback="false"
 									label="Password 2" required="true" />
 									
 									<p:commandButton value="Salvar" action="#{usuarioManager.salvar()}" ajax="false" update="growl"/>
