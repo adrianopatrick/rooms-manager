@@ -49,19 +49,19 @@
 								</p:inputText>
 
 								<h:outputText value="Data: " />
-								<p:calendar value="#{professorManager.data}"
+								<p:calendar value="#{professorManager.data}" mindate="#{salaManager.currentDate()}"
 									pattern="dd/MM/yyyy" required="true"
 									requiredMessage="Campo obrigatório" locale="pt" />
 
 								<h:outputText value="Horário Inicial: " />
-								<p:calendar value="#{professorManager.solicitacao.dataInicial}"
+								<p:calendar id="inicio" value="#{professorManager.solicitacao.dataInicial}"
 									pattern="HH:mm" timeOnly="true" required="true"
 									requiredMessage="Campo obrigatório" locale="pt" />
 
 								<h:outputText value="Horário Final: " />
-								<p:calendar value="#{professorManager.solicitacao.dataFinal}"
+								<p:calendar id="fim" value="#{professorManager.solicitacao.dataFinal}"
 									pattern="HH:mm" timeOnly="true" required="true" locale="pt"
-									requiredMessage="Campo obrigatório" />
+									requiredMessage="Campo obrigatório" validator="#{solicitacaoManager.validarHora}" />
 
 								<h:outputText value="Tipo de sala: " />
 								<p:selectOneMenu id="tipo"

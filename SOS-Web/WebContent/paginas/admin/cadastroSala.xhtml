@@ -46,7 +46,7 @@
 									
 									<h:outputText value="Tipo de sala: " /> 
 							        <p:selectOneMenu value="#{salaManager.sala.tipoSala}" effect="fade" converter="tipoSala"  >
-								        <f:selectItem itemLabel="Selecione" itemValue="" />  
+								        <f:selectItem itemLabel="Selecione" itemValue="" noSelectionOption="true" />  
 						    	        <f:selectItems value="#{salaManager.tiposSala}" var="tipo" itemLabel="#{tipo.label}" itemValue="#{tipo}"/>  
 							        </p:selectOneMenu>
 							        
