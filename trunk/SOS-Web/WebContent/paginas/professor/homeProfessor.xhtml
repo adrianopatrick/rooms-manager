@@ -39,7 +39,9 @@
 					<h:form id="formSolicitacao">
 						<p:panel header="Solicitação de Reserva de Sala">
 							<h:panelGrid columns="2">
-								<h:outputText value="Capacidade: " />
+								<h:outputText value="Capacidade: " >
+									<f:validateLength minimum="1"/>
+								</h:outputText>
 								<p:inputText id="nrAluno"
 									value="#{professorManager.solicitacao.nrAlunos}" size="5"
 									maxlength="3" required="true"
