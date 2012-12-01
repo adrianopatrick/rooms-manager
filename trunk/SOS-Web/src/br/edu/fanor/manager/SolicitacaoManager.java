@@ -5,12 +5,19 @@ import br.edu.fanor.manager.Teste;
 import br.edu.fanor.service.SolicitacaoService;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
+import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
+import javax.faces.validator.ValidatorException;
+
+import org.primefaces.component.calendar.Calendar;
 
 @SuppressWarnings("unused")
 @RequestScoped
@@ -38,4 +45,21 @@ public class SolicitacaoManager {
 		this.solicitacaoService = solicitacaoService;
 	}
 
+	public void validarHora(FacesContext context, UIComponent component, Object value) throws ValidatorException {
+	    
+		Date inicio = (Date) ((Calendar) component.findComponent("inicio")).getValue();
+		Date fim = (Date) value;
+		
+		
+        if(inicio.after(fim)) {
+            FacesMessage message = new FacesMessage();	
+            message.setSeverity(FacesMessage.SEVERITY_ERROR);
+            message.setSummary("Time Error.");
+            message.setDetail("A hora inicial tem que ser anterior a hora final");
+            context.addMessage("formSolicitacao:inicio", message);
+            throw new ValidatorException(message);
+        }
+    
+	}
+	
 }

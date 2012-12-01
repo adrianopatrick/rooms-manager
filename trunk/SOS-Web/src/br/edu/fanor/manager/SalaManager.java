@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -17,7 +18,6 @@ import javax.faces.event.ActionEvent;
 import javax.faces.validator.ValidatorException;
 
 import org.hibernate.collection.internal.PersistentBag;
-import org.primefaces.component.calendar.Calendar;
 import org.primefaces.event.SelectEvent;
 
 import br.edu.fanor.entity.Acessorio;
@@ -100,7 +100,7 @@ public class SalaManager extends AbstractMB implements Serializable{
 	
 	public void validarHora(FacesContext context, UIComponent component, Object value) throws ValidatorException {
 	    
-		Date inicio = (Date) ((Calendar) component.findComponent("inicio")).getValue();
+		Date inicio = (Date) ((org.primefaces.component.calendar.Calendar) component.findComponent("inicio")).getValue();
 		Date fim = (Date) value;
 		
 		
@@ -116,7 +116,12 @@ public class SalaManager extends AbstractMB implements Serializable{
 	}
 	
 	public Date currentDate(){
-		return new Date();
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime( new Date() );
+		calendar.add( Calendar.DAY_OF_YEAR , 1 );
+		System.out.println( calendar.getTime() );
+
+		return calendar.getTime();
 	}
 	
 	public void listarTodasSalas() {
