@@ -40,8 +40,6 @@ public class Sala {
 	@NotNull
 	private String observacao;
 
-	private String estado;
-
 	public String getNome() {
 		return nome;
 	}
@@ -76,14 +74,6 @@ public class Sala {
 
 	public Long getId() {
 		return id;
-	}
-
-	public String getEstado() {
-		return estado;
-	}
-
-	public void setEstado(String estado) {
-		this.estado = estado;
 	}
 
 	public TipoSala getTipoSala() {

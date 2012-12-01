@@ -20,6 +20,6 @@ INSERT INTO acessorios (id, descricao, nome) VALUES (nextval('seq_acessorios'), 
 INSERT INTO acessorios (id, descricao, nome) VALUES (nextval('seq_acessorios'), 'Pinceis para quadro branco', 'Pinceis');
 INSERT INTO acessorios (id, descricao, nome) VALUES (nextval('seq_acessorios'), 'Quadro para maior interação', 'Quadro Digital');
 
-INSERT INTO salas (id, capacidade, estado, nome, tiposala, observacao) VALUES (nextval('seq_salas'), 40, 'LIVRE', '01', 'Sala de Aula', '');
-INSERT INTO salas (id, capacidade, estado, nome, tiposala, observacao) VALUES (nextval('seq_salas'), 30, 'LIVRE', 'Lab-01', 'Laboratório', '');
-INSERT INTO salas (id, capacidade, estado, nome, tiposala, observacao) VALUES (nextval('seq_salas'), 150, 'LIVRE', '101', 'Auditório', 'Primeiro Andar');
+INSERT INTO salas (id, capacidade, nome, tiposala, observacao) VALUES (nextval('seq_salas'), 40, '01', '2', '');
+INSERT INTO salas (id, capacidade, nome, tiposala, observacao) VALUES (nextval('seq_salas'), 30, 'Lab-01', '2', '');
+INSERT INTO salas (id, capacidade, nome, tiposala, observacao) VALUES (nextval('seq_salas'), 150, '101', '2', '');
