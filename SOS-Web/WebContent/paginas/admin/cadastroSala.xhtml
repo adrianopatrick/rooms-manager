@@ -36,17 +36,16 @@
 								<h:panelGrid columns="2">
 								
 									<h:outputText value="Nome da sala: " />
-									<p:inputText value="#{salaManager.sala.nome}" size="5" />
+									<p:inputText value="#{salaManager.sala.nome}" size="5" required="true" requiredMessage="Campo obrigatório" />
 									
 									<h:outputText value="Capacidade: " />
-									<p:inputText id="capacidade" value="#{salaManager.sala.capacidade}" maxlength="3" size="5" 
+									<p:inputText id="capacidade" value="#{salaManager.sala.capacidade}" maxlength="3" size="5" required="true" requiredMessage="Campo obrigatório"
 										validatorMessage="campo invalido, este campo deve conter números" label="capacidade">
 										<f:validateLongRange minimum="1"/>
 									</p:inputText> 
 									
 									<h:outputText value="Tipo de sala: " /> 
-							        <p:selectOneMenu value="#{salaManager.sala.tipoSala}" effect="fade" converter="tipoSala"  >
-								        <f:selectItem itemLabel="Selecione" itemValue="" noSelectionOption="true" />  
+							        <p:selectOneMenu value="#{salaManager.sala.tipoSala}" effect="fade" converter="tipoSala" required="true" requiredMessage="Campo obrigatório" >
 						    	        <f:selectItems value="#{salaManager.tiposSala}" var="tipo" itemLabel="#{tipo.label}" itemValue="#{tipo}"/>  
 							        </p:selectOneMenu>
 							        
