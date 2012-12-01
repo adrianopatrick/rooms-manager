@@ -88,23 +88,41 @@
 						<f:facet name="header">
 							<h:outputText value="Qtd. Alunos" />
 						</f:facet>
-						<h:outputText value="#{lista.nrAlunos}" />
+						<h:outputText value="#{lista.solicitacao.nrAlunos}" />
+					</p:column>
+					
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="Sala" />
+						</f:facet>
+						<h:outputText value="#{lista.sala.nome}" />
 					</p:column>
 
 					<p:column>
 						<f:facet name="header">
 							<h:outputText value="Data" />
 						</f:facet>
-						<h:outputText value="#{lista.dataInicial}">
+						<h:outputText value="#{lista.solicitacao.dataInicial}">
 							<f:convertDateTime pattern="dd/MM/yyyy" />
 						</h:outputText>
 					</p:column>
 
 					<p:column>
 						<f:facet name="header">
-							<h:outputText value="Status" />
+							<h:outputText value="hora inicial" />
 						</f:facet>
-						<h:outputText value="#{lista.estado}" />
+						<h:outputText value="#{lista.dataInicial}" >
+							<f:convertDateTime pattern="HH:mm" timeZone="GMT-03:00" />
+						</h:outputText>
+					</p:column>
+					
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="hora final" />
+						</f:facet>
+						<h:outputText value="#{lista.dataFinal}" >
+							<f:convertDateTime pattern="HH:mm" timeZone="GMT-03:00" />
+						</h:outputText>
 					</p:column>
 
 				</p:dataTable>

@@ -1,5 +1,6 @@
 package br.edu.fanor.manager;
 
+import br.edu.fanor.entity.Reserva;
 import br.edu.fanor.entity.Solicitacao;
 import br.edu.fanor.manager.Teste;
 import br.edu.fanor.service.SolicitacaoService;
@@ -27,6 +28,7 @@ public class SolicitacaoManager {
 	@EJB private SolicitacaoService solicitacaoService;
 	
 	private List<Solicitacao> listaSolicitacaoPendente = new ArrayList<Solicitacao>();
+	private List<Reserva> listaSolicitacaoDoDia = new ArrayList<Reserva>();
 	
 	public List<Solicitacao> getListaSolicitacaoPendente(){
 		List<Solicitacao> list = solicitacaoService.listSolicitacaoPendente();
@@ -60,6 +62,15 @@ public class SolicitacaoManager {
             throw new ValidatorException(message);
         }
     
+	}
+
+	public List<Reserva> getListaSolicitacaoDoDia() {
+		setListaSolicitacaoDoDia(solicitacaoService.listSolicitacaoDoDia());
+		return listaSolicitacaoDoDia;
+	}
+
+	public void setListaSolicitacaoDoDia(List<Reserva> listaSolicitacaoDoDia) {
+		this.listaSolicitacaoDoDia = listaSolicitacaoDoDia;
 	}
 	
 }

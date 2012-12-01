@@ -21,7 +21,7 @@ public class EstadoReservaService extends GenericService<Usuario>{
 	
 	public void salvaReserva(Reserva reserva, Solicitacao solicitacao) {
 
-		int a = reserva.getDataFinal().compareTo(reserva.getDataIncial());
+		int a = reserva.getDataFinal().compareTo(reserva.getDataInicial());
 
 		if (a == 1){
 			solicitacaoService.salvaSolicitacao(solicitacao);

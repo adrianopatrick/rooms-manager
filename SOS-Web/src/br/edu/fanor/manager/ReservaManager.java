@@ -91,15 +91,15 @@ public class ReservaManager extends AbstractMB implements Serializable {
 				
 				while (count < 3 && !enviado) {
 					try {
-						System.out.println((count+1)+"ª tentativa de envio do email.");
+						System.out.println((count+1)+"ï¿½ tentativa de envio do email.");
 						
 						MailUtils.sendMail(reserva.getSolicitacao().getProfessor().getEmail(), 
 								"Comfirmacao de Sala", 
-								"Este e apenas um email de comfirmacao.\n\n" +
+								"Este e apenas um email de confirmacao.\n\n" +
 								"Reserva\n\n" +
 								"Sala: "+ reserva.getSala().getNome() + "\n" +
-								"Dia: " + formatarData("dd/MM/yyyy", reserva.getDataIncial())+ "\n" +
-								"Periodo: "+ formatarData("HH:mm", reserva.getDataIncial()) + " - " + formatarData("HH:mm", reserva.getDataFinal()));
+								"Dia: " + formatarData("dd/MM/yyyy", reserva.getDataInicial())+ "\n" +
+								"Periodo: "+ formatarData("HH:mm", reserva.getDataInicial()) + " - " + formatarData("HH:mm", reserva.getDataFinal()));
 						
 						enviado = true;
 						
@@ -165,7 +165,7 @@ public class ReservaManager extends AbstractMB implements Serializable {
 			public void selecionaSalaDisponivel(Sala sala) {
 				dia = salaManager.getDia();
 				reserva.setSala(sala);
-				reserva.setDataIncial(salaManager.getDataInicio());
+				reserva.setDataInicial(salaManager.getDataInicio());
 				reserva.setDataFinal(salaManager.getDataFim());
 			}
 		});
@@ -182,7 +182,7 @@ public class ReservaManager extends AbstractMB implements Serializable {
 
 	public void setSolicitacao(Solicitacao solicitacao) {
 		this.solicitacao = solicitacao;
-		reserva.setDataIncial(solicitacao.getData());
+		reserva.setDataInicial(solicitacao.getData());
 		reserva.setDataFinal(solicitacao.getData());
 	}
 
