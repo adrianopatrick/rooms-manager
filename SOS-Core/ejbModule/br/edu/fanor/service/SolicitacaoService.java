@@ -30,4 +30,9 @@ public class SolicitacaoService extends GenericService<Solicitacao>{
 		return list;
 	}
 
+	public List<Solicitacao> listSolicitacaoDoDia() {
+		List<Solicitacao> list = solicitacaoDAO.findSolicitacoesDoDia();
+		return list;
+	}
+
 }
