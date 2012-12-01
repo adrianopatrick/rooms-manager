@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Transient;
 
 import br.edu.fanor.enums.TipoPermissoes;
 
@@ -30,6 +31,12 @@ public class PerfilAdmin {
 	
 	@OneToMany(mappedBy="perfilAdmin")
 	private Set<Permissao> permissoes =  new HashSet<Permissao>();
+	
+	@Transient
+	public static String PERFIL_ADMINISTRADOR 	= "administrador";
+	
+	@Transient
+	public static String PERFIL_FUNCIONARIO 	= "funcionario";
 
 	public Boolean checkPermission(TipoPermissoes tipoPermissao){
 		for (Permissao permissao : permissoes) {

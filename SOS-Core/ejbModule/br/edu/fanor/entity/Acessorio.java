@@ -94,6 +94,9 @@ public class Acessorio {
 		return true;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return "Acessorio:" + getId();
+	}
 	
 }
