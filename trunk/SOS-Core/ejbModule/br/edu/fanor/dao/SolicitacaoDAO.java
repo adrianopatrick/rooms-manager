@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.Query;
 
+import br.edu.fanor.entity.Reserva;
 import br.edu.fanor.entity.Solicitacao;
 
 @Stateless
@@ -29,9 +30,9 @@ public class SolicitacaoDAO extends GenericDAO<Solicitacao>{
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Solicitacao> findSolicitacoesDoDia() {
-		List<Solicitacao> list = new ArrayList<Solicitacao>();
-		Query query = getEntityManager().createQuery("from solicitacoes ");
+	public List<Reserva> findSolicitacoesDoDia() {
+		List<Reserva> list = new ArrayList<Reserva>();
+		Query query = getEntityManager().createQuery("from reservas");
 		list = query.getResultList();
 		return list;
 	}

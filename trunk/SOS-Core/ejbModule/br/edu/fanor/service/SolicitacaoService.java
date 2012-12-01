@@ -6,6 +6,7 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 import br.edu.fanor.dao.SolicitacaoDAO;
+import br.edu.fanor.entity.Reserva;
 import br.edu.fanor.entity.Solicitacao;
 
 @Stateless
@@ -30,8 +31,8 @@ public class SolicitacaoService extends GenericService<Solicitacao>{
 		return list;
 	}
 
-	public List<Solicitacao> listSolicitacaoDoDia() {
-		List<Solicitacao> list = solicitacaoDAO.findSolicitacoesDoDia();
+	public List<Reserva> listSolicitacaoDoDia() {
+		List<Reserva> list = solicitacaoDAO.findSolicitacoesDoDia();
 		return list;
 	}
 

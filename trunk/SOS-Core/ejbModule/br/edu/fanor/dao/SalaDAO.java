@@ -4,7 +4,7 @@ package br.edu.fanor.dao;
 import java.util.Date;
 import java.util.List;
 
-import javax.ejb.Stateful;
+import javax.ejb.Stateless;
 import javax.persistence.Query;
 
 import org.hibernate.Criteria;
@@ -12,7 +12,7 @@ import org.hibernate.criterion.Restrictions;
 
 import br.edu.fanor.entity.Sala;
 
-@Stateful
+@Stateless
 public class SalaDAO extends GenericDAO<Sala> {
 
 	private static final long serialVersionUID = -3949689364295277956L;

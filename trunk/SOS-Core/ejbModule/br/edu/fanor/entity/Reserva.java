@@ -61,11 +61,11 @@ public class Reserva {
 		this.administrador = administrador;
 	}
 
-	public Date getDataIncial() {
+	public Date getDataInicial() {
 		return dataInicial;
 	}
 
-	public void setDataIncial(Date dataIncial) {
+	public void setDataInicial(Date dataIncial) {
 		this.dataInicial = dataIncial;
 	}
 
