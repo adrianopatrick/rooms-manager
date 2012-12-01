@@ -99,5 +99,12 @@ public class PerfilAdmin {
 	public void setId(Long id) {
 		this.id = id;
 	}
+
+	@Override
+	public String toString() {
+		return "PerfilAdmin [id=" + id + ", nome=" + nome
+				+ ", administradores=" + administradores + ", permissoes="
+				+ permissoes + "]";
+	}
 	
 }

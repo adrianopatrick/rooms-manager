@@ -66,14 +66,14 @@
 								<h:outputText value="#{sala.observacao}" />
 							</p:column>
 
-							<p:column style="width: 5%">
+							<p:column style="width: 5%" rendered="#{permissaoManager.canEdit()}" >
 								<f:facet name="header">Editar</f:facet>
-								<p:commandButton ajax="false"
+								<p:commandButton ajax="false" 
 									action="#{salaManager.preparaEdicao(sala)}" id="editButton"
 									icon="ui-icon-pencil" title="Editar" />
 							</p:column>
 
-							<p:column style="width: 5%">
+							<p:column style="width: 5%" rendered="#{permissaoManager.canDelete()}" >
 								<f:facet name="header">Excluir</f:facet>
 								<p:commandButton update="corpo" ajax="false"
 									action="#{salaManager.deletar(sala)}" id="deleteButton"
