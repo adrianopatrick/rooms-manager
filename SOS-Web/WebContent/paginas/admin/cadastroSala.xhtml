@@ -39,8 +39,9 @@
 									<p:inputText value="#{salaManager.sala.nome}" size="5" />
 									
 									<h:outputText value="Capacidade: " />
-									<p:inputText id="capacidade" value="#{salaManager.sala.capacidade}" maxlength="3" size="5" >
-										<f:convertNumber integerOnly="true" minIntegerDigits="1"  />
+									<p:inputText id="capacidade" value="#{salaManager.sala.capacidade}" maxlength="3" size="5" 
+										validatorMessage="campo invalido, este campo deve conter números" label="capacidade">
+										<f:validateLongRange minimum="1"/>
 									</p:inputText> 
 									
 									<h:outputText value="Tipo de sala: " /> 
