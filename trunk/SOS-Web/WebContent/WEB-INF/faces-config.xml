@@ -9,5 +9,23 @@
 		<converter-for-class>br.edu.fanor.entity.Usuario</converter-for-class>
 		<converter-class>br.edu.fanor.util.UsuarioConverter</converter-class>
 	</converter>
+	
+	<application>
+	
+		<locale-config>
+			<default-locale>pt_BR</default-locale>
+			<supported-locale>pt</supported-locale>
+		</locale-config>
+	
+		<resource-bundle>
+			<base-name>messages</base-name>
+			<var>msg</var>
+		</resource-bundle>
+		
+		<message-bundle>
+			messages
+		</message-bundle>
+	
+	</application>
 
 </faces-config>
