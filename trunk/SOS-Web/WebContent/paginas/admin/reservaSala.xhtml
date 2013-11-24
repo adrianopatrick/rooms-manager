@@ -45,7 +45,7 @@
 
 									<h:panelGroup>
 										<h:outputText value="Sala: " />
-
+										<br/>
 										<p:inputText id="sala"
 											value="#{reservaManager.reserva.sala.nome}" size="5"
 											required="true" requiredMessage="Selecione uma sala"
@@ -73,8 +73,16 @@
 									<h:inputTextarea value="#{reservaManager.reserva.observacao}"
 										cols="50" rows="7" />
 
-									<p:commandButton style="float:right;" value="Reservar"
-										action="#{reservaManager.reservarSala}" ajax="false" />
+									<h:panelGroup>
+									
+										<p:commandButton style="float:right;" value="Cancelar" immediate="true"
+											action="#{reservaManager.cancelaReserva}" ajax="false" />
+
+										<p:commandButton style="float:right;" value="Reservar"
+											action="#{reservaManager.reservarSala}" ajax="false" />
+									
+									</h:panelGroup>
+									
 								</h:panelGrid>
 							</p:panel>
 							<p:messages id="mensagemReserva" redisplay="false" ></p:messages>

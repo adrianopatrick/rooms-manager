@@ -54,16 +54,20 @@
 							        
 							        <h:outputText value="Senha: " />
 									<p:password  redisplay="true" value="#{usuarioManager.usuario.senha}"
-									required="true" promptLabel="Digite uma senha segura" weakLabel="Razoável" goodLabel="Boa" 
-									strongLabel="Ótima" feedback="true"  minLength="6" maxlength="15"
-									requiredMessage="O campo senha deve conter no minimo 6 caracteres."
-									match="pwd2" validatorMessage="senha digitada incorretamente"/>
+										required="true" promptLabel="Digite uma senha segura" weakLabel="Razoável" goodLabel="Boa" 
+										strongLabel="Ótima" feedback="true"  minLength="6" maxlength="15"
+										requiredMessage="O campo senha deve conter no minimo 6 caracteres."
+										match="pwd2" validatorMessage="senha digitada incorretamente"/>
 									
 									<h:outputText value="Confirmar Senha: " />
 									<p:password  redisplay="true" id="pwd2" value="#{usuarioManager.usuario.senha}" feedback="false"
 									label="Password 2" required="true" />
 									
-									<p:commandButton value="Salvar" action="#{usuarioManager.salvar()}" ajax="false" update="growl"/>
+									<h:panelGroup>
+										<p:commandButton value="Cancelar" immediate="true" style="float:right;"
+													action="#{reservaManager.cancelaReserva}" ajax="false" />
+										<p:commandButton value="Salvar" style="float:right;" action="#{usuarioManager.salvar()}" ajax="false" update="growl"/>
+									</h:panelGroup>
 								</h:panelGrid>
 							</p:panel>
 		                 </h:form>

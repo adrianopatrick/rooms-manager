@@ -44,19 +44,26 @@
 			<h:panelGrid columns="2" cellpadding="5">
 
 				<h:outputLabel for="email" value="Email:" />
-				<h:inputText value="#{loginManager.email}"  id="email"
+				<p:inputText value="#{loginManager.email}"  id="email"
 					required="true" requiredMessage="Campo Email Obrigatório."
 					label="email">
 					
 					<f:validator validatorId="emailValidator" />
 					
-				</h:inputText>
+				</p:inputText>
 
 				<h:outputLabel for="senha" value="Senha:" />
-				<h:inputSecret value="#{loginManager.senha}" id="senha"
+				<p:inputText value="#{loginManager.senha}" id="senha" type="password"
 					required="true" requiredMessage="Campo Senha Obrigatório."
 					label="senha" />
-
+				
+				<p:selectBooleanCheckbox value="#" style="float:right;" />
+				<h:outputText value="Mantenha-me conectado" />
+		
+				<!-- <p:commandLink actionListener="#">
+					<h:outputText value="Esqueceu sua senha?" />
+				</p:commandLink>  -->
+				
 				<h:inputHidden id="url" value="#{loginManager.url}" />
 				<script type="text/javascript">
 					$(function() {
