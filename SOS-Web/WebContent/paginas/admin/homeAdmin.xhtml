@@ -24,7 +24,7 @@
 				<ui:include src="../rodape.xhtml" />
 			</p:layoutUnit>
 
-			<p:layoutUnit id="center" position="center">
+			<p:layoutUnit id="center" position="center" >
 
 				<div id="menu">
 					<ui:include src="../menu.xhtml" />
@@ -32,7 +32,64 @@
 
 				<div id="corpo">
 					<h:form>
+						
+						<p:dataTable id="reservados" var="lista"
+							value="#{solicitacaoManager.listaSolicitacaoDoDia}"
+							style="float:right; padding: 5px; max-width: 540px; min-width:500px" paginator="true"
+							rows="10"
+							paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+							rowsPerPageTemplate="5,10,15"
+							emptyMessage="Nenhum registro encontrado.">
+							<f:facet name="header">  
+						           Reservas para o dia
+						    </f:facet>
+		
+							<p:column>
+								<f:facet name="header">
+									<h:outputText value="Qtd. Alunos" />
+								</f:facet>
+								<h:outputText value="#{lista.solicitacao.nrAlunos}" />
+							</p:column>
+							
+							<p:column>
+								<f:facet name="header">
+									<h:outputText value="Sala" />
+								</f:facet>
+								<h:outputText value="#{lista.sala.nome}" />
+							</p:column>
+		
+							<p:column>
+								<f:facet name="header">
+									<h:outputText value="Data" />
+								</f:facet>
+								<h:outputText value="#{lista.solicitacao.dataInicial}">
+									<f:convertDateTime pattern="dd/MM/yyyy" />
+								</h:outputText>
+							</p:column>
+		
+							<p:column>
+								<f:facet name="header">
+									<h:outputText value="hora inicial" />
+								</f:facet>
+								<h:outputText value="#{lista.dataInicial}" >
+									<f:convertDateTime pattern="HH:mm" timeZone="GMT-03:00" />
+								</h:outputText>
+							</p:column>
+							
+							<p:column>
+								<f:facet name="header">
+									<h:outputText value="hora final" />
+								</f:facet>
+								<h:outputText value="#{lista.dataFinal}" >
+									<f:convertDateTime pattern="HH:mm" timeZone="GMT-03:00" />
+								</h:outputText>
+							</p:column>
+		
+						</p:dataTable>
+						
 						<p:dataTable var="lista" paginator="true" rows="10"
+							
+							style="float:left; padding: 5px;"
 							value="#{solicitacaoManager.listaSolicitacaoPendente}"
 							emptyMessage="Nenhum registro encontrado.">
 
@@ -65,69 +122,13 @@
 							</p:column>
 
 						</p:dataTable>
+				
 					</h:form>
 				</div>
 				
 				<p:messages id="mensagem" showDetail="true" autoUpdate="true"
 					closable="true" redisplay="false" />
-			</p:layoutUnit>
-			
-			<p:layoutUnit position="east" size="500px">
-
-				<p:dataTable id="reservados" var="lista"
-					value="#{solicitacaoManager.listaSolicitacaoDoDia}"
-					style="max-width: 500px; min-width:500px" paginator="true"
-					rows="10"
-					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-					rowsPerPageTemplate="5,10,15"
-					emptyMessage="Nenhum registro encontrado.">
-					<f:facet name="header">  
-				           Reservas para o dia
-				    </f:facet>
-
-					<p:column>
-						<f:facet name="header">
-							<h:outputText value="Qtd. Alunos" />
-						</f:facet>
-						<h:outputText value="#{lista.solicitacao.nrAlunos}" />
-					</p:column>
-					
-					<p:column>
-						<f:facet name="header">
-							<h:outputText value="Sala" />
-						</f:facet>
-						<h:outputText value="#{lista.sala.nome}" />
-					</p:column>
-
-					<p:column>
-						<f:facet name="header">
-							<h:outputText value="Data" />
-						</f:facet>
-						<h:outputText value="#{lista.solicitacao.dataInicial}">
-							<f:convertDateTime pattern="dd/MM/yyyy" />
-						</h:outputText>
-					</p:column>
-
-					<p:column>
-						<f:facet name="header">
-							<h:outputText value="hora inicial" />
-						</f:facet>
-						<h:outputText value="#{lista.dataInicial}" >
-							<f:convertDateTime pattern="HH:mm" timeZone="GMT-03:00" />
-						</h:outputText>
-					</p:column>
-					
-					<p:column>
-						<f:facet name="header">
-							<h:outputText value="hora final" />
-						</f:facet>
-						<h:outputText value="#{lista.dataFinal}" >
-							<f:convertDateTime pattern="HH:mm" timeZone="GMT-03:00" />
-						</h:outputText>
-					</p:column>
-
-				</p:dataTable>
-
+				
 			</p:layoutUnit>
 		</p:layout>
 	</h:body>

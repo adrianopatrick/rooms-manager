@@ -57,8 +57,15 @@
 							       
 								    <h:outputText value="Observação: "/>
 									<p:inputTextarea value="#{salaManager.sala.observacao}"/>
-							       
-									<p:commandButton action="#{salaManager.salvaSala}" value="Salvar" ajax="false"/>
+							        
+							        <h:panelGroup />
+							        
+							        <h:panelGroup>
+										<p:commandButton value="Cancelar" immediate="true" style="float:right;"
+												action="#{reservaManager.cancelaReserva}" ajax="false" />
+										<p:commandButton action="#{salaManager.salvaSala}" value="Salvar" style="float:right;" ajax="false"/>
+									</h:panelGroup>
+								
 								</h:panelGrid>
 							</p:panel>
 	                    </h:form>
