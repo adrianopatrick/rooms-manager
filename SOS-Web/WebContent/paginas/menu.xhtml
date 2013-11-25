@@ -8,9 +8,9 @@
 <h:form>
 	<p:menubar autoSubmenuDisplay="true">
 	
-		<p:menuitem value="Home" url="homeAdmin.jsf" />
+		<p:menuitem value="Home" url="homeAdmin.jsf" icon="ui-icon-home" />
 		
-		<p:menuitem value="Reserva" action="#{reservaManager.limparReserva}" ajax="false" />
+		<p:menuitem value="Reserva" action="#{reservaManager.limparReserva}" ajax="false" icon="ui-icon-clipboard" />
 
 		<p:submenu label="Cadastro" icon="ui-icon-document">
 			<p:menuitem value="Sala" action="#{salaManager.preparaCadastro}" ajax="false" />
@@ -22,8 +22,7 @@
 			<p:menuitem value="Usuários" url="listaUsuarios.jsf" />
 		</p:submenu>
 
-		<p:menuitem value="Sair" actionListener="#{loginManager.logOut}"
-			helpText="CTRL+p" />
+		<p:menuitem value="Sair" actionListener="#{loginManager.logOut}" icon="ui-icon-power" helpText="CTRL+p" />
 
 
 
