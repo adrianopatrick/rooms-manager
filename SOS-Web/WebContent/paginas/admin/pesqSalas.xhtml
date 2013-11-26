@@ -12,30 +12,30 @@
 		draggable="false" resizable="false">
 		<h:form id="pesqSalaDialogForm" title="Pesquisar">
 			<h:panelGrid columns="9">
-
-				<p:growl id="growl" showDetail="true" sticky="true" life="3000" />
 				
-				<p:messages id="mensagemReserva" redisplay="false" />
+				<h:panelGroup>
+					<h:outputText value=" Dia: " />
+					<p:calendar id="dia" value="#{salaManager.dia}" pattern="MM/dd/yyyy" label="Dia"
+						mindate="#{salaManager.currentDate()}" required="true" size="12" locale="pt"/>
+	
+					<h:outputText value="Hora Inicial: " />
+					<p:calendar id="inicio" value="#{salaManager.dataInicio}" size="5" label="Hora Inicial"
+						pattern="HH:mm" timeOnly="true" locale="pt"/>
+	
+					<h:outputText value=" Hora Final: " />
+					<p:calendar id="fim" value="#{salaManager.dataFim}" size="5" label="Hora Final"
+						pattern="HH:mm" validator="#{salaManager.validarHora}"
+						timeOnly="true" locale="pt"/>
+	
+					<p:commandButton value="Pesquisar" id="pesquisa"
+						actionListener="#{salaManager.listarSalasDisponiveis}"
+						update=":pesqSalaDialogForm :salas :msgDialog" />
+					
+				</h:panelGroup>
 				
-				<h:outputText value=" Dia: " />
-				<p:calendar id="dia" value="#{salaManager.dia}" pattern="MM/dd/yyyy"
-					mindate="#{salaManager.currentDate()}" required="true" size="12" locale="pt"/>
-
-				<h:outputText value="Hora Inicial: " />
-				<p:calendar id="inicio" value="#{salaManager.dataInicio}" size="5"
-					pattern="HH:mm" timeOnly="true" locale="pt"/>
-
-				<h:outputText value=" Hora Final: " />
-				<p:calendar id="fim" value="#{salaManager.dataFim}" size="5"
-					pattern="HH:mm" validator="#{salaManager.validarHora}"
-					timeOnly="true" locale="pt"/>
-
-				<p:commandButton value="Pesquisar" id="pesquisa"
-					actionListener="#{salaManager.listarSalasDisponiveis}"
-					update=":pesqSalaDialogForm :salas" />
-
 			</h:panelGrid>
 		</h:form>
+		<p:messages id="msgDialog" showDetail="false" />
 
 		<p:dataTable id="salas" var="sala"
 			value="#{salaManager.salasDisponiveis}" paginator="true" rows="10"
