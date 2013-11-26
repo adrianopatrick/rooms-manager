@@ -34,8 +34,8 @@
 					<div id="corpo">
 						<p:growl id="growl" showDetail="true" sticky="true" life="3000" />
 
-						<h:form id="reserva">
-							<p:panel header="Reserva de Sala" id="panelcorpo">
+						<h:form id="reserva" >
+							<p:panel header="Reserva de Sala" id="panelcorpo" style="box-shadow: 2px 9px 15px 1px #888;">
 								<h:panelGrid>
 									<h:outputText value="Responsavel: " />
 									<p:autoComplete value="#{reservaManager.usuario}" id="prof" required="true"
