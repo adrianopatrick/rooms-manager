@@ -25,6 +25,12 @@ BODY {
 	margin-top: 5px;	
 }
 
+/* Cor do cabeçalho */
+.ui-widget-header {
+	border: none;
+	background: #0D5290;
+}
+
 .ui-datatable {
 	width: 800px;
 	margin: 0 auto;
