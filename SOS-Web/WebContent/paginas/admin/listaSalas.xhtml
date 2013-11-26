@@ -46,10 +46,16 @@
 				<div id="corpo">
 					<h:form id="form">
 						<p:dataTable var="sala" value="#{salaManager.listarSalas}"
-							paginator="true" style="width: 90%; 
+							paginator="true" 
+							style="width: 90%;
+							box-shadow: 1px 5px 15px 1px #888;
 							margin-top: 20px;"
 							emptyMessage="Nenhum registro encontrado.">
-
+							
+							<f:facet name="header">
+					        	Lista de Salas
+					        </f:facet>
+							
 							<p:column headerText="Nome">
 								<h:outputText value=" #{sala.nome}" />
 							</p:column>
