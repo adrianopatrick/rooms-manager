@@ -27,8 +27,9 @@ BODY {
 
 /* Cor do cabeçalho */
 .ui-widget-header {
-	border: none;
+	border: 1px white;
 	background: #0D5290;
+	font-size: 125%;
 }
 
 .ui-datatable {
