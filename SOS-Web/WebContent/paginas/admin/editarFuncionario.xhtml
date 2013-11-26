@@ -31,7 +31,7 @@
 					</div>
 					
 					<div id="corpo">
-						<p:growl id="growl" showDetail="true" sticky="true" />
+						<p:growl id="growl" showDetail="false" sticky="true" />
 						
 						<h:form>
 							<p:panel header="Cadastro de Usuario" id="panelcorpo">
@@ -39,13 +39,13 @@
 
 									<h:inputHidden id="idUsuario" value="#{usuarioManager.usuario.id}" />
 									
-									<h:outputText value="nome: " />
+									<h:outputText value="Nome: " />
 									<p:inputText value="#{usuarioManager.usuario.nome}"
-										required="true" requiredMessage="Campo Obrigatório." />
+										required="true" label="Nome" />
 
 									<h:outputText value="E-mail: " />
 									<p:inputText value="#{usuarioManager.usuario.email}"
-										required="true" requiredMessage="Campo Obrigatório.">
+										required="true" label="E-mail">
 										<f:ajax event="blur" listener="#{usuarioManager.validaEmail}"
 											render="emailException" />
 									</p:inputText>
@@ -55,7 +55,7 @@
 
 									<h:outputText value="Cargo: " />
 									<h:selectOneMenu effect="fade" required="true"
-										requiredMessage="Campo Obrigatório."
+										label="Cargo"
 										value="#{usuarioManager.tipoUsuario}">
 										<f:selectItem itemLabel="selecione" itemValue="" />
 										<f:selectItem itemLabel="Administrador" itemValue="1" />

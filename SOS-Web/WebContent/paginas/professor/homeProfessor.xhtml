@@ -40,32 +40,28 @@
 						<p:panel header="Solicitação de Reserva de Sala" style="box-shadow: 1px 5px 15px 1px #888;">
 							<h:panelGrid columns="2">
 								<h:outputText value="Capacidade: " />
-								<p:inputText id="nrAluno"
+								<p:inputText id="nrAluno" 
 									value="#{professorManager.solicitacao.nrAlunos}" size="5"
-									maxlength="3" required="true" label="capacidade"
-									requiredMessage="Campo obrigatório" validatorMessage="campo invalido, este campo deve conter números">
-									
+									maxlength="3" required="true" label="Capacidade"
+									validatorMessage="campo invalido, este campo deve conter números">
 									<f:validateLongRange minimum="1"/>
 								</p:inputText>
 
 								<h:outputText value="Data: " />
 								<p:calendar value="#{professorManager.data}" mindate="#{salaManager.currentDate()}"
-									pattern="dd/MM/yyyy" required="true"
-									requiredMessage="Campo obrigatório" locale="pt" />
+									pattern="dd/MM/yyyy" required="true" label="Data" locale="pt" />
 
 								<h:outputText value="Horário Inicial: " />
 								<p:calendar id="inicio" value="#{professorManager.solicitacao.dataInicial}"
-									pattern="HH:mm" timeOnly="true" required="true"
-									requiredMessage="Campo obrigatório" locale="pt" />
+									pattern="HH:mm" timeOnly="true" required="true" label="Horário Inicial" locale="pt" />
 
 								<h:outputText value="Horário Final: " />
 								<p:calendar id="fim" value="#{professorManager.solicitacao.dataFinal}"
 									pattern="HH:mm" timeOnly="true" required="true" locale="pt"
-									requiredMessage="Campo obrigatório" validator="#{solicitacaoManager.validarHora}" />
+									label="Horário Final" validator="#{solicitacaoManager.validarHora}" />
 
 								<h:outputText value="Tipo de sala: " />
-								<p:selectOneMenu id="tipo"
-									value="#{professorManager.solicitacao.tipoSala}" effect="fade">
+								<p:selectOneMenu id="tipo" value="#{professorManager.solicitacao.tipoSala}" effect="fade">
 									<f:selectItem itemLabel="Selecione" itemValue="" />
 									<f:selectItems value="#{salaManager.tiposSala}" var="tipo"
 										itemLabel="#{tipo.label}" itemValue="#{tipo}" />
@@ -88,7 +84,7 @@
 									action="#{professorManager.salvarSolicitacao}"
 									update="formSolicitacao ,:dataTable">
 								</p:commandButton>
-								<p:messages id="mensagem" showDetail="true" autoUpdate="true"
+								<p:messages id="mensagem" showDetail="false" autoUpdate="true"
 									closable="true" redisplay="false" />
 							</h:panelGrid>
 						</p:panel>

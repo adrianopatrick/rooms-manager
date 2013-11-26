@@ -31,17 +31,17 @@
 					</div>
 					
 					<div id="corpo">
-	                    <p:growl id="growl" showDetail="true" sticky="true" />
+	                    <p:growl id="growl" showDetail="false" sticky="true" />
 	                    <h:form >
 							<p:panel header="Cadastro de Usuario" id="panelcorpo" style="box-shadow: 2px 9px 15px 1px #888;">
 								<h:panelGrid >
 									
 									<h:inputHidden id="idUsuario" value="#{usuarioManager.usuario.id}" />
 									<h:outputText value="Nome: " />
-									<p:inputText value="#{usuarioManager.usuario.nome}" required="true" requiredMessage="Campo Obrigatório."/>
+									<p:inputText value="#{usuarioManager.usuario.nome}" required="true" label="Nome"/>
 									
 									<h:outputText value="E-mail: " />
-									<p:inputText value="#{usuarioManager.usuario.email}" required="true" requiredMessage="Campo Obrigatório.">
+									<p:inputText value="#{usuarioManager.usuario.email}" required="true" label="E-mail">
 										<f:validator validatorId="emailValidator" />
 									</p:inputText>
 									<h:outputText id="emailException" value="#{usuarioManager.msgEmailException}" />
