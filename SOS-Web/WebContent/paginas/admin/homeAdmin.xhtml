@@ -87,8 +87,9 @@
 		
 						</p:dataTable>
 						
-						<p:dataTable var="lista" paginator="true" rows="10"
-							
+						<p:dataTable var="lista" paginator="true" rows="10" 
+							paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+							rowsPerPageTemplate="5,10,15"
 							style="float:left; padding: 5px;"
 							value="#{solicitacaoManager.listaSolicitacaoPendente}"
 							emptyMessage="Nenhum registro encontrado.">
