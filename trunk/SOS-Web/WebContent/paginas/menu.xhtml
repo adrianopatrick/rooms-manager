@@ -8,23 +8,21 @@
 <h:form>
 	<p:menubar autoSubmenuDisplay="true">
 	
-		<p:menuitem value="Home" url="homeAdmin.jsf" icon="ui-icon-home" />
+		<p:menuitem value="Home" url="homeAdmin.jsf" icon="ui-icon-home" style="font-size: 15px;" />
 		
-		<p:menuitem value="Reserva" action="#{reservaManager.limparReserva}" ajax="false" icon="ui-icon-clipboard" />
+		<p:menuitem value="Reserva" action="#{reservaManager.limparReserva}" ajax="false" icon="ui-icon-clipboard" style="font-size: 15px;" />
 
-		<p:submenu label="Cadastro" icon="ui-icon-document">
-			<p:menuitem value="Sala" action="#{salaManager.preparaCadastro}" ajax="false" />
-			<p:menuitem value="Usuário" action="#{usuarioManager.limparUsuario}" ajax="false" />
-			
+		<p:submenu label="Cadastro" icon="ui-icon-document" style="font-size: 15px;" >
+			<p:menuitem value="Sala" action="#{salaManager.preparaCadastro}" ajax="false" style="font-size: 15px;" />
+			<p:menuitem value="Usuário" action="#{usuarioManager.limparUsuario}" ajax="false" style="font-size: 15px;" />
 		</p:submenu>
-		<p:submenu label="Pesquisar" icon="ui-icon-search">
+		
+		<p:submenu label="Pesquisar" icon="ui-icon-search" style="font-size: 15px;" >
 			<p:menuitem value="Sala" url="listaSalas.jsf" />
 			<p:menuitem value="Usuários" url="listaUsuarios.jsf" />
 		</p:submenu>
 
-		<p:menuitem value="Sair" actionListener="#{loginManager.logOut}" icon="ui-icon-power" helpText="CTRL+p" />
-
-
+		<p:menuitem value="Sair" actionListener="#{loginManager.logOut}" icon="ui-icon-power" helpText="CTRL+p" style="font-size: 15px;" />
 
 	</p:menubar>
 </h:form>
