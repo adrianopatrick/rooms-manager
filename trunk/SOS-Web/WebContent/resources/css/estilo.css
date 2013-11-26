@@ -31,6 +31,18 @@ BODY {
 	margin-top: 5px;
 }
 
+ .ui-widget-content{
+	background-color: white;
+}
+/*
+.ui-layout-doc{
+	background-color: silver;
+}
+.ui-layout{
+	background-color: blue;
+}
+*/
+
 #paneldata.ui-panel{
 		width: 900px !important;
 }
