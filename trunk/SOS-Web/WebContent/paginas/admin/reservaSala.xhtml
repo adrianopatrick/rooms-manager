@@ -32,14 +32,14 @@
 					</div>
 
 					<div id="corpo">
-						<p:growl id="growl" showDetail="true" sticky="true" life="3000" />
+						<p:growl id="growl" showDetail="false" sticky="true" life="3000" />
 
 						<h:form id="reserva" >
 							<p:panel header="Reserva de Sala" id="panelcorpo" style="box-shadow: 2px 9px 15px 1px #888;">
 								<h:panelGrid>
 									<h:outputText value="Responsavel: " />
 									<p:autoComplete value="#{reservaManager.usuario}" id="prof" required="true"
-										completeMethod="#{reservaManager.buscaPorNome}" var="p"
+										completeMethod="#{reservaManager.buscaPorNome}" var="p" label="Responsavel"
 										itemLabel="#{p.nome}" itemValue="#{p}" forceSelection="true"
 										minQueryLength="3" />
 

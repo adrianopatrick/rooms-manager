@@ -36,16 +36,16 @@
 								<h:panelGrid columns="2">
 								
 									<h:outputText value="Nome da sala: " />
-									<p:inputText value="#{salaManager.sala.nome}" size="5" required="true" requiredMessage="Campo obrigatório" />
+									<p:inputText value="#{salaManager.sala.nome}" size="5" required="true" label="Nome da sala" />
 									
 									<h:outputText value="Capacidade: " />
-									<p:inputText id="capacidade" value="#{salaManager.sala.capacidade}" maxlength="3" size="5" required="true" requiredMessage="Campo obrigatório"
-										validatorMessage="campo invalido, este campo deve conter números" label="capacidade">
+									<p:inputText id="capacidade" value="#{salaManager.sala.capacidade}" maxlength="3" size="5" required="true"
+										validatorMessage="campo invalido, este campo deve conter números" label="Capacidade">
 										<f:validateLongRange minimum="1"/>
 									</p:inputText> 
 									
 									<h:outputText value="Tipo de sala: " /> 
-							        <p:selectOneMenu value="#{salaManager.sala.tipoSala}" effect="fade" converter="tipoSala" required="true" requiredMessage="Campo obrigatório" >
+							        <p:selectOneMenu value="#{salaManager.sala.tipoSala}" effect="fade" converter="tipoSala" required="true" label="Tipo de sala" >
 						    	        <f:selectItems value="#{salaManager.tiposSala}" var="tipo" itemLabel="#{tipo.label}" itemValue="#{tipo}"/>  
 							        </p:selectOneMenu>
 							        
@@ -70,7 +70,7 @@
 							</p:panel>
 	                    </h:form>
 					</div>
-					<p:messages id="mensagem" showDetail="true" autoUpdate="true" closable="true" redisplay="false" />
+					<p:messages id="mensagem" showDetail="false" autoUpdate="true" closable="true" redisplay="false" />
                 </p:layoutUnit>
             </p:layout>
             </div>
